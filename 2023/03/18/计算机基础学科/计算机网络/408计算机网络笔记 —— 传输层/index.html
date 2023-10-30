@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>408计算机网络笔记 —— 传输层 | Ther的小站</title><meta name="author" content="Ther"><meta name="copyright" content="Ther"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 概述1.1 传输层的意义传输层的由来有了MAC地址和IP地址，我们已经可以在互联网上任意两台主机上建立通信。接下来的问题是，同一台主机上有许多程序都需要用到网络，比如，你一边浏览网页，一边与朋友在线聊天。当一个数据包从互联网上发来的时候，你怎么知道，它是表示网页的内容，还是表示在线聊天的内容？也就是说，我们还需要一个参数，表示这个数据包到底供哪个程序（进程）使用。这个参数就叫做”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="408计算机网络笔记 —— 传输层">
+<meta property="og:url" content="http://cjx_0723.gitee.io/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/408%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20%E2%80%94%E2%80%94%20%E4%BC%A0%E8%BE%93%E5%B1%82/index.html">
+<meta property="og:site_name" content="Ther的小站">
+<meta property="og:description" content="1. 概述1.1 传输层的意义传输层的由来有了MAC地址和IP地址，我们已经可以在互联网上任意两台主机上建立通信。接下来的问题是，同一台主机上有许多程序都需要用到网络，比如，你一边浏览网页，一边与朋友在线聊天。当一个数据包从互联网上发来的时候，你怎么知道，它是表示网页的内容，还是表示在线聊天的内容？也就是说，我们还需要一个参数，表示这个数据包到底供哪个程序（进程）使用。这个参数就叫做”">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif">
+<meta property="article:published_time" content="2023-03-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-10-30T14:04:29.117Z">
+<meta property="article:author" content="Ther">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://cjx_0723.gitee.io/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/408%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20%E2%80%94%E2%80%94%20%E4%BC%A0%E8%BE%93%E5%B1%82/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"YGMR4LH4DH","apiKey":"1fb48f3686d76eaf600890b7d3bb69c9","indexName":"index_hexo","hits":{"per_page":8},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '408计算机网络笔记 —— 传输层',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-30 22:04:29'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ther的小站" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://th.wallhaven.cc/small/kx/kx36mq.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Ther的小站"><span class="site-name">Ther的小站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">408计算机网络笔记 —— 传输层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-17T16:00:00.000Z" title="发表于 2023-03-18 00:00:00">2023-03-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-30T14:04:29.117Z" title="更新于 2023-10-30 22:04:29">2023-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/">计算机基础学科</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="408计算机网络笔记 —— 传输层"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><meta name="referrer" content="no-referrer"/>
+
+
+
+
+
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><h2 id="1-1-传输层的意义"><a href="#1-1-传输层的意义" class="headerlink" title="1.1 传输层的意义"></a>1.1 传输层的意义</h2><h5 id="传输层的由来"><a href="#传输层的由来" class="headerlink" title="传输层的由来"></a>传输层的由来</h5><p>有了MAC地址和IP地址，我们已经可以在互联网上任意两台主机上建立通信。<br>接下来的问题是，同一台主机上有许多程序都需要用到网络，比如，你一边浏览网页，一边与朋友在线聊天。当一个数据包从互联网上发来的时候，你怎么知道，它是表示网页的内容，还是表示在线聊天的内容？<br>也就是说，我们还需要一个参数，表示这个数据包到底供哪个程序（进程）使用。这个参数就叫做”端口”（port），它其实是每一个使用网卡的程序的编号。每个数据包都发到主机的特定端口，所以不同的程序就能取到自己所需要的数据。<br>“端口”是0到65535之间的一个整数，正好16个二进制位。0到1023的端口被系统占用，用户只能选用大于1023的端口。不管是浏览网页还是在线聊天，应用程序会随机选用一个端口，然后与服务器的相应端口联系。<br>“传输层”的功能，就是建立”端口到端口”的通信。相比之下，”<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%BD%91%E7%BB%9C%E5%B1%82&spm=1001.2101.3001.7020">网络层</a>”的功能是建立”主机到主机”的通信。只要确定主机和端口，我们就能实现程序之间的交流。因此，Unix系统就把主机+端口，叫做”套接字”（socket）。有了它，就可以进行网络应用程序开发了。</p>
+<p>网络层可以把数据从一个主机传送到另一个主机，但是没有和进程建立联系；传输层就是讲进程和收到的数据联系到一起，使数据能够为应用服务<br>所以说传输层是主机才有的层次<br><img src="https://img-blog.csdnimg.cn/20200630094441510.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="1-2-传输层的两个协议"><a href="#1-2-传输层的两个协议" class="headerlink" title="1.2 传输层的两个协议"></a>1.2 传输层的两个协议</h2><p><img src="https://img-blog.csdnimg.cn/20200630094727731.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="1-3-传输层的寻址和端口"><a href="#1-3-传输层的寻址和端口" class="headerlink" title="1.3 传输层的寻址和端口"></a>1.3 传输层的寻址和端口</h2><p>端口号只用于计算机分辨本地进程，总共有2^16&#x3D;65536种端口号，端口号有很多种，不能随便使用</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630095024127.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="1-3-1-常见的应用程序端口号"><a href="#1-3-1-常见的应用程序端口号" class="headerlink" title="1.3.1 常见的应用程序端口号"></a>1.3.1 常见的应用程序端口号</h3><p><img src="https://img-blog.csdnimg.cn/20200630095258962.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="2-UDP协议"><a href="#2-UDP协议" class="headerlink" title="2. UDP协议"></a>2. UDP协议</h1><h2 id="2-1-UDP概述"><a href="#2-1-UDP概述" class="headerlink" title="2.1 UDP概述"></a>2.1 UDP概述</h2><p>注释：<br>因为UDP一次发送一个完整报文不会分片，所以需要应用层传输过来的数据不要太大，否则网络层分片任务就很重，但是也不能太小，不然效率较低<br>UDP适合一些实时应用，因为实时应用延迟要求高，需要立即响应</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630095616466.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="2-2-UDP首部格式"><a href="#2-2-UDP首部格式" class="headerlink" title="2.2 UDP首部格式"></a>2.2 UDP首部格式</h2><p><img src="https://img-blog.csdnimg.cn/2020063010003161.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-2-1-UDP的校验位构成"><a href="#2-2-1-UDP的校验位构成" class="headerlink" title="2.2.1 UDP的校验位构成"></a>2.2.1 UDP的校验位构成</h3><p>这里的伪首部只是用来计算检验和的，计算完了就丢弃，可以见下UDP的校验方式<br><img src="https://img-blog.csdnimg.cn/20200630105441329.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-2-2-UDP校验方式"><a href="#2-2-2-UDP校验方式" class="headerlink" title="2.2.2 UDP校验方式"></a>2.2.2 UDP校验方式</h3><h4 id="总结一下步骤："><a href="#总结一下步骤：" class="headerlink" title="总结一下步骤："></a>总结一下步骤：</h4><h5 id="在发送端的时候："><a href="#在发送端的时候：" class="headerlink" title="在发送端的时候："></a>在发送端的时候：</h5><p>1.就是将每一行（4字节）拆成两部分，左右平均2字节大小，将这两字节数据写成二进制，那么2字节一共就需要2*8&#x3D;16位。此时检验和没有计算，默认填充0，同时如果数据字段不整齐，则用0补齐，这样就可以写出几十行二进制数，如图中方所示<br>2.计算着几十行二进制数按<strong>二进制反码运算求和</strong>，二进制反码运算可以参考<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jcchan/p/10400504.html">二进制反码求和运算</a><br>得到的最后简介再反码，之后将<strong>反码之后的</strong>放入原来的检验和字段</p>
+<h5 id="在接收端的时候"><a href="#在接收端的时候" class="headerlink" title="在接收端的时候"></a>在<strong>接收端</strong>的时候</h5><p><strong>与发送端的时候不同的是，此时检验和字段不是0了</strong><br>按照发送端的步骤再将所有数据写成二进制进行二进制反码运算求和<br>如果最后得到结果全1就是没问题，否则丢弃<br><img src="https://img-blog.csdnimg.cn/20200630105526400.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="2-3-UDP补充"><a href="#2-3-UDP补充" class="headerlink" title="2.3 UDP补充"></a>2.3 UDP补充</h3><h4 id="1-UDP怎么保证能收到数据？"><a href="#1-UDP怎么保证能收到数据？" class="headerlink" title="1.UDP怎么保证能收到数据？"></a>1.UDP怎么保证能收到数据？</h4><p>UDP将可靠传输的实现放到了应用层，然后类似于TCP，实现确认机制，重传机制<br>UDP不属于连接型协议，因而具有消耗资源小，处理速度快等优点，所以通常音频、视频通话在传送时使用UDP比较多，因为它们即使丢失一两个数据包也不会对结果产生太大影响<br>UDP传输层无法保证数据的可靠传输，只能通过应用层来实现了；实现的方式可以参考TCP可靠传输的方式，只是实现不在传输层，转移到了应用层<br>目前有如下开源程序利用UDP实现了可靠的数据传输；分别有RUDP, RTP, UDT</p>
+<h1 id="3-TCP协议"><a href="#3-TCP协议" class="headerlink" title="3. TCP协议"></a>3. TCP协议</h1><h2 id="3-1-TCP协议的特点"><a href="#3-1-TCP协议的特点" class="headerlink" title="3.1 TCP协议的特点"></a>3.1 TCP协议的特点</h2><p>TCP必须要建立连接之后才可以进行数据交换，所以TCP是面向连接的</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630194247441.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>TCP传输数据是随机切割数据的</p>
+<p><img src="https://img-blog.csdnimg.cn/2020063020421472.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="3-2-TCP报文段的首部"><a href="#3-2-TCP报文段的首部" class="headerlink" title="3.2 TCP报文段的首部"></a>3.2 TCP报文段的首部</h2><p>注释：<br>见上图，可以看到TCP是将数据随机分割后加上TCP头传输的，所以<br>序号就是为了标记这些随机分割之后的数据，这里把第一个字节的编号当成序号<br>确认号就是收到之后做一下标记，代表这之前的都收到了，希望收到的下一个编号的数据就是确认号打头的那个数据<br>偏移量就是为了标记一下距离TCP开始多少字节是数据，这里的单位是4B，这个偏移量就是TCP首部长度<br><img src="https://img-blog.csdnimg.cn/20200630210441410.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>窗口就是接收方告诉发送方，还有多少地方（缓存）可以放数据<br>紧急指针就是告诉TCP从哪里到哪里是紧急数据</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630212601599.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-2-1-TCP的六个控制位"><a href="#3-2-1-TCP的六个控制位" class="headerlink" title="3.2.1 TCP的六个控制位"></a>3.2.1 TCP的六个控制位</h3><h4 id="紧急位URG"><a href="#紧急位URG" class="headerlink" title="紧急位URG"></a>紧急位URG</h4><p>URG的特点就是让数据<strong>插队</strong>，URG&#x3D;1的就会在缓存中被提前到第一个传输</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630211126589.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200630211151331.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="确认位ACK"><a href="#确认位ACK" class="headerlink" title="确认位ACK"></a>确认位ACK</h4><p><img src="https://img-blog.csdnimg.cn/20200630211354251.png" alt="在这里插入图片描述"></p>
+<h4 id="推送为PSH"><a href="#推送为PSH" class="headerlink" title="推送为PSH"></a>推送为PSH</h4><p>就是接收端的URG，将PSH&#x3D;1的数据尽快接收<br>注意一下，如果没有PSH，一般都是接收方缓存满了之后再将数据发送到主机</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630212045298.png" alt="在这里插入图片描述"></p>
+<h4 id="复位RST"><a href="#复位RST" class="headerlink" title="复位RST"></a>复位RST</h4><p><img src="https://img-blog.csdnimg.cn/20200630212049447.png" alt="在这里插入图片描述"></p>
+<h4 id="同步位SYN"><a href="#同步位SYN" class="headerlink" title="同步位SYN"></a>同步位SYN</h4><p>A和B主机要建立连接，就A先发一个报文，其中SYN&#x3D;1<br>B收到之后也回复一个SYN&#x3D;1的报文，代表接受连接</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630212152221.png" alt="在这里插入图片描述"></p>
+<h4 id="终止位FIN"><a href="#终止位FIN" class="headerlink" title="终止位FIN"></a>终止位FIN</h4><p><img src="https://img-blog.csdnimg.cn/20200630212056958.png" alt="在这里插入图片描述"></p>
+<h2 id="3-3-TCP连接管理"><a href="#3-3-TCP连接管理" class="headerlink" title="3.3 TCP连接管理"></a>3.3 TCP连接管理</h2><h3 id="3-3-1-TCP三次握手（建立连接）"><a href="#3-3-1-TCP三次握手（建立连接）" class="headerlink" title="3.3.1 TCP三次握手（建立连接）"></a>3.3.1 TCP三次握手（建立连接）</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SYN</td>
+<td>同步序号，用于建立连接过程，在连接请求中，SYN&#x3D;1和ACK&#x3D;0表示该数据段没有使用捎带的确认域，而连接应答捎带一个确认，即SYN&#x3D;1和ACK&#x3D;1</td>
+</tr>
+<tr>
+<td>FIN</td>
+<td>用于释放连接，为1时表示发送方没有发送了</td>
+</tr>
+<tr>
+<td>ACK</td>
+<td>为1表示确认号有效，为0表示报文不含确认信息，忽略确认号字段，上面的确认号是否有效就是通过该标识控制的</td>
+</tr>
+<tr>
+<td>ack</td>
+<td>是期望收到对方下一个报文段的第一个数据字节的序号</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>TCP连接中传送的字节流中的每个字节都按顺序编号</td>
+</tr>
+</tbody></table>
+<p>注释：<br>第一段的意思是<br>SYN同步序号&#x3D;1：(A)要建立连接了！<br>seq序号&#x3D;x（随机）：因为还没有数据，所以写什么都无所谓</p>
+<p>第二段的意思是<br>SYN同步序号&#x3D;1：我(B)同意你(A)建立连接！<br>ACK确认序号&#x3D;1：连接建立了，之后的ACK必须都置为1<br>seq序号&#x3D;y（随机）：因为还没有数据，所以写什么都无所谓<br>ack确认号&#x3D;x+1：之前发送方(A)说发送的是第x位数据（虽然发送方是瞎说的），所以我(B)要的是x+1位数据</p>
+<p>第三段的意思是<br>SYN&#x3D;0：SYN只有在建立连接时才为1，其他时候均设为0<br>ACK&#x3D;1：连接建立了，之后的ACK必须都置为1<br>seq&#x3D;x+1：我(A)发送的报文段的第一个字节就是x+1<br>ack&#x3D;y+1：之前接收方(B)说发送的是第y位数据（虽然接收方是瞎说的），所以我(A)要的是y+1位数据</p>
+<p>注意一下，TCP是双向的，所以不存在绝对不变的发送方接收方，这里的两台主机都同时是发送方和接收方</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630213814996.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="TCP三次握手特定导致的SYN洪泛攻击"><a href="#TCP三次握手特定导致的SYN洪泛攻击" class="headerlink" title="TCP三次握手特定导致的SYN洪泛攻击"></a>TCP三次握手特定导致的SYN洪泛攻击</h4><p><img src="https://img-blog.csdnimg.cn/20200630214925395.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-3-2-TCP四次挥手（连接释放）"><a href="#3-3-2-TCP四次挥手（连接释放）" class="headerlink" title="3.3.2 TCP四次挥手（连接释放）"></a>3.3.2 TCP四次挥手（连接释放）</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SYN</td>
+<td>同步序号，用于建立连接过程，在连接请求中，SYN&#x3D;1和ACK&#x3D;0表示该数据段没有使用捎带的确认域，而连接应答捎带一个确认，即SYN&#x3D;1和ACK&#x3D;1</td>
+</tr>
+<tr>
+<td>FIN</td>
+<td>用于释放连接，为1时表示发送方没有发送了</td>
+</tr>
+<tr>
+<td>ACK</td>
+<td>为1表示确认号有效，为0表示报文不含确认信息，忽略确认号字段，上面的确认号是否有效就是通过该标识控制的</td>
+</tr>
+<tr>
+<td>ack</td>
+<td>是期望收到对方下一个报文段的第一个数据字节的序号</td>
+</tr>
+<tr>
+<td>seq</td>
+<td>TCP连接中传送的字节流中的每个字节都按顺序编号</td>
+</tr>
+</tbody></table>
+<p>注释：<br>第一段的意思是<br>FIN&#x3D;1：(A)要释放连接了！<br>seq&#x3D;u：发了好多数据，这里只是用u指代一下，这里u是有确定值的</p>
+<p>第二段的意思是<br>ACK&#x3D;1：连接建立了，之后的ACK必须都置为1<br>seq&#x3D;v：发了好多数据，这里只是用v指代一下，这里v是有确定值的<br>ack&#x3D;u+1：之前发送方(A)说发送的是第u位数据，所以我(B)要的是u+1位数据（尽管此时A已经决定释放连接了）</p>
+<p>第三段的意思是<br>FIN&#x3D;1：(B)要释放连接了！<br>ACK&#x3D;1：连接建立了，之后的ACK必须都置为1<br>seq&#x3D;w：发了好多数据，这里只是用w指代一下，这里w是有确定值的<br>ack&#x3D;u+1：之前发送方(A)说发送的是第u位数据，所以我(B)要的是u+1位数据（因为A直接不发数据了，所以第二段第三段的ack都是u+1）</p>
+<p>第四段的意思是<br>ACK&#x3D;1：连接建立了，之后的ACK必须都置为1<br>seq&#x3D;u+1：之前发的数据时第u位数据，B也要第u+1位数据，所以我发第u+1位数据<br>ack&#x3D;w+1：之前发送方(B)说发送的是第w位数据，所以我(A)要的是w+1位数据</p>
+<p><strong>为什么需要等待计时2MSL？</strong><br>因为这样可以保证B可以收到A的终止报文段进而进入关闭状态<br>比如说如果A的第四段报文丢失，那么等待一个MSL之后B就会重传第三段报文，花费小于1MSL之后A就会再收到第三段报文，之后就可以再次向B发送第四段报文提示B关闭连接</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630215522825.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="3-4-TCP可靠传输"><a href="#3-4-TCP可靠传输" class="headerlink" title="3.4 TCP可靠传输"></a>3.4 TCP可靠传输</h2><p>TCP是提供可靠传输，UDP这种本身还是不可靠传输的就再靠应用层解决了</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630220542461.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-4-1-序号"><a href="#3-4-1-序号" class="headerlink" title="3.4.1 序号"></a>3.4.1 序号</h3><p>就是TCP根据下方数据链路层的MTU（最大传输单元）来随即将数据切割成好几端并且进行编号<br><img src="https://img-blog.csdnimg.cn/20200630221424853.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-4-2-确认"><a href="#3-4-2-确认" class="headerlink" title="3.4.2 确认"></a>3.4.2 确认</h3><p>发送方每一次发送数据之后都需要接收方进行确认。<br>TCP使用的是累计确认机制，就是从第一个丢失的字节开始请求丢失的报文段。如图中456丢失，78到达，但仍然请求发送的数据序号是4<br><img src="https://img-blog.csdnimg.cn/20200630221636424.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-4-3-重传"><a href="#3-4-3-重传" class="headerlink" title="3.4.3 重传"></a>3.4.3 重传</h3><p>为什么要使用自适应算法？网络环境太复杂，路径又长又短，RTT设置短了照顾不了距离远的，RTT设置长了又导致网络利用率降低，所以使用RTTs</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630222205619.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="3-5-TCP流量控制"><a href="#3-5-TCP流量控制" class="headerlink" title="3.5 TCP流量控制"></a>3.5 TCP流量控制</h2><p>简单来说就是接收方可以动态的发送信息告诉发送方发送窗口的大小。<br>接收方接受不过来了就让发送方发送窗口小点，这样发送方发送的速率就慢下来了，接收方就有时间处理它的数据了<br>接受方处理完了也可以发送请求让发送方发送窗口大点，这样发送方发送的速率就快起来了，接收方就可以处理更多数据而不是空闲等着收数据了<br><img src="https://img-blog.csdnimg.cn/202006302226272.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-5-1-计时器"><a href="#3-5-1-计时器" class="headerlink" title="3.5.1 计时器"></a>3.5.1 计时器</h3><p>在本例子中，使用的累计确认机制（一次回复收到ack&#x3D;201）和三次流量控制机制。<br>但是有一个情况就是，如果最后B不允许A再发送数据了，B在处理完数据之后想要恢复窗口大小时发送的有rwnd大小的数据报丢了怎么办？此时A有B的指令在前，发送窗口为0无法发送数据，B也在等待A回复，造成了类似死锁的现象<br>解决方法：使用计时器<br><img src="https://img-blog.csdnimg.cn/20200630223616929.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="3-6-TCP拥塞控制"><a href="#3-6-TCP拥塞控制" class="headerlink" title="3.6 TCP拥塞控制"></a>3.6 TCP拥塞控制</h2><p>流量控制是对单独一个来说的，拥塞控制是一群<br><img src="https://img-blog.csdnimg.cn/20200630224242515.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-6-1-拥塞控制四种算法"><a href="#3-6-1-拥塞控制四种算法" class="headerlink" title="3.6.1 拥塞控制四种算法"></a>3.6.1 拥塞控制四种算法</h3><p>这里虽然是四种算法，但是通常是两两结合进行使用</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630232411944.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-6-2-慢开始和拥塞避免"><a href="#3-6-2-慢开始和拥塞避免" class="headerlink" title="3.6.2 慢开始和拥塞避免"></a>3.6.2 慢开始和拥塞避免</h3><p>这里开始时以<strong>指数形式增长</strong>，ssthresh的意思是慢开始门限，代表从这个地方注入的报文段就比较多了，需要开始慢速增加了。<br>之后一段都是<strong>线性增长</strong>，每次增加1，直至达到网络拥塞状态<br>瞬间将cwnd设置为1，同时调整原来的ssthresh的值到之前达到网络拥塞状态的1&#x2F;2,（这里是24降到12）<br>重复以上步骤，但是注意此时ssthresh变了之后线性增长的转折点也变了</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630232910475.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="3-6-3-快重传和快恢复"><a href="#3-6-3-快重传和快恢复" class="headerlink" title="3.6.3 快重传和快恢复"></a>3.6.3 快重传和快恢复</h3><p>这里和上面的慢开始和拥塞避免的一开始步骤差不多，都是先指数增长再转变为线性增长。<br>不同的点是快重传和快恢复算法是在收到连续的ack确认之后执行，这里的ack就是冗余ack，冗余ack的特点是如果多次对某一段请求的数据没有被收到，达到一定数目之后就会立即执行重传。但是此时只是降到现在cwnd的一半，再重新线性增长。而不是像慢开始和拥塞避免的从头开始</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630233701386.png?shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTA2NzYwMw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="4-传输层常见题目收集"><a href="#4-传输层常见题目收集" class="headerlink" title="4. 传输层常见题目收集"></a>4. 传输层常见题目收集</h1><h2 id="4-1-TCP、UDP区别及使用场景"><a href="#4-1-TCP、UDP区别及使用场景" class="headerlink" title="4.1. TCP、UDP区别及使用场景"></a>4.1. TCP、UDP区别及使用场景</h2><p>TCP面向连接（如打电话要先拨号建立连接）;UDP是无连接的，即发送数据之前不需要建立连接。<br>TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证可靠交付。TCP通过校验和，重传控制，序号标识，滑动窗口、确认应答实现可靠传输。如丢包时的重发控制，还可以对次序乱掉的分包进行顺序控制。<br>UDP具有较好的实时性，工作效率比TCP高，适用于对高速传输和实时性有较高的通信或广播通信。<br>每一条TCP连接只能是点到点的；UDP支持一对一、一对多、多对一和多对多的交互通信。<br>TCP对系统资源要求较多，UDP对系统资源要求较少。</p>
+<h2 id="4-2-TCP两次握手可以吗？"><a href="#4-2-TCP两次握手可以吗？" class="headerlink" title="4.2 TCP两次握手可以吗？"></a>4.2 TCP两次握手可以吗？</h2><p>第三次握手主要为了防止已失效的连接请求报文段突然又传输到了服务端，导致产生问题。<br>比如客户端A发出连接请求，可能因为网络阻塞原因，A没有收到确认报文，于是A再重传一次连接请求。<br>连接成功，等待数据传输完毕后，就释放了连接。<br>然后A发出的第一个连接请求等到连接释放以后的某个时间才到达服务端B，此时B误认为A又发出一次新的连接请求，于是就向A发出确认报文段。<br>如果不采用三次握手，只要B发出确认，就建立新的连接了，此时A不会响应B的确认且不发送数据，则B一直等待A发送数据，浪费资源。</p>
+<h2 id="4-3-第四次挥手为什么要等待2MSL？"><a href="#4-3-第四次挥手为什么要等待2MSL？" class="headerlink" title="4.3 第四次挥手为什么要等待2MSL？"></a>4.3 第四次挥手为什么要等待2MSL？</h2><p>1.保证A发送的最后一个ACK报文段能够到达B。<br>这个ACK报文段有可能丢失，B收不到这个确认报文，就会超时重传连接释放报文段，然后A可以在2MSL时间内收到这个重传的连接释放报文段，接着A重传一次确认，重新启动2MSL计时器，最后A和B都进入到CLOSED状态，若A在TIME-WAIT状态不等待一段时间，而是发送完ACK报文段后立即释放连接，则无法收到B重传的连接释放报文段，所以不会再发送一次确认报文段，B就无法正常进入到CLOSED状态。<br>2.防止已失效的连接请求报文段出现在本连接中。<br>A在发送完最后一个ACK报文段后，再经过2MSL，就可以使这个连接所产生的所有报文段都从网络中消失，使下一个新的连接中不会出现旧的连接请求报文段。</p>
+<h2 id="4-4-如果-1、2、3-次握手分别丢包了，会发生什么？"><a href="#4-4-如果-1、2、3-次握手分别丢包了，会发生什么？" class="headerlink" title="4.4 如果 1、2、3 次握手分别丢包了，会发生什么？"></a>4.4 如果 1、2、3 次握手分别丢包了，会发生什么？</h2><p>第一次客户端发的 SYN 丢了：<br>客户端迟迟接不到响应，超时重传。</p>
+<p>第二次服务端发的 SYN 和 ACK 丢了<br>客户端迟迟接不到响应，超时重传</p>
+<p>第三次客户端发的 ACK 丢了？<br>因为第三次发完 ACK 之后，随时接下来会继续往服务端发数据，我看过一篇博客里写的是发数据时会带上 ACK，所以客户端响应的 ACK 包丢了，服务器也能够通过之后的包来建立连接。</p>
+<p>第三次故意不发送 ACK 呢？<br>洪水攻击，服务器在等待第三次握手时是处于半连接状态，也是需要耗费资源的，如果有攻击者故意不发送第三次 ACK，让大量连接处于半连接状态，那么会把服务器资源耗尽，洪水攻击的目的就达到了。</p>
+<h1 id="本章思维导图"><a href="#本章思维导图" class="headerlink" title="本章思维导图"></a>本章思维导图</h1><p><img src="https://img-blog.csdnimg.cn/e333c3fbb3934e04b4a34ab03d80c743.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBASU5saW5LQw==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="请添加图片描述"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io">Ther</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/408%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20%E2%80%94%E2%80%94%20%E4%BC%A0%E8%BE%93%E5%B1%82/">http://cjx_0723.gitee.io/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/408%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20%E2%80%94%E2%80%94%20%E4%BC%A0%E8%BE%93%E5%B1%82/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://cjx_0723.gitee.io" target="_blank">Ther的小站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/18/%E7%94%9F%E6%B4%BB/%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95/%E9%9D%A2%E8%AF%95/" title="面试"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">面试</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/408%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20%E2%80%94%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%B1%82/" title="408计算机网络笔记 —— 网络层"><div class="cover" style="background: https://th.wallhaven.cc/small/1p/1p398w.jpg"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">408计算机网络笔记 —— 网络层</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/408%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0%20%E2%80%94%E2%80%94%20%E7%BD%91%E7%BB%9C%E5%B1%82/" title="408计算机网络笔记 —— 网络层"><div class="cover" style="background: https://th.wallhaven.cc/small/1p/1p398w.jpg"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-18</div><div class="title">408计算机网络笔记 —— 网络层</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ther</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="toc-text">1. 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BC%A0%E8%BE%93%E5%B1%82%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-text">1.1 传输层的意义</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="toc-text">传输层的由来</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BC%A0%E8%BE%93%E5%B1%82%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%8D%8F%E8%AE%AE"><span class="toc-text">1.2 传输层的两个协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E4%BC%A0%E8%BE%93%E5%B1%82%E7%9A%84%E5%AF%BB%E5%9D%80%E5%92%8C%E7%AB%AF%E5%8F%A3"><span class="toc-text">1.3 传输层的寻址和端口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-%E5%B8%B8%E8%A7%81%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="toc-text">1.3.1 常见的应用程序端口号</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-UDP%E5%8D%8F%E8%AE%AE"><span class="toc-text">2. UDP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-UDP%E6%A6%82%E8%BF%B0"><span class="toc-text">2.1 UDP概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-UDP%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="toc-text">2.2 UDP首部格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-UDP%E7%9A%84%E6%A0%A1%E9%AA%8C%E4%BD%8D%E6%9E%84%E6%88%90"><span class="toc-text">2.2.1 UDP的校验位构成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-UDP%E6%A0%A1%E9%AA%8C%E6%96%B9%E5%BC%8F"><span class="toc-text">2.2.2 UDP校验方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-text">总结一下步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8%E5%8F%91%E9%80%81%E7%AB%AF%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%9A"><span class="toc-text">在发送端的时候：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%A8%E6%8E%A5%E6%94%B6%E7%AB%AF%E7%9A%84%E6%97%B6%E5%80%99"><span class="toc-text">在接收端的时候</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-UDP%E8%A1%A5%E5%85%85"><span class="toc-text">2.3 UDP补充</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-UDP%E6%80%8E%E4%B9%88%E4%BF%9D%E8%AF%81%E8%83%BD%E6%94%B6%E5%88%B0%E6%95%B0%E6%8D%AE%EF%BC%9F"><span class="toc-text">1.UDP怎么保证能收到数据？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-TCP%E5%8D%8F%E8%AE%AE"><span class="toc-text">3. TCP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-TCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">3.1 TCP协议的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-TCP%E6%8A%A5%E6%96%87%E6%AE%B5%E7%9A%84%E9%A6%96%E9%83%A8"><span class="toc-text">3.2 TCP报文段的首部</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-TCP%E7%9A%84%E5%85%AD%E4%B8%AA%E6%8E%A7%E5%88%B6%E4%BD%8D"><span class="toc-text">3.2.1 TCP的六个控制位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A7%E6%80%A5%E4%BD%8DURG"><span class="toc-text">紧急位URG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A1%AE%E8%AE%A4%E4%BD%8DACK"><span class="toc-text">确认位ACK</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E4%B8%BAPSH"><span class="toc-text">推送为PSH</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E4%BD%8DRST"><span class="toc-text">复位RST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E4%BD%8DSYN"><span class="toc-text">同步位SYN</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E6%AD%A2%E4%BD%8DFIN"><span class="toc-text">终止位FIN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-TCP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="toc-text">3.3 TCP连接管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%88%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%EF%BC%89"><span class="toc-text">3.3.1 TCP三次握手（建立连接）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%89%B9%E5%AE%9A%E5%AF%BC%E8%87%B4%E7%9A%84SYN%E6%B4%AA%E6%B3%9B%E6%94%BB%E5%87%BB"><span class="toc-text">TCP三次握手特定导致的SYN洪泛攻击</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-TCP%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%88%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE%EF%BC%89"><span class="toc-text">3.3.2 TCP四次挥手（连接释放）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-TCP%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93"><span class="toc-text">3.4 TCP可靠传输</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-%E5%BA%8F%E5%8F%B7"><span class="toc-text">3.4.1 序号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-%E7%A1%AE%E8%AE%A4"><span class="toc-text">3.4.2 确认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-3-%E9%87%8D%E4%BC%A0"><span class="toc-text">3.4.3 重传</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-text">3.5 TCP流量控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-%E8%AE%A1%E6%97%B6%E5%99%A8"><span class="toc-text">3.5.1 计时器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="toc-text">3.6 TCP拥塞控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-1-%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E5%9B%9B%E7%A7%8D%E7%AE%97%E6%B3%95"><span class="toc-text">3.6.1 拥塞控制四种算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-2-%E6%85%A2%E5%BC%80%E5%A7%8B%E5%92%8C%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D"><span class="toc-text">3.6.2 慢开始和拥塞避免</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-3-%E5%BF%AB%E9%87%8D%E4%BC%A0%E5%92%8C%E5%BF%AB%E6%81%A2%E5%A4%8D"><span class="toc-text">3.6.3 快重传和快恢复</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E4%BC%A0%E8%BE%93%E5%B1%82%E5%B8%B8%E8%A7%81%E9%A2%98%E7%9B%AE%E6%94%B6%E9%9B%86"><span class="toc-text">4. 传输层常见题目收集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-TCP%E3%80%81UDP%E5%8C%BA%E5%88%AB%E5%8F%8A%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">4.1. TCP、UDP区别及使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-TCP%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%8F%AF%E4%BB%A5%E5%90%97%EF%BC%9F"><span class="toc-text">4.2 TCP两次握手可以吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E7%AC%AC%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%AD%89%E5%BE%852MSL%EF%BC%9F"><span class="toc-text">4.3 第四次挥手为什么要等待2MSL？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E5%A6%82%E6%9E%9C-1%E3%80%812%E3%80%813-%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%88%86%E5%88%AB%E4%B8%A2%E5%8C%85%E4%BA%86%EF%BC%8C%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">4.4 如果 1、2、3 次握手分别丢包了，会发生什么？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E7%AB%A0%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE"><span class="toc-text">本章思维导图</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程"><div style="background: https://w.wallhaven.cc/full/qz/wallhaven-qzom1r.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程">高级软件工程</a><time datetime="2023-10-30T14:04:29.121Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试"><div style="background: https://w.wallhaven.cc/full/yj/wallhaven-yjvxeg.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试">软件分析与测试</a><time datetime="2023-10-30T14:04:29.118Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E6%95%B0%E5%AD%A6/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E7%AC%94%E8%AE%B0/" title="概率论与数理统计">概率论与数理统计</a><time datetime="2023-10-30T14:04:29.068Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/PPT/" title="无题">无题</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课"><div style="background: https://w.wallhaven.cc/full/4g/wallhaven-4gwl6q.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课">研一选课</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Ther</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div></body></html>

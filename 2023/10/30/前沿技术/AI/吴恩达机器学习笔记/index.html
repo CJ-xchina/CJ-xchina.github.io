@@ -1,0 +1,1015 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>吴恩达机器学习笔记 | Ther的小站</title><meta name="author" content="Ther"><meta name="copyright" content="Ther"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、 引言（Introduction）1.1 什么是机器学习？​	第一个机器学习的定义来自于Arthur Samuel。他定义机器学习为，在进行特定编程的情况下，给予计算机学习能力的领域。Samuel的定义可以回溯到50年代，他编写了一个西洋棋程序。这程序神奇之处在于，编程者自己并不是个下棋高手。但因为他太菜了，于是就通过编程，让西洋棋程序自己跟自己下了上万盘棋。通过观察哪种布局（棋盘位置）会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吴恩达机器学习笔记">
+<meta property="og:url" content="http://cjx_0723.gitee.io/2023/10/30/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/AI/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Ther的小站">
+<meta property="og:description" content="一、 引言（Introduction）1.1 什么是机器学习？​	第一个机器学习的定义来自于Arthur Samuel。他定义机器学习为，在进行特定编程的情况下，给予计算机学习能力的领域。Samuel的定义可以回溯到50年代，他编写了一个西洋棋程序。这程序神奇之处在于，编程者自己并不是个下棋高手。但因为他太菜了，于是就通过编程，让西洋棋程序自己跟自己下了上万盘棋。通过观察哪种布局（棋盘位置）会">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif">
+<meta property="article:published_time" content="2023-10-30T14:04:29.020Z">
+<meta property="article:modified_time" content="2023-10-30T14:04:29.020Z">
+<meta property="article:author" content="Ther">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://cjx_0723.gitee.io/2023/10/30/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/AI/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"YGMR4LH4DH","apiKey":"1fb48f3686d76eaf600890b7d3bb69c9","indexName":"index_hexo","hits":{"per_page":8},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '吴恩达机器学习笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-30 22:04:29'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ther的小站" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925113033196.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Ther的小站"><span class="site-name">Ther的小站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">吴恩达机器学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-30T14:04:29.020Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-30T14:04:29.020Z" title="更新于 2023-10-30 22:04:29">2023-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/">前沿技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">19.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>64分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="吴恩达机器学习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><meta name="referrer" content="no-referrer"/>
+
+<h1 id="一、-引言（Introduction）"><a href="#一、-引言（Introduction）" class="headerlink" title="一、 引言（Introduction）"></a>一、 引言（Introduction）</h1><h2 id="1-1-什么是机器学习？"><a href="#1-1-什么是机器学习？" class="headerlink" title="1.1 什么是机器学习？"></a>1.1 什么是机器学习？</h2><p>​	第一个机器学习的定义来自于<strong>Arthur Samuel</strong>。他定义机器学习为，在进行特定编程的情况下，给予计算机学习能力的领域。<strong>Samuel</strong>的定义可以回溯到50年代，他编写了一个西洋棋程序。这程序神奇之处在于，编程者自己并不是个下棋高手。但因为他太菜了，于是就通过编程，让西洋棋程序自己跟自己下了上万盘棋。通过观察哪种布局（棋盘位置）会赢，哪种布局会输，久而久之，这西洋棋程序明白了什么是好的布局，什么样是坏的布局。然后就牛逼大发了，程序通过学习后，玩西洋棋的水平超过了<strong>Samuel</strong>。这绝对是令人注目的成果。</p>
+<h2 id="1-2-监督学习"><a href="#1-2-监督学习" class="headerlink" title="1.2 监督学习"></a>1.2 监督学习</h2><p>监督学习（supervised learning）指的就是我们给学习算法一个数据集，这个数据集含有“正确答案”的标签，机器通过学习输入数据到标签的映射，可预测接下来输入的无标签数据。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913151635791.png" alt="image-20230913151635791" style="zoom:67%;" />
+
+<p>上图很好地展示了监督学习过程，通过学习输入 X 和所需输出标签 Y 的数据对实现数据预测，即：“从正确答案中学习”，现实中机器学习的大部分的使用场景都是监督学习，如下图所示：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913151829672.png" alt="image-20230913151829672" style="zoom:67%;" />
+
+<p><strong>Email</strong>客户端中，你点击“垃圾邮件”按钮，报告某些<strong>Email</strong>为垃圾邮件，不会影响别的邮件。基于被标记为垃圾的邮件，您的电子邮件程序能更好地学习如何过滤垃圾邮件；输入音频文件及其对应的音频文本，机器即可学习如何将语音转化为文本。<strong>总结来看，监督学习就是通过大量已经得知映射关系的数据集中，寻找映射逻辑并学习的过程。</strong></p>
+<p>监督学习可以分为两种，分别是回归问题（Regression）与分类问题（Classification）。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913153848528.png" alt="image-20230913153848528"></p>
+<h3 id="回归问题"><a href="#回归问题" class="headerlink" title="回归问题"></a>回归问题</h3><p>假如你现在收集到关于房价与房屋面积的数据，你把这些数据画出来，看起来是这个样子：横轴表示房子的面积，单位是平方英尺，纵轴表示房价，单位是千美元。那基于这组数据，假如你有一个朋友，他有一套750平方英尺房子，现在他希望把房子卖掉，他想知道这房子能卖多少钱。</p>
+<p>那么关于这个问题，机器学习算法将会怎么帮助你呢？</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/2d99281dfc992452c9d32e022ce71161.png" alt="img"></p>
+<p>应用学习算法拟合一条直线，根据这条线我们可以推测出这套房子可能卖多少钱。也可能还有更好的，比如我们不用直线拟合这些数据，用二次方程去拟合可能效果会更好。根据二次方程的曲线，我们可以从这个点推测出，这套房子能卖接近。这些都是学习算法里面很好的例子。</p>
+<p>可以看出，监督学习指的就是我们给学习算法一个数据集。这个数据集由“正确答案”组成。在房价的例子中，我们给了一系列房子的数据，我们给定数据集中每个样本的正确价格，即它们实际的售价然后运用学习算法，算出更多的正确答案。比如你朋友那个新房子的价格。用术语来讲，这叫做<strong>回归问题</strong>。我们试着推测出一个连续值的结果，即房子的价格。</p>
+<blockquote>
+<p><strong>回归问题</strong>：在监督学习中，我们给学习算法一个数据集，比如一系列房子的数据，给定数据集中每个样本的正确价格，即它们实际的售价然后运用学习算法，算出更多的答案，我们需要估算一个<font color='red'>连续值</font>的结果，这属于回归问题</p>
+</blockquote>
+<h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><p>假设现在需要构建机器学习模型， 现在有这样的数据集：横轴表示乳腺癌肿瘤的大小，纵轴1代表乳腺癌恶性，0代表乳腺癌良性，如下图所示：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913153252377.png" alt="image-20230913153252377"></p>
+<p>或者是给定的数据集有超过两种变量输入，学习算法必须决定如何通过这些数据来模拟一条合适的边界线帮助医生诊断。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913153602338.png" alt="image-20230913153602338" style="zoom:67%;" />
+
+<p>机器学习的问题就在于，估算出肿瘤是恶性的或是良性的概率，属于<strong>分类问题</strong>。 </p>
+<blockquote>
+<p><strong>分类问题</strong>：指的是我们试着推测出<font color='red'>离散</font>的输出值：0或1良性或恶性，而事实上在分类问题中，输出可能不止两个值。 </p>
+</blockquote>
+<h2 id="1-3-无监督学习"><a href="#1-3-无监督学习" class="headerlink" title="1.3 无监督学习"></a>1.3 无监督学习</h2><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913154044869.png" alt="image-20230913154044869" style="zoom: 50%;" />
+
+<p>相较于监督学习，无监督学习的数据集没有任何的标签，不知道数据点是什么，也不知道如何处理。无监督学习算法可能会把这些数据分成多个不同的<strong>簇</strong>，叫做<strong>聚类算法</strong>。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913154656788.png" alt="image-20230913154656788"></p>
+<p>互联网上每天都有无数条新闻，如何将这么多的新闻分组组成关联的新闻就成为了聚类算法需要解决的问题，例如Google新闻中关于一个专题的报道，该报道的标题可以看出相近词使用频率很高，因此聚类算法将其划分为一类。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913155103251.png" alt="image-20230913155103251"  />
+
+<p>又例如人的DNA序列，通过输入很多人的某段DNA序列（一列代表一个人），聚类算法可以将DNA序列划分为多种类型或是不同的组。</p>
+<p>关于无监督学习，没有提前告知算法一些信息，比如，这是第一类的人，那些是第二类的人，还有第三类，等等。我们只是告诉机器这是有一堆数据，我不知道数据里面有什么，我不知道谁是什么类型，我甚至不知道人们有哪些不同的类型，这些类型又是什么。但你能自动地找到数据中的结构吗？要机器自动地聚类那些个体到各个类，我没法提前知道哪些是哪些。因为我们没有给算法正确答案来回应数据集中的数据，所以这就是无监督学习。</p>
+<p> <strong>应用</strong></p>
+<ul>
+<li>基因学的理解应用</li>
+<li>社交网络分析</li>
+<li>组织大型计算机集群</li>
+<li>细分市场</li>
+<li>新闻事件分类</li>
+</ul>
+<h1 id="二、单变量线性回归-Linear-Regression-with-One-Variable"><a href="#二、单变量线性回归-Linear-Regression-with-One-Variable" class="headerlink" title="二、单变量线性回归(Linear Regression with One Variable)"></a>二、单变量线性回归(Linear Regression with One Variable)</h1><h2 id="2-1-模型表示"><a href="#2-1-模型表示" class="headerlink" title="2.1 模型表示"></a>2.1 模型表示</h2><p>刚刚介绍了监督学习中的回归问题，单变量线性回归问题指的是将学习过程中控制机器学习的数据集只有一个自变量。有如下这样一个训练集，特征为房子的大小，因变量是房价。那么对于一个新的房子的大小，我们如何根据历史的数据来预测出来该房子的价格呢？</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913202412591.png" alt="image-20230913202412591" style="zoom:67%;" />
+
+<p>可以看出，单变量线性回归模型中，模型是一条直线，通过输入房子大小根据得到的模型即可推断出该房子的售价。现在我们将训练集（Training Set）用下面表格的方式展示：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913202747055.png" alt="image-20230913202747055" style="zoom:50%;" />
+
+<p>一些标注如下：</p>
+<p>$m$ 代表训练集中实例的数量</p>
+<p>$x$ 代表特征或者输入变量</p>
+<p>$y$ 代表目标变量或者输出变量</p>
+<p>$(x,y)$ 代表训练集中的实例</p>
+<p>$(x^i,y^i)$ 代表第 $i$ 个观察实例</p>
+<p>$h$ 代表学习算法的解决方案或函数(function)也称为假设（<strong>hypothesis</strong>）、模型（Model）</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913211442052.png" alt="image-20230913211442052" style="zoom:50%;" />
+
+<p>上述就是一个监督学习算法的工作方式，将训练集（training set）投喂给机器学习算法后得到模型 f ，通过输入特征 x 到模型中，模型就可以预测可能得目标值 <img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913213149751.png" alt="image-20230913213149751" style="zoom: 50%;" /> （读作 y hat)，需要区别 y 与 y hat，y 通常指代训练集中的目标变量，而y hat指代预测的目标变量。</p>
+<p>一种可能的表达方式为：$h_{\theta}(x) &#x3D; \theta_0 + \theta_1x$，因为只含有一个特征&#x2F;输入变量，因此这样的问题叫作单变量线性回归问题。</p>
+<h2 id="2-2-代价函数"><a href="#2-2-代价函数" class="headerlink" title="2.2 代价函数"></a>2.2 代价函数</h2><p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913213711862.png" alt="image-20230913213711862"></p>
+<p>假设有上述的训练集，$m$ 代表了训练集中实例的数量，例如$m &#x3D; 47$，对样本进行线性回归预测，可以得到这样的线性函数：$f_{w,b} &#x3D; wx + b$</p>
+<p>$w$ 与 $b$ 可以称作参数（Parameters）或是权重（Weights），即线性函数的斜率与在y轴上的截距。$w$ 与 $b$ 参数值的选择决定了预测的精确度，不同的权重产生不同的模型，模型对于预测精确程度的判定标准称作<strong>代价函数</strong>。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913214148823.png" alt="image-20230913214148823" style="zoom:50%;" />
+
+<p>$y_{hat} ^{i} - y_i$ 的值称作<strong>建模误差</strong>（modeling error），不同的模型对于代价函数的选择可能不同，但是在单变量线性回归预测中最常使用的代价函数是平方差代价函数：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913214448235.png" alt="image-20230913214448235" style="zoom:50%;" />
+
+<p>也可以写作：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913215400114.png" alt="image-20230913215400114" style="zoom: 50%;" />
+
+<p>显然为了找到预测最精确的模型，需要模型参数带入到代价函数能使其$J(w,b)$值最小，即$minimizeJ(w,b)$</p>
+<h2 id="2-3-代价函数的直观理解"><a href="#2-3-代价函数的直观理解" class="headerlink" title="2.3 代价函数的直观理解"></a>2.3 代价函数的直观理解</h2><p>绘制一个等高线图，三个坐标分别为$w$和$b$ 和 $J(w,b)$：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913220154623.png" alt="image-20230913220154623" style="zoom:67%;" />
+
+<p>则可以看出在三维空间中存在一个使得代价函数最小的点。另一种形式是等高线图，在取到代价最低点的参数时，模型预测准确度最高 。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230913225228044.png" alt="image-20230913225228044" style="zoom:67%;" />
+
+<p>通过这些图形，我希望你能更好地理解这些代价函数所表达的值是什么样的，它们对应的假设是什么样的，以及什么样的假设对应的点，更接近于代价函数$J$的最小值。</p>
+<h2 id="2-4-梯度下降"><a href="#2-4-梯度下降" class="headerlink" title="2.4 梯度下降"></a>2.4 梯度下降</h2><p>梯度下降是一个用来求函数最小值的算法，我们将使用梯度下降算法来求出代价函数$J(w,b)$ 的最小值。</p>
+<p>梯度下降背后思想：随机选择一个参数组合$(w_1,b_1)$，计算代价函数，然后我们寻找下一个能让代价函数值$J(w,b)$<strong>下降最多</strong>的参数组合，循环往复最终可以得到一个<strong>局部最小值（local minimum）</strong>，选择不同的初始参数组合，可能会找到不同的局部最小值。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914120810107.png" alt="image-20230914120810107"></p>
+<p>想象自己站在一座山的一点，在剃度下降算法中，我们需要旋转360度看看周围，根据判断选择下降最快的方向迈出一小步，随后再次旋转360度看看周围，再选择一次方向再迈出一小步。重复上述操作最终就会到达局部最低点的位置。</p>
+<p>批量梯度下降（<strong>batch gradient descent</strong>）算法的公式为：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914121113026.png" alt="image-20230914121113026" style="zoom:67%;" />
+
+<p>其中$\alpha$称作学习率（<strong>learning rate</strong>），它决定了我们沿着能让代价函数下降程度最大的方向向下迈出的步子有多大，在批量梯度下降中，我们每一次都同时让所有的参数减去学习速率乘以代价函数的导数，流程可以简述为：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914121230185.png" alt="image-20230914121230185" style="zoom: 50%;" />
+
+<blockquote>
+<p>注意：$w$与$b$的更新是同步的，也就是说需要中间变量$tmp_w$与$tmp_b$存储运算结果。</p>
+</blockquote>
+<h2 id="2-5-梯度下降的直观理解"><a href="#2-5-梯度下降的直观理解" class="headerlink" title="2.5 梯度下降的直观理解"></a>2.5 梯度下降的直观理解</h2><p>对于梯度下降算法的理解，不妨将二元函数$J(w,b)$的$b$参数值固定，假设其为0，那么对于$w$参数的梯度下降算法公式为：$w &#x3D; w-\alpha\frac{\partial}{\partial w}J(w)$，函数图为下面的形式：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914122530053.png" alt="image-20230914122530053" style="zoom:33%;" />
+
+<p>对于$\frac{\partial}{\partial w}J(w)$ 即在某一点$w &#x3D; w_0$处的斜率，$\alpha$ 的取指大于 0，因此可以分为下面两种情况讨论：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914122814808.png" alt="image-20230914122814808" style="zoom:67%;" />
+
+<ol>
+<li>$w_0$点位于局部最低点右侧，此时$\frac{\partial}{\partial w}J(w_0)$的值大于0，因此根据梯度下降算法$w &#x3D; w-\alpha\frac{\partial}{\partial w}J(w)$ ,有$w_新 &lt;w_0$。</li>
+<li>同理如果$w_0$点位于局部最低点左侧，$\frac{\partial}{\partial w}J(w_0)$的值小于0，$w_新 &gt;w_0$</li>
+</ol>
+<h2 id="2-6-学习率-alpha"><a href="#2-6-学习率-alpha" class="headerlink" title="2.6 学习率$\alpha$"></a>2.6 学习率$\alpha$</h2><p>梯度下降算法$w &#x3D; w-\alpha\frac{\partial}{\partial w}J(w)$中,学习率$\alpha$即下降中每一次下降的步长，下面讨论如果$\alpha$太大或是太小会出现什么情况：</p>
+<ul>
+<li>如果$\alpha$太大：</li>
+</ul>
+<p>梯度下降法可能会越过最低点，甚至可能无法收敛，下一次迭代又移动了一大步，越过一次，又越过一次，一次次越过最低点，直到你发现实际上离最低点越来越远，所以，如果太大，它会导致无法收敛，甚至发散。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914124310650.png" alt="image-20230914124310650" style="zoom: 50%;" />
+
+<ul>
+<li>如果$\alpha$太小：</li>
+</ul>
+<p>如果太小了，即我的学习速率太小，结果就是只能这样像小宝宝一样一点点地挪动，去努力接近最低点，这样就需要很多步才能到达最低点。</p>
+<p>对于另一种情况，如果说$（w_0，b_0）$ 初始化就在最低点，那么此时该点的偏导均为零，梯度下降算法的更新不会改变任何参数的值，来看下面这个例子：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914124712149.png" alt="image-20230914124712149" style="zoom:67%;" />
+
+<p>越靠近局部最低点时，该点的偏导数就越小，直到取到局部最低点时偏导数为 0 ，也就是说：$w$与$b$参数偏移幅度在每一次偏移后都会缩小，直到偏移幅度缩小为零。</p>
+<h2 id="2-7-梯度下降的线性回归"><a href="#2-7-梯度下降的线性回归" class="headerlink" title="2.7 梯度下降的线性回归"></a>2.7 梯度下降的线性回归</h2><p>如果将梯度下降函数中的偏导数求出来，即梯度下降函数可以转换为下面形式：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914125307454.png" alt="image-20230914125307454" style="zoom:50%;" />
+
+<p>推倒过程如下：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914125555039.png" alt="image-20230914125555039"></p>
+<p>则算法改写为：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230914125514822.png" alt="image-20230914125514822" style="zoom:67%;" />
+
+<h1 id="三、多变量线性回归-Linear-Regression-with-Multiple-Variables"><a href="#三、多变量线性回归-Linear-Regression-with-Multiple-Variables" class="headerlink" title="三、多变量线性回归(Linear Regression with Multiple Variables)"></a>三、多变量线性回归(Linear Regression with Multiple Variables)</h1><h2 id="3-1-多维特征"><a href="#3-1-多维特征" class="headerlink" title="3.1 多维特征"></a>3.1 多维特征</h2><p>目前为止，我们探讨了单变量&#x2F;特征的回归模型，现在我们对房价模型增加更多的特征，例如房间数楼层等，构成一个含有多个变量的模型，模型中的特征为$(x_1,x_2,x_3,x_4)$。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230917150441348.png" alt="image-20230917150441348"></p>
+<ul>
+<li>$n$代表特征的数量</li>
+<li>$x^{(i)}$代表第 个训练实例，是特征矩阵中的第行，是一个<strong>向量</strong>（<strong>vector</strong>）。</li>
+</ul>
+<p>例如上图的$x^{(2)} &#x3D;<br> \begin{bmatrix}<br> 1416\<br> 3\<br> 2\<br>40\<br>\end{bmatrix}$</p>
+<ul>
+<li>$x^{(i)}_j$代表特征矩阵中第$i$行的第$j$个特征，也就是第$i$个训练实例的第$j$个特征。</li>
+</ul>
+<p>因此多变量线性回归模型可以写作下面的形式：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230917151323629.png" alt="image-20230917151323629" style="zoom: 50%;" />
+
+<p>不妨定义$X&#x3D;<br> \begin{bmatrix}<br> x_1\<br> x_2\<br> x_3\<br>x_4\<br>\end{bmatrix}$，$W&#x3D; \begin{bmatrix}<br> w_1\<br> w_2\<br> w_3\<br>w_4\<br>\end{bmatrix}$，因此$f_{w,b}&#x3D;W \cdot X + b$，$W^T$代表$W$矩阵的转置。</p>
+<blockquote>
+<p>注意：这里的$W^T \cdot X$ 是点乘运算而不是矩阵乘法，因为向量是一维矩阵，使用<code>numpy.dot()</code>既可以实现点乘，也可以实现矩阵乘法。</p>
+</blockquote>
+<h2 id="3-2-多变量梯度下降"><a href="#3-2-多变量梯度下降" class="headerlink" title="3.2 多变量梯度下降"></a>3.2 多变量梯度下降</h2><p>与单变量线性回归类似，在多变量线性回归中，我们也构建一个代价函数，则这个代价函数是所有建模误差的平方和，即：</p>
+<p>$J（w_1,w_2,….,w_n)&#x3D;\frac{1}{2m}\sum_{i&#x3D;1}^m(f_{w,b}(x^{(i)})-y^{(i)})$</p>
+<p>我们的目标和单变量线性回归问题中一样，是要找出使得代价函数最小的一系列参数。 多变量线性回归的批量梯度下降算法为：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230917155037373.png" alt="image-20230917155037373" style="zoom:67%;" />
+
+<p>求导之后：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230917155510153.png" alt="image-20230917155510153" style="zoom: 50%;" />
+
+<h2 id="3-3-特征缩放"><a href="#3-3-特征缩放" class="headerlink" title="3.3 特征缩放"></a>3.3 特征缩放</h2><p>在我们面对多维特征问题的时候，我们要保证这些特征都具有相近的尺度，这将帮助梯度下降算法更快地收敛。</p>
+<p>以房价问题为例，假设我们使用两个特征，房屋的尺寸和房间的数量，尺寸的值为 0-2000平方英尺，而房间数量的值则是0-5，以两个参数分别为横纵坐标，绘制代价函数的等高线图能，看出图像会显得很扁，梯度下降算法需要非常多次的迭代才能收敛。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230917164105795.png" alt="image-20230917164105795"></p>
+<p>可以看到，数据集分布图中，数据可能分布的范围是一个及其扁的矩形，而该模型的代价函数分布图也是一个椭圆，解决的方法是尝试将所有特征的尺度都尽量缩放到-1到1之间。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/b8167ff0926046e112acf789dba98057.png" alt="img" style="zoom: 67%;" />
+
+<p>最简单的方法是令：$x_n&#x3D;\frac{x_n-u_n}{\sigma_n}$，其中 $u_n$是平均值，是$\sigma_n$标准差。也就是将数据集化为（0,1）正态分布。</p>
+<h2 id="3-4-学习率的选择"><a href="#3-4-学习率的选择" class="headerlink" title="3.4 学习率的选择"></a>3.4 学习率的选择</h2><p>梯度下降算法收敛所需要的迭代次数根据模型的不同而不同，我们不能提前预知，我们可以绘制迭代次数和代价函数的图表来观测算法在何时趋于收敛。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/cd4e3df45c34f6a8e2bb7cd3a2849e6c.jpg" alt="img"></p>
+<p>也有一些自动测试是否收敛的方法，例如将代价函数的变化值与某个阀值（例如0.001）进行比较，但通常看上面这样的图表更好。</p>
+<p>梯度下降算法的每次迭代受到学习率的影响，如果学习率过小，则达到收敛所需的迭代次数会非常高；如果学习率过大，每次迭代可能不会减小代价函数，可能会越过局部最小值导致无法收敛。</p>
+<p><strong>通常可以考虑尝试些学习率：$α&#x3D;0.01,0.03,0.1,0.3,1,3,1$</strong></p>
+<h2 id="3-5-特征工程与多项式回归"><a href="#3-5-特征工程与多项式回归" class="headerlink" title="3.5 特征工程与多项式回归"></a>3.5 特征工程与多项式回归</h2><p>例如在房价预测问题中：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918125259342.png" alt="image-20230918125259342" style="zoom:67%;" />
+
+<p>$x_1$代表房屋的宽度，$x_2$代表房屋的纵向深度，$x_3&#x3D;x_1\cdot x_2$代表房屋的使用面积，那么能得到预测模型：</p>
+<p>$  f_ {W,b}  (  \overrightarrow {x}  )&#x3D;  w_ {1}   x_ {1}  +  w_ {3}   x_ {2} +  w_ {3}   x_ {3}  + b$</p>
+<p>创建一个新的特征值$x_3$就是所谓的<strong>特征工程</strong>的案例，可以利用对问题的知识或者直觉来设计新的特征值，该特征值通常是通过转换货组合问题的原始特征值来使得学习算法能作出更为准确的预测。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918125831344.png" alt="image-20230918125831344" style="zoom:50%;" />
+
+<p>但有时线性回归问题不能解决我们遇到的问题，有时候需要使用曲线来适应我们的数据</p>
+<p>例如二次方模型： $ f_ {W,b} $ (x)&#x3D; $ w_ {1} $ x+ $ w_ {2} $ $ x^ {2} $ + $ w_ {3} $ $ x^ {3} $ +b</p>
+<p>例如三次方模型： $ f_ {W,b} $ ( $ \overrightarrow {x} $ )&#x3D; $ w_ {1} $ $ x_ {1} $ + $ w_ {3} $ $ x_ {2} $ + $ w_ {3} $ $ x_ {3} $ +b</p>
+<p>或者是根 号模型： $ f_ {w,b} $ (x)&#x3D; $ w_ {1} $  x+ $ w_ {2} $ $ \sqrt {x} $ + b</p>
+<p><strong>通常我们需要先观察数据然后再决定准备尝试怎样的模型。</strong></p>
+<h1 id="四、逻辑回归-Logistic-Regression"><a href="#四、逻辑回归-Logistic-Regression" class="headerlink" title="四、逻辑回归(Logistic Regression)"></a>四、逻辑回归(Logistic Regression)</h1><h2 id="4-1-分类问题"><a href="#4-1-分类问题" class="headerlink" title="4.1 分类问题"></a>4.1 分类问题</h2><p>在监督学习中，分类问题预测的变量$y$是离散值，尝试预测的是结果是否属于某一个类（例如正确或错误）。</p>
+<p>常见分类问题的例子有：判断一封电子邮件是否是垃圾邮件；判断一次金融交易是否是欺诈；之前我们也谈到了肿瘤分类问题的例子，区别一个肿瘤是恶性的还是良性的。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918134202567.png" alt="image-20230918134202567" style="zoom:50%;" />
+
+<p>如果有下列关于肿瘤大小与是否是恶性肿瘤的数据集，如果仍使用线性回归来预测就会得到下面的这个模型：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918134439442.png" alt="image-20230918134439442" style="zoom:50%;" />
+
+<p>我们可以定义一个阈值（threshold）来判断肿瘤是否为恶性（图中为0.5），如果预测结果 $ \widehat {y} &lt; 0.5$ 则被定义为良性肿瘤，否则为恶性，这个预测模型看似是可靠的。但是考虑这一种情况：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918134821125.png" alt="image-20230918134821125" style="zoom: 50%;" />
+
+<p>如果数据集新加入数据使得预测模型 $ f_ {w,b} $$ (x)&#x3D;wx+b$ 改变为绿色直线，那么此时原本数据集中应当被判定为恶性肿瘤的部分数据，会被新模型判定为良性，这显然是不合理的。</p>
+<p>我们会学习<strong>逻辑回归算法（Logistic Regression）</strong>来进行对分类问题的预测，它的输出值永远在0到 1 之间。</p>
+<h2 id="4-2-逻辑回归"><a href="#4-2-逻辑回归" class="headerlink" title="4.2 逻辑回归"></a>4.2 逻辑回归</h2><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918154339069.png" alt="image-20230918154339069" style="zoom:67%;" />
+
+<p>逻辑回归模型（如右图所示），其函数式：**$g(z)&#x3D;$ $ \frac {1}{1+e^ {-z}} $ $0&lt;g(z)&lt;1$**</p>
+<p>对于逻辑回归模型可以理解为**$z &#x3D; w \cdot x +b $** ，得到的$z$值带入到$g（z）$中：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918155217610.png" alt="image-20230918155217610" style="zoom: 50%;" />
+
+<p>对于逻辑回归模型的理解：若 $ f_ {W,b}(x_i) $ $&#x3D;0.7$ 则$x_i$这个样本下， $ f_ {w,b}(x)&#x3D;P(y&#x3D;1|\overrightarrow {x},\overrightarrow {w},b) &#x3D;70 % $ ，即样本是恶性肿瘤的概率为70%</p>
+<h2 id="4-3-决策边界"><a href="#4-3-决策边界" class="headerlink" title="4.3 决策边界"></a>4.3 决策边界</h2><p><strong>决策边界（Decision Boundary）：指在分类问题中，用于划分不同类别的边界或界限。</strong>决策边界可以是一个超平面、曲线或其他形状，它将特征空间分成不同的区域，每个区域对应于一个特定的类别。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918161425838.png" alt="image-20230918161425838" style="zoom:50%;" />
+
+<p>在上述逻辑回归模型中，如果 $ f_ {w,b} $ (x) $ \geqslant $ $0.5$，则预测的结果为真，此时$g(z)\geqslant0.5$ ，那么$z\geqslant0$，即： $ \overrightarrow {w} $ $ \cdot $ $ \overrightarrow {x} $ $+b $ $\geqslant$ $ 0$。</p>
+<p>同理不难退出，若预测结果为假，即：$ \overrightarrow {w} $ $ \cdot $ $ \overrightarrow {x} $ $+ b $ &lt; $ 0$</p>
+<p>因此对于预测模型总的$z$，有$z&#x3D;0$的函数称作为决策边界，决策边界将预测为0或1的两部分区域分割开。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918162002408.png" alt="image-20230918162002408" style="zoom:50%;" />
+
+<p>例如上述模型中，$z&#x3D;w_1x_1+w_2x_2+b$，此时决策边界为$x_1+x_2&#x3D;3$</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918162106553.png" alt="image-20230918162106553" style="zoom: 50%;" />
+
+<p>而在该模型中，$z&#x3D;w_1x_1^2+w_2x_2^2+b$，此时决策边界为$x_1^2+x_2^2&#x3D;1$。</p>
+<p>可以用非常复杂的模型来适应非常复杂形状的判定边界。</p>
+<h2 id="4-4-代价函数"><a href="#4-4-代价函数" class="headerlink" title="4.4 代价函数"></a>4.4 代价函数</h2><p>对于线性回归模型，我们定义的代价函数是所有模型误差的平方和。理论上来说，我们也可以对逻辑回归模型沿用这个定义，但是问题在于，当我们将**$g(z)&#x3D;$ $ \frac {1}{1+e^ {-z}} $ <strong>带入到这样定义了的代价函数中时，我们得到的代价函数将是一个非凸函数（</strong>non-convexfunction**）。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918164549078.png" alt="image-20230918164549078" style="zoom:50%;" />
+
+<p>这意味着我们的代价函数有许多局部最小值，这将影响梯度下降算法寻找全局最小值。</p>
+<p>重新定义逻辑归回模型的<strong>代价函数（cost function）</strong>如下，其中$L(  f_ {w,b}  (  x^ {(i)}  ),  y^ {(i)} ) $ 称为**损失函数（loss function） **。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918165531144.png" alt="image-20230918165531144" style="zoom:67%;" />
+
+<p>对于$ f_ {w,b}(x^{(i)}) $ 函数，其取值范围为：$(0,1)$，因此可以画出$L(  f_ {w,b}  (  x^ {(i)}  ),  y^ {(i)} ) $分布图：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/8b97dcb78406bea24939d146292d4d1.jpg" alt="8b97dcb78406bea24939d146292d4d1" style="zoom: 33%;" />
+
+<p>下面分情况来讨论：</p>
+<ol>
+<li>当$y^{(i)}&#x3D;&#x3D;1时$：如果预测结果$ f_ {w,b}(x^{(i)}) $ 值为 1 ，此时预测成功，此时代价值为0；若$ f_ {w,b}(x^{(i)}) $ 值为 0，与真实情况不相符，此时代价值接近于无穷大</li>
+</ol>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918165138641.png" alt="image-20230918165138641" style="zoom: 50%;" />
+
+<ol start="2">
+<li>当$y^{(i)}&#x3D;&#x3D;0时$：如果预测结果$ f_ {w,b}(x^{(i)}) $ 值为 0 ，此时预测成功，此时代价值为0；若$ f_ {w,b}(x^{(i)}) $ 值为 1，与真实情况不相符，此时代价值接近于无穷大</li>
+</ol>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918165356945.png" alt="image-20230918165356945" style="zoom: 50%;" />
+
+<p>如果将代价函数从分段函数简化为一般函数，代价函数可以写作：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918170400097.png" alt="image-20230918170400097"></p>
+<h2 id="4-5-实现梯度下降"><a href="#4-5-实现梯度下降" class="headerlink" title="4.5   实现梯度下降"></a>4.5   实现梯度下降</h2><p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230918182314392.png" alt="image-20230918182314392"></p>
+<p>可以看出梯度下降的实现方法与线性回归预测相似，下面列举 $ \frac {\delta }{\delta w_j}  J(w,b)$的证明过程：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/a0517626b4c87344293e5905d44edfb.jpg" alt="a0517626b4c87344293e5905d44edfb"></p>
+<blockquote>
+<p>注意：$\overrightarrow{w}\cdot\overrightarrow{x}$是向量乘法，而$ \frac {\delta }{\delta w_j} \overrightarrow{w} \cdot \overrightarrow{x} $ 实际上是：$ \frac {\delta }{\delta w_j} (w_1\cdot x_1+w_2\cdot x_2 + …+w_j\cdot x_j+ … + w_n\cdot x_n) $，算出来的结果应该是是$x_j$</p>
+</blockquote>
+<h2 id="4-6-实训：训练逻辑回归模型"><a href="#4-6-实训：训练逻辑回归模型" class="headerlink" title="4.6 实训：训练逻辑回归模型"></a>4.6 实训：训练逻辑回归模型</h2><p>首先是数据导入部分，这里使用<code>data[data[&#39;Admitted&#39;].isin([1])]</code>按照<code>Admitted</code>值的结果（0或1）将数据划分为两部分，用于数据的展示：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取数据集</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;ex2data1.txt&#x27;</span>, header=<span class="literal">None</span>, names=[<span class="string">&#x27;Exam 1&#x27;</span>, <span class="string">&#x27;Exam 2&#x27;</span>, <span class="string">&#x27;Admitted&#x27;</span>])</span><br><span class="line">data.insert(<span class="number">0</span>, <span class="string">&#x27;num&#x27;</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 划分数据集</span></span><br><span class="line">positive = data[data[<span class="string">&#x27;Admitted&#x27;</span>].isin([<span class="number">1</span>])]</span><br><span class="line">negative = data[data[<span class="string">&#x27;Admitted&#x27;</span>].isin([<span class="number">0</span>])]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取数据集的数量和参数个数</span></span><br><span class="line">col = data.shape[<span class="number">0</span>]</span><br><span class="line">n = data.shape[<span class="number">1</span>]</span><br><span class="line">X = data.iloc[:, <span class="number">0</span>:n - <span class="number">1</span>]</span><br><span class="line">Y = data.iloc[:, n - <span class="number">1</span>: n]</span><br><span class="line"></span><br><span class="line">X = np.array(X.values)</span><br><span class="line">Y = np.array(Y.values)</span><br></pre></td></tr></table></figure>
+
+<p>接着是参数的设置：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化参数和设置学习率、迭代次数</span></span><br><span class="line">theta = np.array([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]])</span><br><span class="line">alpha = <span class="number">0.001</span></span><br><span class="line">iters = <span class="number">1000000</span></span><br></pre></td></tr></table></figure>
+
+<p>接着先定义sigmoid函数：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230921205956574.png" alt="image-20230921205956574"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid</span>(<span class="params">z</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.</span> / (<span class="number">1.</span> + np.exp(-z))</span><br></pre></td></tr></table></figure>
+
+<p>定义代价函数：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230921211451539.png" alt="image-20230921211451539" style="zoom: 50%;" />
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义代价函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">costFunction</span>(<span class="params">theta, X, y</span>):</span><br><span class="line">    <span class="comment"># &#x27;@&#x27; 跟np.dot()类似，是对于np.array() 的矩阵乘法运算符</span></span><br><span class="line">    first = np.multiply(-y, np.log(sigmoid(X @ theta.T)))</span><br><span class="line">    second = np.multiply((<span class="number">1</span> - y), np.log(<span class="number">1</span> - sigmoid(X @ theta.T)))</span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">sum</span>(first - second) / (<span class="built_in">len</span>(X))</span><br></pre></td></tr></table></figure>
+
+<p>定义梯度下降函数：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义梯度下降函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gradient</span>(<span class="params">theta, X, y, alpha, iters</span>):</span><br><span class="line">    <span class="comment"># 初始化代价数组</span></span><br><span class="line">    cost = np.zeros(iters)</span><br><span class="line">    <span class="comment"># 参数数量，这里是 3</span></span><br><span class="line">    parameters = <span class="built_in">int</span>(theta.ravel().shape[<span class="number">0</span>])</span><br><span class="line">    <span class="comment"># 创建全 0 的（3,1）矩阵存储theta改变后的值，另一种写法是：grad = np.zeros((parameters, 1))</span></span><br><span class="line">    grad = np.zeros(parameters).reshape(<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(iters):</span><br><span class="line">        error = sigmoid(np.dot(X, theta.T)) - y</span><br><span class="line">        cost[i] = costFunction(theta, X, y)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(parameters):</span><br><span class="line">            term = np.multiply(error, X[:, j].reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">            grad[<span class="number">0</span>, j] = theta[<span class="number">0</span>, j] - ((alpha / <span class="built_in">len</span>(X)) * np.<span class="built_in">sum</span>(term))</span><br><span class="line">		</span><br><span class="line">        theta = grad.copy()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> grad, cost</span><br></pre></td></tr></table></figure>
+
+<p>绘图：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制数据点和决策边界</span></span><br><span class="line">fig, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">24</span>, <span class="number">8</span>))</span><br><span class="line">xx = np.linspace(data[<span class="string">&#x27;Exam 1&#x27;</span>].<span class="built_in">min</span>(), data[<span class="string">&#x27;Exam 1&#x27;</span>].<span class="built_in">max</span>(), <span class="number">100</span>)</span><br><span class="line">yy = (-g[<span class="number">0</span>, <span class="number">0</span>] - xx * g[<span class="number">0</span>, <span class="number">1</span>])/ g[<span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line">ax1.scatter(positive[<span class="string">&#x27;Exam 1&#x27;</span>], positive[<span class="string">&#x27;Exam 2&#x27;</span>], s=<span class="number">50</span>, c=<span class="string">&#x27;b&#x27;</span>, marker=<span class="string">&#x27;o&#x27;</span>, label=<span class="string">&#x27;Accepted&#x27;</span>)</span><br><span class="line">ax1.scatter(negative[<span class="string">&#x27;Exam 1&#x27;</span>], negative[<span class="string">&#x27;Exam 2&#x27;</span>], s=<span class="number">50</span>, c=<span class="string">&#x27;r&#x27;</span>, marker=<span class="string">&#x27;x&#x27;</span>, label=<span class="string">&#x27;Rejected&#x27;</span>)</span><br><span class="line">ax1.legend()</span><br><span class="line">ax1.set_xlabel(<span class="string">&#x27;Exam 1 Score&#x27;</span>)</span><br><span class="line">ax1.set_ylabel(<span class="string">&#x27;Exam 2 Score&#x27;</span>)</span><br><span class="line">ax1.plot(xx, yy, <span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;Prediction&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制代价函数随迭代次数的变化</span></span><br><span class="line">ax2.plot(np.arange(iters), cost, linewidth=<span class="number">2</span>, color=<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">ax2.set_xlabel(<span class="string">&#x27;Iterations&#x27;</span>)</span><br><span class="line">ax2.set_ylabel(<span class="string">&#x27;Cost&#x27;</span>)</span><br><span class="line">ax2.set_title(<span class="string">&#x27;Error vs. Training Epoch&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>完整代码：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义 sigmoid 函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid</span>(<span class="params">z</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.</span> / (<span class="number">1.</span> + np.exp(-z))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义代价函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">costFunction</span>(<span class="params">theta, X, y</span>):</span><br><span class="line">    <span class="comment"># &#x27;@&#x27; 跟np.dot()类似，是对于np.array() 的矩阵乘法运算符</span></span><br><span class="line">    first = np.multiply(-y, np.log(sigmoid(X @ theta.T)))</span><br><span class="line">    second = np.multiply((<span class="number">1</span> - y), np.log(<span class="number">1</span> - sigmoid(X @ theta.T)))</span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">sum</span>(first - second) / (<span class="built_in">len</span>(X))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义梯度下降函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gradient</span>(<span class="params">theta, X, y, alpha, iters</span>):</span><br><span class="line">    <span class="comment"># 初始化代价数组</span></span><br><span class="line">    cost = np.zeros(iters)</span><br><span class="line">    <span class="comment"># 参数数量，这里是 3</span></span><br><span class="line">    parameters = <span class="built_in">int</span>(theta.ravel().shape[<span class="number">0</span>])</span><br><span class="line">    <span class="comment"># 创建全 0 的（3,1）矩阵存储theta改变后的值，另一种写法是：grad = np.zeros((parameters, 1))</span></span><br><span class="line">    grad = np.zeros(parameters).reshape(<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(iters):</span><br><span class="line">        error = sigmoid(np.dot(X, theta.T)) - y</span><br><span class="line">        cost[i] = costFunction(theta, X, y)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(parameters):</span><br><span class="line">            term = np.multiply(error, X[:, j].reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">            grad[<span class="number">0</span>, j] = theta[<span class="number">0</span>, j] - ((alpha / <span class="built_in">len</span>(X)) * np.<span class="built_in">sum</span>(term))</span><br><span class="line"></span><br><span class="line">        theta = grad.copy()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> grad, cost</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取数据集</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;ex2data1.txt&#x27;</span>, header=<span class="literal">None</span>, names=[<span class="string">&#x27;Exam 1&#x27;</span>, <span class="string">&#x27;Exam 2&#x27;</span>, <span class="string">&#x27;Admitted&#x27;</span>])</span><br><span class="line">data.insert(<span class="number">0</span>, <span class="string">&#x27;num&#x27;</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将数据集分为正例和负例</span></span><br><span class="line">positive = data[data[<span class="string">&#x27;Admitted&#x27;</span>].isin([<span class="number">1</span>])]</span><br><span class="line">negative = data[data[<span class="string">&#x27;Admitted&#x27;</span>].isin([<span class="number">0</span>])]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取数据集的数量和参数个数</span></span><br><span class="line">col = data.shape[<span class="number">0</span>]</span><br><span class="line">n = data.shape[<span class="number">1</span>]</span><br><span class="line">X = data.iloc[:, <span class="number">0</span>:n - <span class="number">1</span>]</span><br><span class="line">Y = data.iloc[:, n - <span class="number">1</span>: n]</span><br><span class="line"></span><br><span class="line">X = np.array(X.values)</span><br><span class="line">Y = np.array(Y.values)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化参数和设置学习率、迭代次数</span></span><br><span class="line">theta = np.array([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]])</span><br><span class="line">alpha = <span class="number">0.001</span></span><br><span class="line">iters = <span class="number">50000000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用梯度下降函数进行训练</span></span><br><span class="line">g, cost = gradient(theta, X, Y, alpha, iters)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制数据点和决策边界</span></span><br><span class="line">fig, (ax1, ax2) = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">24</span>, <span class="number">8</span>))</span><br><span class="line">xx = np.linspace(data[<span class="string">&#x27;Exam 1&#x27;</span>].<span class="built_in">min</span>(), data[<span class="string">&#x27;Exam 1&#x27;</span>].<span class="built_in">max</span>(), <span class="number">100</span>)</span><br><span class="line">yy = (-g[<span class="number">0</span>, <span class="number">0</span>] - xx * g[<span class="number">0</span>, <span class="number">1</span>])/ g[<span class="number">0</span>, <span class="number">2</span>]</span><br><span class="line">ax1.scatter(positive[<span class="string">&#x27;Exam 1&#x27;</span>], positive[<span class="string">&#x27;Exam 2&#x27;</span>], s=<span class="number">50</span>, c=<span class="string">&#x27;b&#x27;</span>, marker=<span class="string">&#x27;o&#x27;</span>, label=<span class="string">&#x27;Accepted&#x27;</span>)</span><br><span class="line">ax1.scatter(negative[<span class="string">&#x27;Exam 1&#x27;</span>], negative[<span class="string">&#x27;Exam 2&#x27;</span>], s=<span class="number">50</span>, c=<span class="string">&#x27;r&#x27;</span>, marker=<span class="string">&#x27;x&#x27;</span>, label=<span class="string">&#x27;Rejected&#x27;</span>)</span><br><span class="line">ax1.legend()</span><br><span class="line">ax1.set_xlabel(<span class="string">&#x27;Exam 1 Score&#x27;</span>)</span><br><span class="line">ax1.set_ylabel(<span class="string">&#x27;Exam 2 Score&#x27;</span>)</span><br><span class="line">ax1.plot(xx, yy, <span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;Prediction&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制代价函数随迭代次数的变化</span></span><br><span class="line">ax2.plot(np.arange(iters), cost, linewidth=<span class="number">2</span>, color=<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">ax2.set_xlabel(<span class="string">&#x27;Iterations&#x27;</span>)</span><br><span class="line">ax2.set_ylabel(<span class="string">&#x27;Cost&#x27;</span>)</span><br><span class="line">ax2.set_title(<span class="string">&#x27;Error vs. Training Epoch&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230921213408516.png" alt="image-20230921213408516"></p>
+<h1 id="五、正则化"><a href="#五、正则化" class="headerlink" title="五、正则化"></a>五、正则化</h1><h2 id="5-1-过拟合"><a href="#5-1-过拟合" class="headerlink" title="5.1 过拟合"></a>5.1 过拟合</h2><p>过拟合的问题就是指我们有非常多的特征，通过学习得到的模型能够非常好地适应训练集（代价函数可能几乎为0），但是推广到新的数据集上效果会非常的差。<br>下面以回归问题举例：<br><img src="https://huatu.98youxi.com/markdown/work/uploads/upload_e532531612cd66a1cedf807816e0a047.png" alt="img"></p>
+<ul>
+<li>图一模型不适合数据集，无法正确模拟数据，这种情况称之为欠拟合（underfit）或是高偏差（high bias）</li>
+<li>图二模型刚好合适，其泛化能力最好</li>
+<li>图三模型参数过多，若使用图三模型进行预测偏差会很大，这种情况称之为过拟合（overfit）或是高方差（high variance）</li>
+</ul>
+<p>过拟合的情况在分类问题中同样会出现，例如：</p>
+<p><img src="https://huatu.98youxi.com/markdown/work/uploads/upload_4b812a8601a695601eec82efad26a053.png" alt="img"></p>
+<p>那么应该如何防止过拟合呢？下面给出三种方法：</p>
+<ol>
+<li>收集更多的数据。</li>
+<li>选择合适的特征。</li>
+<li>正则化。</li>
+</ol>
+<h2 id="5-2-正则化"><a href="#5-2-正则化" class="headerlink" title="5.2 正则化"></a>5.2 正则化</h2><p><strong>正则化（regularization）</strong>的目标是保留尽可能多的特征值，但是每一个特征值对应的参数应当是最小的。</p>
+<p>为了实现正则化，将参数的大小作为代价函数的考虑标准之一，因此代价函数改写为下面这种形式：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695195791855-7ca7f7ad-c705-442f-b933-7af41c95012b.png" alt="img"></p>
+<ul>
+<li><img src="https://cdn.nlark.com/yuque/__latex/4760e2f007e23d820825ba241c47ce3b.svg" alt="img">代表训练集中样本数量</li>
+<li><img src="https://cdn.nlark.com/yuque/__latex/e520c061a407db472027709bf3f73290.svg" alt="img">表示参数代价率，这个值大于0</li>
+<li><img src="https://cdn.nlark.com/yuque/__latex/df378375e7693bdcf9535661c023c02e.svg" alt="img">代表参数<img src="https://cdn.nlark.com/yuque/__latex/e962475aca62e7f210f40004870bd692.svg" alt="img">的数量（一般不考虑 <img src="https://cdn.nlark.com/yuque/__latex/d29c2e5f4926e5b0e9a95305650f6e54.svg" alt="img">)</li>
+</ul>
+<p>加号左侧为原来的平方差代价，加号右侧为正则化代价值。</p>
+<p>对于<img src="https://cdn.nlark.com/yuque/__latex/e520c061a407db472027709bf3f73290.svg" alt="img">值的选择需要额外留意，如果该值选择过大，学习后各参数参数<img src="https://cdn.nlark.com/yuque/__latex/e962475aca62e7f210f40004870bd692.svg" alt="img">都会是很小的值（假想为0），那么此时模拟出来的模型会是一条直线，此时模型欠拟合；如果该值选择过小（假想为0)，那么此时正则化代价值可以忽略不计，此时模型过拟合。</p>
+<h2 id="5-3-线性回归正则化"><a href="#5-3-线性回归正则化" class="headerlink" title="5.3 线性回归正则化"></a>5.3 线性回归正则化</h2><p>线性回归正则化代价方程：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695196358134-98dc155a-70bb-42b6-894c-82abb48eb57b.png" alt="img"></p>
+<p>梯度下降算法：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695196420033-7387035d-d414-4bff-b425-436f39e3e521.png" alt="img"></p>
+<p>将<img src="https://cdn.nlark.com/yuque/__latex/e962475aca62e7f210f40004870bd692.svg" alt="img">项合并在一起：<img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695196766347-7d67d41e-5bda-45b3-a17f-6569bf08c5d9.png" alt="img">不难发现正则化是通过 <img src="https://cdn.nlark.com/yuque/__latex/71db9fea61ad1556f373b3454b69bc82.svg" alt="img"> 来一步一步缩小<img src="https://cdn.nlark.com/yuque/__latex/e962475aca62e7f210f40004870bd692.svg" alt="img">的值。</p>
+<h2 id="5-4-逻辑回归正则化"><a href="#5-4-逻辑回归正则化" class="headerlink" title="5.4 逻辑回归正则化"></a>5.4 逻辑回归正则化</h2><p>跟线性回归的类似，直接贴图：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695197220236-17abec5c-989b-49dd-b929-5bc9a3d0bce1.png" alt="img"></p>
+<h2 id="5-5-实训：训练逻辑回归正则化模型"><a href="#5-5-实训：训练逻辑回归正则化模型" class="headerlink" title="5.5 实训：训练逻辑回归正则化模型"></a>5.5 实训：训练逻辑回归正则化模型</h2><p><strong>介绍</strong></p>
+<p>此次实训的目标是搭建一个 $x_1,x_2$ 的多项式模型来进行逻辑回归预测，为了防止训练后的模型出现过拟合情况需要加入正则化约束是的参数的权重都尽可能的小。下面是部分数据以及数据的分布图：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230922213307303.png" alt="image-20230922213307303"><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230922213332681.png" alt="image-20230922213332681" style="zoom: 80%;" /></p>
+<p><strong>读取数据</strong></p>
+<p>首先是数据导入部分，跟之前一样，这里使用<code>data[data[&#39;Admitted&#39;].isin([1])]</code>按照<code>Admitted</code>值的结果（0或1）将数据划分为两部分，用于数据的展示：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取数据集</span></span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;ex2data1.txt&#x27;</span>, header=<span class="literal">None</span>, names=[<span class="string">&#x27;Exam 1&#x27;</span>, <span class="string">&#x27;Exam 2&#x27;</span>, <span class="string">&#x27;Admitted&#x27;</span>])</span><br><span class="line">data.insert(<span class="number">3</span>, <span class="string">&#x27;Ones&#x27;</span>, <span class="number">1</span>)</span><br><span class="line"><span class="comment"># 划分数据集</span></span><br><span class="line">positive = data[data[<span class="string">&#x27;Admitted&#x27;</span>].isin([<span class="number">1</span>])]</span><br><span class="line">negative = data[data[<span class="string">&#x27;Admitted&#x27;</span>].isin([<span class="number">0</span>])]</span><br></pre></td></tr></table></figure>
+
+<p><strong>处理数据</strong></p>
+<p>相较于线性逻辑回归，多项式逻辑回归中还需要 $x_1,x_2$ 其他次方来组成多项式模型，这里使用一个 $for$ 循环分别将$x_1^2x_2^0$、$x_1x_2$、$x_1^3x_2$ 等等参数也存如data中，处理完毕后data中的数据集：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230922215800827.png" alt="image-20230922215800827" style="zoom:50%;" />
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义多项式分割次数</span></span><br><span class="line">degree = <span class="number">5</span></span><br><span class="line">x1 = data[<span class="string">&#x27;Exam 1&#x27;</span>]</span><br><span class="line">x2 = data[<span class="string">&#x27;Exam 2&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, degree):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, i):</span><br><span class="line">        data[<span class="string">&#x27;F&#x27;</span> + <span class="built_in">str</span>(i) + <span class="built_in">str</span>(j)] = np.power(x1, i - j) * np.power(x2, j)</span><br><span class="line"></span><br><span class="line">data.drop(<span class="string">&#x27;Exam 1&#x27;</span>, axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">data.drop(<span class="string">&#x27;Exam 2&#x27;</span>, axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>设置参数</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化参数和设置学习率、迭代次数</span></span><br><span class="line">theta = np.random.randn(<span class="number">1</span>, X.shape[<span class="number">1</span>])</span><br><span class="line">alpha = <span class="number">0.1</span></span><br><span class="line">iters = <span class="number">100000</span></span><br><span class="line"><span class="comment"># 学习率</span></span><br><span class="line">learningRate = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>代价函数</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义代价函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">costFunction</span>(<span class="params">theta, X, y, learningRate</span>):</span><br><span class="line">    first = np.multiply(-y, np.log(sigmoid(X @ theta.T)))</span><br><span class="line">    second = np.multiply((<span class="number">1</span> - y), np.log(<span class="number">1</span> - sigmoid(X @ theta.T)))</span><br><span class="line">    reg = (learningRate / (<span class="number">2</span> * <span class="built_in">len</span>(X)) * np.<span class="built_in">sum</span>(np.power(theta[:, <span class="number">1</span>: theta.shape[<span class="number">1</span>]], <span class="number">2</span>)))</span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">sum</span>(first - second) / (<span class="built_in">len</span>(X)) + reg</span><br></pre></td></tr></table></figure>
+
+<p><strong>梯度下降函数</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义梯度下降函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gradient</span>(<span class="params">theta, X, y, alpha, iters, learningRate</span>):</span><br><span class="line">    cost = np.zeros(iters)</span><br><span class="line">    parameters = <span class="built_in">int</span>(theta.ravel().shape[<span class="number">0</span>])</span><br><span class="line">    grad = np.zeros(parameters).reshape(<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(iters):</span><br><span class="line">        error = sigmoid(np.dot(X, theta.T)) - y</span><br><span class="line">        cost[i] = costFunction(theta, X, y, learningRate)</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(parameters):</span><br><span class="line">            term = np.multiply(error, X[:, j].reshape(-<span class="number">1</span>, <span class="number">1</span>))</span><br><span class="line">            <span class="keyword">if</span> j == <span class="number">0</span>:</span><br><span class="line">                grad[<span class="number">0</span>, j] = theta[<span class="number">0</span>, j] - (alpha / <span class="built_in">len</span>(X)) * np.<span class="built_in">sum</span>(term)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                grad[<span class="number">0</span>, j] = theta[<span class="number">0</span>, j] - (alpha / <span class="built_in">len</span>(X)) * (np.<span class="built_in">sum</span>(term) + (learningRate * theta[<span class="number">0</span>, j]))</span><br><span class="line">        theta = grad</span><br><span class="line">     </span><br><span class="line">	   <span class="comment"># 绘制进度条</span></span><br><span class="line">        progress = (i + <span class="number">1</span>) / iters</span><br><span class="line">        bar_length = <span class="number">30</span></span><br><span class="line">        filled_length = <span class="built_in">int</span>(bar_length * progress)</span><br><span class="line">        bar = <span class="string">&#x27;#&#x27;</span> * filled_length + <span class="string">&#x27;-&#x27;</span> * (bar_length - filled_length)</span><br><span class="line">        percentage = progress * <span class="number">100</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;Progress: [<span class="subst">&#123;bar&#125;</span>] <span class="subst">&#123;percentage:<span class="number">.1</span>f&#125;</span>%&#x27;</span>, end=<span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> theta, cost</span><br></pre></td></tr></table></figure>
+
+<p><strong>计算 z 值的函数</strong><br>$$<br>z&#x3D;\overrightarrow x \cdot \overrightarrow w + b<br>$$</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">functionZ</span>(<span class="params">degree, x1, x2, theta</span>):</span><br><span class="line">    <span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line">    t = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, degree):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, i):</span><br><span class="line">            <span class="built_in">sum</span> += np.power(x1, i - j) * np.power(x2, j) * theta[<span class="number">0</span>, t]</span><br><span class="line">            t = t + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span> + theta[<span class="number">0</span>, <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>计算预测准确性</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">predict</span>(<span class="params">theta, X</span>):</span><br><span class="line">    <span class="comment"># 使用训练好的参数预测标签</span></span><br><span class="line">    probability = sigmoid(X @ theta.T)</span><br><span class="line">    predictions = (probability &gt;= <span class="number">0.5</span>).astype(<span class="built_in">int</span>)</span><br><span class="line">    <span class="keyword">return</span> predictions</span><br><span class="line"></span><br><span class="line"><span class="comment"># X : 输出多项式的多项式版训练集</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">accuracy</span>(<span class="params">theta, X, y</span>):</span><br><span class="line">    <span class="comment"># 计算模型预测的准确度</span></span><br><span class="line">    predictions = predict(theta, X)</span><br><span class="line">    accuracy = np.mean(predictions == y) * <span class="number">100</span></span><br><span class="line">    <span class="keyword">return</span> accuracy</span><br></pre></td></tr></table></figure>
+
+<p><strong>绘图</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制判决边界</span></span><br><span class="line">x1 = np.linspace(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">1000</span>)</span><br><span class="line">x2 = np.linspace(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">x1, x2 = np.meshgrid(x1, x2)</span><br><span class="line">z = functionZ(degree, x1, x2, theta)</span><br><span class="line"></span><br><span class="line">ax2.scatter(positive[<span class="string">&#x27;Exam 1&#x27;</span>], positive[<span class="string">&#x27;Exam 2&#x27;</span>], s=<span class="number">50</span>, c=<span class="string">&#x27;b&#x27;</span>, marker=<span class="string">&#x27;o&#x27;</span>, label=<span class="string">&#x27;Accepted&#x27;</span>)</span><br><span class="line">ax2.scatter(negative[<span class="string">&#x27;Exam 1&#x27;</span>], negative[<span class="string">&#x27;Exam 2&#x27;</span>], s=<span class="number">50</span>, c=<span class="string">&#x27;r&#x27;</span>, marker=<span class="string">&#x27;x&#x27;</span>, label=<span class="string">&#x27;Rejected&#x27;</span>)</span><br><span class="line">ax2.set_xlabel(<span class="string">&#x27;Exam 1 Score&#x27;</span>)</span><br><span class="line">ax2.set_ylabel(<span class="string">&#x27;Exam 2 Score&#x27;</span>)</span><br><span class="line">ax2.legend()</span><br><span class="line">ax2.set_title(<span class="string">&#x27;Decision Boundary&#x27;</span>)</span><br><span class="line">ax2.contour(x1, x2, z, levels=[<span class="number">0</span>], colors=<span class="string">&#x27;r&#x27;</span>, linewidths=<span class="number">2</span>)</span><br><span class="line">plt.grid(<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230922224959197.png" alt="image-20230922224959197" style="zoom:80%;" />
+
+<h1 id="六、神经网络"><a href="#六、神经网络" class="headerlink" title="六、神经网络"></a>六、神经网络</h1><h2 id="6-1-概述"><a href="#6-1-概述" class="headerlink" title="6.1 概述"></a>6.1 概述</h2><p>我们之前学的，无论是线性回归还是逻辑回归都有这样一个缺点，即：当特征太多时，计算的负荷会非常大。</p>
+<p>下面是一个例子：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695199192883-60ff3080-5b5d-467a-94e9-d50d2a50c4d2.png" alt="img"></p>
+<p> 使用非线性的多项式项，能够帮助我们建立更好的分类模型。假设我们有非常多的特征，例如大于100个变量，我们希望用这100个特征来构建一个非线性的多项式模型，结果将是数量非常惊人的特征组合，即便我们只采用两两特征的组合，我们也会有接近5000个组合而成的特征。这对于一般的逻辑回归来说需要计算的特征太多了。</p>
+<p>假设我们希望训练一个模型来识别视觉对象（例如识别一张图片上是否是一辆汽车），我们怎样才能这么做呢？一种方法是我们利用很多汽车的图片和很多非汽车的图片，然后利用这些图片上一个个像素的值（饱和度或亮度）来作为特征。</p>
+<p>假如我们只选用灰度图片，每个像素则只有一个值（而非 <strong>RGB</strong>值），我们可以选取图片上的两个不同位置上的两个像素，然后训练一个逻辑回归算法利用这两个像素的值来判断图片上是否是汽车：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/22608736/1695199192947-afefd15d-9417-4853-ba5f-8d99d50cddf7.jpeg" alt="img"></p>
+<p>假使我们采用的都是50x50像素的小图片，并且我们将所有的像素视为特征，则会有 2500个特征，如果我们要进一步将两两特征组合构成一个多项式模型，则会有约个（接近3百万个）特征。普通的逻辑回归模型，不能有效地处理这么多的特征，这时候我们需要神经网络。</p>
+<h3 id="神经网络模型"><a href="#神经网络模型" class="headerlink" title="神经网络模型"></a>神经网络模型</h3><p>为了构建神经网络模型，我们需要首先思考大脑中的神经网络是怎样的？每一个神经元都可以被认为是一个处理单元&#x2F;神经核（<strong>processing unit</strong>&#x2F;<strong>Nucleus</strong>），它含有许多输入&#x2F;树突（<strong>input</strong>&#x2F;<strong>Dendrite</strong>），并且有一个输出&#x2F;轴突（<strong>output</strong>&#x2F;<strong>Axon</strong>）。神经网络是大量神经元相互链接并通过电脉冲来交流的一个网络。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/22608736/1695199193534-a274e852-d3c6-4d25-99c8-7dc2fcf67320.jpeg" alt="img"></p>
+<p>这里是一条连接到输入神经，或者连接另一个神经元树突的神经，接下来这个神经元接收这条消息，做一些计算，它有可能会反过来将在轴突上的自己的消息传给其他神经元。这就是所有人类思考的模型：我们的神经元把自己的收到的消息进行计算，并向其他神经元传递消息。这也是我们的感觉和肌肉运转的原理。如果你想活动一块肌肉，就会触发一个神经元给你的肌肉发送脉冲，并引起你的肌肉收缩。如果一些感官：比如说眼睛想要给大脑传递一个消息，那么它就像这样发送电脉冲给大脑的。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695200479707-f54df35c-8dbc-428b-b6b7-b3ed77e8488f.png" alt="img"></p>
+<p>神经网络模型建立在很多神经元之上，每一个神经元又是一个个学习模型。这些神经元（也叫激活单元，<strong>activation unit</strong>）采纳一些特征作为输出，并且根据本身的模型提供一个输出。下图是一个以逻辑回归模型作为自身学习模型的神经元示例，在神经网络中，参数又可被成为<strong>权重（weight）。</strong></p>
+<p>假设现在需要预测一件商品可能成为爆款的概率，现在有下面几个参数可能影响这个结果：价格（price）、运费（shipping cost）、营销（marketing）和材料（material）。进一步来看，价格+运费决定着用户支付能力（affordablity），营销决定着用户对该商品的注意力（awarness），价格+材料决定着用户对商品的感知质量（perceived quality），这三个属性无法通过数据输入得到，可以通过逻辑回归来预测得到，因此设计三个模型分别预测这三个属性值，而这三个属性值最终可以预测商品成为爆款的概率，因此再设计一个逻辑回归模型输入这三个属性最终可以预测成为爆款的概率。对于这四个模型，可以假想为四个神经元，现在设计如下四个神经元的网络：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/22608736/1695200687656-2493faf3-cf78-47a1-8534-ff0b648fd4a4.jpeg" alt="img"></p>
+<p>图其中price，shipping cost，marketing，material 是输入单元（<strong>input units</strong>），将原始数据输入给它们。 第二列的神经元负责将数据进行处理，像这样在图中呈一列的神经元我们将其称为<strong>层（layer）。s</strong>第一层神经元将数据加工后呈递到下一层。 </p>
+<p>神经网络模型是许多逻辑单元按照不同层级组织起来的网络，每一层的输出变量都是下一层的输入变量。第一层称为<strong>输入层（Input Layer）</strong>，最后一层称为<strong>输出层（Output Layer）</strong>，中间一层成为<strong>隐藏层（Hidden Layers）</strong>。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/22608736/1695201917567-00e4ae61-8e38-4b10-b393-a16b41e37faa.jpeg" alt="img"></p>
+<p>如果将输入的数据看作是向量<img src="https://cdn.nlark.com/yuque/__latex/e21e357da42934f1faed97ecb3177abf.svg" alt="img">, 那么经过隐藏层可以得到新向量<img src="https://cdn.nlark.com/yuque/__latex/88762fff7bbdbf0f40d91a9bbc32f529.svg" alt="img">, 最终将 <img src="https://cdn.nlark.com/yuque/__latex/bf98c0ddcbe9c1e535f767c78c3aa813.svg" alt="img"> 输入输出层即可以得到结果。</p>
+<ul>
+<li>下面是关于 hidden layer 的一些举例：</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695202845284-822d6aac-c546-41d8-885c-c2bc878327a3.png" alt="img"></p>
+<h3 id="神经网络中的网络层"><a href="#神经网络中的网络层" class="headerlink" title="神经网络中的网络层"></a>神经网络中的网络层</h3><p>下面是一个拥有一个输入层、隐藏层、输出层的四神经元神经网络，我们首先将目光聚焦于隐藏层 layer 1。</p>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695204927972-234d7c9a-75f5-4e65-abae-40bc2f32ae5c.png" alt="img" style="zoom: 33%;" />
+
+<p>隐藏层由三个神经元组成，每个神经元拥有一个逻辑回归模型，其参数用<img src="https://cdn.nlark.com/yuque/__latex/37b4939efafe547be7e9f9de39ae8d73.svg" alt="img">来表示。这一层是位于神经网络的第<img src="https://cdn.nlark.com/yuque/__latex/53072c2388d69edc65c2377681e4e87c.svg" alt="img">层，为了表示参数所在的层数，参数均在右上角添加 	<img src="https://cdn.nlark.com/yuque/__latex/fe177192a7eeec389edbe1751e2456a8.svg" alt="img">来表示所在的层数，例如<img src="https://cdn.nlark.com/yuque/__latex/b68d9b22f1906a8a81b778a431a1fd9f.svg" alt="img">用来表示第一层第一个神经元参数。同样的用<img src="https://cdn.nlark.com/yuque/__latex/c766cb01b70109c9ff44785950aa545c.svg" alt="img">来表示第一层输出的向量。</p>
+<p>同样的，接下来来看layer 2 输出层：</p>
+<img align='center' src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695205519085-b5c4975a-788e-4fa7-b70b-4085668905cc.png" alt="img" style="zoom:33%;" />
+
+<p>可以看到 layer 1 的输出向量<img src="https://cdn.nlark.com/yuque/__latex/c766cb01b70109c9ff44785950aa545c.svg" alt="img">成为了layer 2 的输入数据项，第二层只有一个神经元而其参数为：<img src="https://cdn.nlark.com/yuque/__latex/6d8a24bafe580e24747476cd3c7e6846.svg" alt="img">。</p>
+<p>最终作为layer 2 的输出向量（只有一个数值）<img src="https://cdn.nlark.com/yuque/__latex/fbe8698769e179db2f1ba55ba6410831.svg" alt="img"> 只需要判断该值是否大于$0.5$ 即可判断商品是否可能成为爆款。</p>
+<p>不难总结出一般式：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230921111013311.png" alt="image-20230921111013311" style="zoom:50%;" />
+
+<p>$\overrightarrow a^{[l - 1]}$ 称为 $l$ 层的<strong>激活因子(Activation value of layer $l$)</strong> ，也就是说：$\overrightarrow a^{[l - 1]}$ 作为输入参数会被带入到 $l$ 层的模型中运算。因此输入层输入的数据可以看作是 $\overrightarrow a^{[0]}$ ，其作用于第一个隐藏层 $ layer1$。</p>
+<p>在神经网络中，这种通过将输入数据从输入层传递到输出层，逐层计算和传递数据的过程称为<strong>网络层的正向传播（Forward Propagation）</strong>。在这个过程中，每一层的神经元接收上一层的输出，并将其作为输入进行计算，最终产生输出。</p>
+<h3 id="Tensorflow实现简单网络"><a href="#Tensorflow实现简单网络" class="headerlink" title="Tensorflow实现简单网络"></a>Tensorflow实现简单网络</h3><p>训练模型时可以分为下面几步：</p>
+<ol>
+<li>制定模型函数，确保模型能够很好地切合训练集及其预测的目标。</li>
+<li>确定成本函数（lost function）和损失函数（cost function）</li>
+<li>梯度下降算法计算模型</li>
+</ol>
+<p>这三步在Tensorflow中的对应图如下：</p>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695379474816-458ceff1-ded7-46b6-9637-a76803917b95.png" alt="img" style="zoom:50%;" />
+
+<p><strong>第一步：创建网络架构</strong></p>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695379610385-c6f2d3b5-9c05-4f62-82c9-d2d3e47045ca.png" alt="img" style="zoom: 50%;" />
+
+<p><code>Dense()</code>函数用于创建神经网络模型中的一层，<code>units = 25</code>表示这一层中拥有25个神经元，<code>activation = &#39;sigmoid&#39;</code>表示激活函数使用 sigmoid 函数。</p>
+<p><strong>第二步：损失和成本函数</strong></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695380049012-90289366-5cea-46e4-82c1-11fe3bbcb466.png" alt="img"></p>
+<p><code>model.compile(loss = )</code> 输入属性loss的值可以制定不同的损失函数，<code>loss = BinaryCrossentropy()</code>指定为逻辑回归损失函数，<code>loss = MeanSquaredError())</code>指定为线性回归平方差损失函数。</p>
+<p><strong>第三步：梯度下降</strong></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695380486452-396e9213-d788-4751-8f6e-ad38db4c9403.png" alt="img"></p>
+<p>使用函数<code>model.fit(X, y epochs =)</code>来执行梯度下降算法，tensorflow汇使用逆向传播的方式计算损失函数的偏导数，这些都会自动执行。</p>
+<h2 id="6-2-正向传播与反向传播"><a href="#6-2-正向传播与反向传播" class="headerlink" title="6.2 正向传播与反向传播"></a>6.2 正向传播与反向传播</h2><h3 id="正向传播"><a href="#正向传播" class="headerlink" title="正向传播"></a>正向传播</h3><p><strong>正向传播（forward propagation）</strong>：沿着从输入层到输出层的顺序，依次计算并存储神经网络的中间变量。</p>
+<p>首先拿一个简单的三层神经网络来举例，如下：</p>
+<img src="https://img-blog.csdnimg.cn/20190515095532783.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 80%;" />
+
+<p>每个神经元由两部分组成，第一部分（e）是<strong>输入值</strong>和<strong>权重系数</strong>乘积的<strong>和</strong>，第二部分（$f(e)$）是一个<strong>激活函数</strong>（非线性函数）的输出， $y&#x3D;f(e)$即为某个神经元的输出，如下：</p>
+<img src="https://img-blog.csdnimg.cn/20190515100159284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 80%;" />
+
+<p>下面是<strong>正向传播</strong>过程：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/20190515100805671.png" alt="在这里插入图片描述" style="zoom: 80%;" />
+
+<hr>
+<img src="https://img-blog.csdnimg.cn/20190515100845442.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<img src="https://img-blog.csdnimg.cn/20190515101005589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<p>到这里为止，<strong>神经网络的前向传播已经完成</strong>，最后输出的y就是本次前向传播神经网络计算出来的结果（预测结果），但这个预测结果不一定是正确的，要和真实的标签（z）相比较，计算预测结果和真实标签的误差（$δ$ ）:</p>
+<p>如下：</p>
+<img src="https://img-blog.csdnimg.cn/20190515101232916.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<p>下面开始计算每个神经元的误差（$ \delta$）：</p>
+<img src="https://img-blog.csdnimg.cn/20190515101334960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<p>如果传播的误差来自少数几个神经元，则这些误差会求和计算，图示如下：</p>
+<img src="https://img-blog.csdnimg.cn/20190515102350448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<blockquote>
+<p>注意：上述误差计算过程不会真实存在，而是模拟这个过程帮助你弄明白神经网络中神经元误差生成流程用于接下来反向传播的求导。</p>
+</blockquote>
+<h3 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h3><p><strong>反向传播（Backpropagation）</strong>：一种用于计算神经网络中参数梯度的方法，它是训练神经网络的核心算法之一。通过反向传播，可以根据成本函数的梯度信息来更新神经网络的权重和偏置，从而使网络能够逐渐优化并提高性能。</p>
+<blockquote>
+<p>反向传播的过程可以分为以下步骤：</p>
+<ol>
+<li><strong>正向传播</strong>：首先，使用输入数据进行前向传播，将数据从输入层逐层传递到输出层。在每一层中，通过将权重和偏置与输入相乘并应用激活函数来计算每个神经元的输出。</li>
+<li><strong>计算成本函数</strong>：根据模型的预测结果和真实值，计算成本函数（也称为损失函数）的值，用于度量预测结果与真实值之间的差异。</li>
+<li><strong>反向传播误差</strong>：从输出层开始，计算成本函数对每个参数的梯度。通过使用链式法则，将误差从输出层反向传播回网络的每一层。在每一层中，根据当前层的误差和权重，计算上一层的误差。</li>
+<li><strong>计算梯度</strong>：根据反向传播的误差，计算每个参数（权重和偏置）的梯度。梯度表示成本函数关于参数的变化率，它指示了在参数空间中应该朝着哪个方向更新以减小成本函数的值。</li>
+<li><strong>参数更新</strong>：使用优化算法（如梯度下降法），根据计算得到的梯度信息来更新神经网络的参数。通过反复迭代这个过程，不断调整参数，使得成本函数的值逐渐减小，从而优化模型。</li>
+</ol>
+</blockquote>
+<p>还是刚刚的例子，下面开始利用反向传播的误差，计算各个神经元（权重）的导数，开始反向传播修改权重，修改的方式与梯度下降类似：<br>$$<br>w_i^, &#x3D; w_i - \alpha \frac{\partial J_{total}}{\partial w_i}<br>$$<br>参数说明如下：</p>
+<ul>
+<li>$w_i$ ：一个参数（权重）</li>
+<li>$\alpha$  ：某个神经元学习率</li>
+<li>$ J_{total}$ ：整个神经网络输出结果代价函数</li>
+</ul>
+<p>下面模拟反向传播过程：</p>
+<img src="https://img-blog.csdnimg.cn/20190515103014208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<img src="https://img-blog.csdnimg.cn/20190515103033715.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<img src="https://img-blog.csdnimg.cn/20190515103116521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<img src="https://img-blog.csdnimg.cn/20190515103134104.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<p>到此为止，整个网络的前向，反向传播和权重更新已经完成。</p>
+<h3 id="正向、反向传播举例说明"><a href="#正向、反向传播举例说明" class="headerlink" title="正向、反向传播举例说明"></a>正向、反向传播举例说明</h3><p>首先明确，<strong>“正向传播”求损失，“反向传播”回传误差</strong>。同时，神经网络每层的每个神经元都可以<strong>根据误差信号修正每层的权重</strong>。</p>
+<p><strong>BP算法，也叫$\delta $算法</strong>，下面以3层的感知机为例进行举例讲解：</p>
+<img src="https://img-blog.csdnimg.cn/20190515110759580.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 67%;" />
+
+<p>下面是<strong>前向（前馈）运算</strong>（激活函数为sigmoid，误差函数为平方差）：</p>
+<img src="https://img-blog.csdnimg.cn/20190515111441268.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 67%;" />
+
+<ul>
+<li>$net_{h_1}$ 可以理解为$z_1 &#x3D; \overrightarrow w\cdot \overrightarrow x + b$ </li>
+<li>$out_{h_{1}}$ 可以理解为$f(z_1) &#x3D; sigmoid(z_1)$</li>
+</ul>
+<p>下面是<strong>反向传播</strong>（求网络误差对各个权重参数的梯度）：</p>
+<p>先来求最简单的，求神经网络误差$E_{total}$对$$w_5$$的导数。首先明确这是一个“<strong>链式求导</strong>”过程，要求误差$E_{total}$对$$w_5$$的导数，需要先求误差$E_{total}$对$$out_{o1}$$的导数，再求$out_o1$对$net_o1$的导数，最后再求$net_{o1}$对$w_5$的导数，经过这个<strong>链式法则</strong>，我们就可以求出误差$E_{total}$对$$w_5$$的导数（偏导），如下图所示：</p>
+<img src="https://img-blog.csdnimg.cn/20190515112658664.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 80%;" />
+
+<p>导数（梯度）已经计算出来了，下面就是<strong>反向传播与参数更新过程</strong>：</p>
+<img src="https://img-blog.csdnimg.cn/20190515112736471.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:70%;" />
+
+<p>如果要想求**$E_{total}$对$$w_1$$的导数**，误差$E_{total}$对$$w_1$$的导数的求导路径不止一条，这会稍微复杂一点，但换汤不换药，计算过程如下所示：</p>
+<img src="https://img-blog.csdnimg.cn/20190515113338274.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Z0X3N1bnNoaW5l,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<h2 id="6-3-激活函数"><a href="#6-3-激活函数" class="headerlink" title="6.3 激活函数"></a>6.3 激活函数</h2><p><code>激活函数</code>：其实就是存在于单个神经元中的模型函数。	</p>
+<h3 id="ReLU激活函数"><a href="#ReLU激活函数" class="headerlink" title="ReLU激活函数"></a>ReLU激活函数</h3><p>先给出ReLU激活函数的定 义：$z&#x3D;\overrightarrow x \cdot \overrightarrow w + b$, $g(z)&#x3D;m a x(0,z)$ReLU函数与线性回归激活函数类似，不过当<img src="https://cdn.nlark.com/yuque/__latex/9a52d72174477fe9d70a6a63ae6d674b.svg" alt="img">时 <img src="https://cdn.nlark.com/yuque/__latex/12e61f8782c5975569c9f5024a29823a.svg" alt="img">。ReLU函数通常用于处理参数值为正数的情况，就比如还是之前的模型：</p>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695382208566-85c4efbf-3b83-49b4-aa4b-893ca710c04c.png" alt="img" style="zoom:50%;" />
+
+<p>这里的 <img src="https://cdn.nlark.com/yuque/__latex/26270d94a618e4499fd26e8ebca50e72.svg" alt="img">代表用户的注意程度，之前我们使用的是 sigmoid 激活函数只能是 0 或 1，但是现实中的注意力程度应该是一个非负数（比如 0～100），而线性逻辑回归可能会输出负数不适合，因此可以使用<img src="https://cdn.nlark.com/yuque/__latex/1259b5b91c07484913919fa6fa9ce998.svg" alt="img">激活函数。</p>
+<p><strong>下面👇是三种激活函数图像对比：</strong></p>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695382417767-2ba2fdfb-c1f1-44f4-a2f5-ea6f569f706e.png" alt="img" style="zoom:50%;" />
+
+<h3 id="如何选择激活函数"><a href="#如何选择激活函数" class="headerlink" title="如何选择激活函数"></a>如何选择激活函数</h3><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230922203301087.png" alt="image-20230922203301087" style="zoom:67%;" />
+
+<p>以上述的模型为例，在上述模型中存在一个输入层、两个隐藏层和一个输出层，下面来分别讨论：</p>
+<ul>
+<li><strong>对于输出层的激活函数：</strong>这取决于该神经网络的目标<ul>
+<li>例如做一个二分类问题毫无疑问使用<code>sigmoid</code>激活函数（分类）</li>
+<li>如果做一个预测问题且预测值为正负值使用线性逻辑回归预测（预测明天股票的涨跌）</li>
+<li>如果预测的的值为非零数那么使用<code>ReLU</code>激活函数（预测房屋的价格）</li>
+</ul>
+</li>
+<li><strong>对于隐藏层的激活函数：</strong>通常使用<code>ReLU</code>激活函数，下面介绍原因<ol>
+<li><code>ReLU</code>相较于<code>sigmoid</code>激活函数，其运算速度更快。sigmoid函数需要取幂取反，而ReLU函数只需要计算一次最大值。</li>
+<li><code>sigmoid</code>激活函数在$x -&gt; {+-} \infty$  时会变得扁平，这会导致梯度下降地很慢。</li>
+</ol>
+</li>
+</ul>
+<p><strong>综合上述观点：隐藏层的激活函数通常选择<code>ReLU</code>，输出层的激活函数通常按需选择。</strong>下面是模型的TensorFlow构造代码：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230922204654592.png" alt="image-20230922204654592" style="zoom:67%;" />
+
+<h3 id="不要连续地使用线性回归激活函数"><a href="#不要连续地使用线性回归激活函数" class="headerlink" title="不要连续地使用线性回归激活函数"></a>不要连续地使用线性回归激活函数</h3><p>定义一个网络使用了两个隐藏层神经元并且每一个神经元都是使用线性回归激活函数，如下图所示：</p>
+ <img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230922204853671.png" alt="image-20230922204853671" style="zoom:67%;" />
+
+<p>现在假定输入单元为：$x$，那么有：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230922205032188.png" alt="image-20230922205032188" style="zoom:67%;" />
+
+<p>可以看到最终输出结果$\overrightarrow a ^{[2]} &#x3D; w\cdot x + b$ ，这与一层线性回归模型的网络输出结果一致，因此当连续地使用线性回归激活函数时，效果仅仅只有一层，无法处理复杂的问题。 </p>
+<h2 id="6-4-多分类问题"><a href="#6-4-多分类问题" class="headerlink" title="6.4 多分类问题"></a>6.4 多分类问题</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>很多情况下，我们希望机器能够学习从而进行两种类别以上的分类，例如手写数据集的识别要求机器能够识别 0 ~ 9 的数据，在多分类问题中，决策边界可能如下图所示：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924102220905.png" alt="image-20230924102220905" style="zoom:67%;" />
+
+<h3 id="Softmax函数"><a href="#Softmax函数" class="headerlink" title="Softmax函数"></a>Softmax函数</h3><p><code>Softmax</code>是逻辑回归算法的一种推广，主要解决的就是多分类问题，下面先回顾下二分类分类问题：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924104230133.png" alt="image-20230924104230133" style="zoom: 67%;" />
+
+<p>根据逻辑回归的<code>sigmoid</code>函数，我们不难得到取到该分类的概率$a_1$，那么没有取到该分类的概率就是$1-a_1$。</p>
+<p>现在将分类的数量增加到 4 个 ，每一个分类的<code>sigmoid</code>函数可以定义为 $g(z_i) &#x3D; g(\overrightarrow w_i \cdot \overrightarrow x + b_i)$，那么定义<code>Softmax</code>函数为如下形式：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924104944469.png" alt="image-20230924104944469" style="zoom:67%;" />
+
+<p>按照 4 个分类的情况举例：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924105014207.png" alt="image-20230924105014207" style="zoom: 50%;" />
+
+<blockquote>
+<p>讨论：</p>
+<ol>
+<li><p><strong><font color='cornflowerblue'>为什么Softmax函数中要使用指数函数？</font></strong></p>
+<p>答：主要原因是为了<strong>引入非线性</strong>，使得模型能够更好地捕捉类别之间的差异。指数函数具有快速增长的特性，它可以将输入的值映射到更大的范围，从而增强了差异性。另外，指数函数的性质也有助于<strong>处理数值稳定性</strong>的问题。在计算Softmax函数时，指数函数的使用可以防止数值溢出或下溢，因为指数函数的输出范围是正实数，可以有效地处理较大或较小的数值。</p>
+</li>
+<li><p><font color='cornflowerblue'><strong>Softmax函数中使用sigmoid函数得到的值还是取到该类别的概率吗？</strong></font></p>
+<p>在多分类问题中，Sigmoid函数通常不直接用于表示每个分类的概率，可以理解为该分类的权重值，而Softmax函数就是通过这个权重值得到该分类的概率。</p>
+</li>
+</ol>
+</blockquote>
+<p>Softmax 在神经网络作用于输出层，Softmax 输出层中神经单元的数量与需要识别的分类数量$n$相同。Softmax输出层会输出取得不同类别的概率，如下图所示：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924113227329.png" alt="image-20230924113227329"></p>
+<hr>
+<h3 id="Softmax函数代价函数"><a href="#Softmax函数代价函数" class="headerlink" title="Softmax函数代价函数"></a>Softmax函数代价函数</h3><p>在神经网络反向传播中，要求一个损失函数，这个损失函数其实表示的是真实值与网络的估计值的误差，知道误差了，才能知道怎样去修改网络中的权重。</p>
+<p>损失函数可以有很多形式，这里用的是<strong>交叉熵函数</strong>，主要是由于这个求导结果比较简单，易于计算，并且交叉熵解决某些损失函数学习缓慢的问题。交叉熵的函数是这样的：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925225525834.png" alt="image-20230925225525834" style="zoom:67%;" />
+
+<p>成本函数求和去平均得到代价函数：</p>
+<p>$$<br>J(\overrightarrow w ,b) &#x3D; \frac{1}{m}\sum_{i&#x3D;1}^{m}L<br>$$<br>下面使用一个 3 分类的数据集来进行介绍：</p>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695886548295-932df577-65eb-4eaa-bc0e-f381b4557fa1.png" alt="img" style="zoom: 50%;" />
+
+<p>推广到一般形式：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/jpeg/22608736/1695886621491-2b91bd54-b6ab-45dd-b5d9-379db9f3463c.jpeg" alt="img"></p>
+<hr>
+<h3 id="Softmax实现梯度下降"><a href="#Softmax实现梯度下降" class="headerlink" title="Softmax实现梯度下降"></a>Softmax实现梯度下降</h3><p>梯度下降与线性回归、逻辑回归类似：</p>
+<img src="https://cdn.nlark.com/yuque/0/2023/jpeg/22608736/1695886756926-7516f794-81ae-4521-b612-19886e98dab6.jpeg" alt="img" style="zoom:50%;" />
+
+<p>举一个例子：</p>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/22608736/1695886803212-f9534e59-2705-42c8-b2ea-243c98c73eca.png" alt="img" style="zoom:67%;" />
+
+<p>因此分为两种情况讨论：</p>
+<ol>
+<li>样本真实标签与 <img src="https://cdn.nlark.com/yuque/__latex/e215ff0c9c4d9951b224f78bc34ee11c.svg" alt="img"> 参数所属标签相同，则分子会存在<img src="https://cdn.nlark.com/yuque/__latex/e215ff0c9c4d9951b224f78bc34ee11c.svg" alt="img">参数</li>
+<li>样本真实标签与 <img src="https://cdn.nlark.com/yuque/__latex/e215ff0c9c4d9951b224f78bc34ee11c.svg" alt="img">参数所属标签不同，则分子不会存在<img src="https://cdn.nlark.com/yuque/__latex/e215ff0c9c4d9951b224f78bc34ee11c.svg" alt="img">参数</li>
+</ol>
+<p>推理前先整理几个数据：<br>$$<br>z_i &#x3D; \sum_jw_{ij}x_{ij} + b<br>$$</p>
+<p>$$<br>a_i &#x3D; \frac{e^{z_i}}{\sum_te^{z_t}}<br>$$</p>
+<p>$$<br>Loss(L) &#x3D; -\sum_iy_iIna_i<br>$$</p>
+<p>根据梯度下降公式：<br>$$<br>w_{ij} &#x3D; w_{ij} - \alpha \frac{\partial L}{\partial w_{ij}}<br>$$<br>而根据复合函数的求导法则：<br>$$<br>\frac{\partial L}{\partial w_{ij}} &#x3D; \frac{\partial L}{\partial a_k} \cdot \frac{\partial a_k}{\partial z_i} \cdot \frac{\partial z_i}{\partial w_{ij}}(k是样本真实标签，i 是参数 w 所属的标签)<br>$$<br>有个人可能有疑问了，这里为什么是$a_k$而不是$a_i$，这里我想了近三个小时，终于得出结论：对于某个训练集的样本来说，其损失函数的值与样本真实标签 $k$ 有关。当$k!&#x3D;i$ 时，此时softmax模型中$a_k&#x3D;\frac{e^{z_k}}{\sum_te^{z_t}}$ 中分子部分不存在 $w_{ij}$ 的项，只有当$k&#x3D;&#x3D;i$ 时才存在。也就是说：softmax公式分母包含了所有神经元的输出，而对于分母是否包含$w_{ij}$ 就是分别讨论了。</p>
+<p>首先求出不需要讨论的部分：<br>$$<br>\frac{\partial L}{\partial a_k} &#x3D; -\frac{1}{a_k}<br>$$</p>
+<p>$$<br>\frac{\partial z_i}{\partial w_{ij}} &#x3D; x_{ij}<br>$$</p>
+<p>下面分类讨论：</p>
+<ol>
+<li>当$i &#x3D;&#x3D; k$ 时：</li>
+</ol>
+<p>$$<br>\frac{\partial a_k}{\partial z_i} &#x3D; a_k(1-a_k)<br>$$</p>
+<p>​       此时就有：<br>$$<br>\frac{\partial L}{\partial w_{ij}} &#x3D; (a_k - 1) \cdot x_{ij}<br>$$</p>
+<ol start="2">
+<li>当$i !&#x3D; k$ 时：</li>
+</ol>
+<p>$$<br>\frac{\partial a_k}{\partial z_i} &#x3D; -a_ka_i<br>$$</p>
+<p>​		此时就有：<br>$$<br>\frac{\partial L}{\partial w_{ij}} &#x3D; a_i\cdot x_{ij}<br>$$<br>总结一下就有：<br>$$<br>\frac{\partial L}{\partial w_{ij}} &#x3D;<br> \begin{cases}<br> (a_i - 1) \cdot x_{ij},,i &#x3D; k\<br> a_i\cdot x_{ij}     ,,i \neq k\<br> \end{cases} (i为w参数所属标签,k为样本真实标签)<br>$$</p>
+<hr>
+<h3 id="Softmax改进实现"><a href="#Softmax改进实现" class="headerlink" title="Softmax改进实现"></a>Softmax改进实现</h3><p>先看看下面这段代码：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924120855354.png" alt="image-20230924120855354"></p>
+<p>为什么<code>(2/10000)</code>与<code>(1 + 1/10000) - (1 - 1/10000)</code> 的结果会不同？是因为在<code>(1 + 1/10000) - (1 - 1/10000)</code>计算机会会对 <code>(1 + 1/10000)</code> 与 <code>(1 - 1/10000)</code> 进行两次舍入操作，最后两式相减还会进行一次舍入。本来舍入操作就会产生误差，将误差带入式子后会产生更大的误差，<strong>因此在计算中要减少中间变量的产生，直接计算能够减小误差。</strong></p>
+<p>逻辑回归模型的激活函数与代价函数如下：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924121312044.png" alt="image-20230924121312044" style="zoom:67%;" />
+
+<p>根据刚才的结论，想要误差足够小就需要中间变量 $a$ 能够直接带入损失函数的式子中：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924121428403.png" alt="image-20230924121428403" style="zoom:67%;" />
+
+<p>如果想要用<code>TensorFlow</code>来实现上述优化过程，需要更改逻辑回归模型的两处代码：</p>
+<ol>
+<li>指定输出层为线性回归(<code>liner</code>)</li>
+<li>指定损失函数中的属性<code>from_logits</code>值为true</li>
+</ol>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924121636415.png" alt="image-20230924121636415"></p>
+<p><font color='blue'><strong>那样输出层的输出结果不就是线性回归的输出结果了吗？</strong></font></p>
+<p>并不是这样的，<code>from_logits = true</code> 表示模型输出是未经过概率变换的logits，指定 <code>loss =BinaryCrossEntropy</code>  后TensorFlow还是会根据损失函数将线性回归的输出结果转换为逻辑回归sigmoid函数输出取该分类的概率。</p>
+<hr>
+<p>现在将视野拉回<code>softmax</code>函数，该函数的代价函数可以写为下面这种形式（假定分类数量为10）：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924122213061.png" alt="image-20230924122213061" style="zoom:67%;" />
+
+<p>那么对<code>softmax</code>函数的优化代码为：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230924122437094.png" alt="image-20230924122437094" style="zoom:67%;" />
+
+<h2 id="6-5-梯度下降的优化（Adam-算法）"><a href="#6-5-梯度下降的优化（Adam-算法）" class="headerlink" title="6.5 梯度下降的优化（Adam 算法）"></a>6.5 梯度下降的优化（Adam 算法）</h2><p><strong>Adam（Adaptive Moment Estimation）</strong>是一种常用的优化算法，用于在深度学习中更新神经网络的参数。它结合了动量法和自适应学习率的思想，被广泛应用于各种深度学习模型的训练过程中。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/d26b98f9fe591ca457030699dadd259.jpg" alt="d26b98f9fe591ca457030699dadd259"></p>
+<p>Adam 算法核心思想是对学习率$\alpha$ 的偏差修正：如果$\alpha$ 过于小（下降速度很慢），则增大$\alpha$ 的值；如果 $\alpha$ 值过于大（出现代价值增大），则减小 $\alpha$ 值。</p>
+<p>在TensorFlow中使用Adam算法优化梯度下降过程：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/b7aa81a313b49e09a20f682dcd28750.jpg" alt="b7aa81a313b49e09a20f682dcd28750"></p>
+<h2 id="6-6-神经网络中常见的网络层类型"><a href="#6-6-神经网络中常见的网络层类型" class="headerlink" title="6.6 神经网络中常见的网络层类型"></a>6.6 神经网络中常见的网络层类型</h2><h3 id="1-全连接层（Dense-layer-type）"><a href="#1-全连接层（Dense-layer-type）" class="headerlink" title="1 全连接层（Dense layer type）"></a>1 全连接层（Dense layer type）</h3><p>就是之前学习一直学习的网络层，它是最常见的网络层类型之一，也被称为全连接层或线性层。每个神经元与上一层的所有神经元相连，通过权重和偏置来进行线性变换，并通过激活函数将结果传递给下一层。</p>
+<p>密集层的每个神经元都与上一层的所有神经元相连，每个连接都有一个权重。这意味着输入特征的每个维度都与输出特征的每个维度都有一个连接权重。神经元接收上一层的输入，对它们进行加权求和，并通过激活函数将结果传递给下一层。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925112223135.png" alt="image-20230925112223135"></p>
+<h3 id="2-卷积层（Convolutional-layer-type）"><a href="#2-卷积层（Convolutional-layer-type）" class="headerlink" title="2 卷积层（Convolutional layer type）"></a>2 卷积层（Convolutional layer type）</h3><p>主要用于处理图像和其他类似结构的数据。卷积层通过使用卷积核（过滤器）在输入数据上进行<strong>滑动窗口操作</strong>，提取<strong>局部特征</strong>，具体来说：每一个神经元输入的数据只是整体数据的一小部分，这样做能够加快训练速度，同时只需要更小的数据集支持，如果神经网络中有多个卷积层，则称其为卷积神经网络。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925112754854.png" alt="image-20230925112754854"></p>
+<h3 id="3-池化层（Pooling-layer-type）"><a href="#3-池化层（Pooling-layer-type）" class="headerlink" title="3 池化层（Pooling layer type）"></a>3 池化层（Pooling layer type）</h3><p><strong>池化层（Pooling Layer）</strong>是深度神经网络中常用的一种层类型，用于减少特征图的空间尺寸，同时保留重要的特征信息。池化层通过对输入特征图的局部区域进行聚合操作，将其转换为更小的输出特征图。</p>
+<h1 id="七、关于机器学习的建议"><a href="#七、关于机器学习的建议" class="headerlink" title="七、关于机器学习的建议"></a>七、关于机器学习的建议</h1><h2 id="7-1-评估假设Evaluating-a-Hypothesis"><a href="#7-1-评估假设Evaluating-a-Hypothesis" class="headerlink" title="7.1 评估假设Evaluating a Hypothesis"></a>7.1 评估假设Evaluating a Hypothesis</h2><p>当学习的算法时候，考虑的是如何选择参数来使得训练误差最小化。在模型建立的过程中很容易遇到过拟合的问题，那么如何评估模型是否过拟合呢？</p>
+<p>为了检验算法是否过拟合，将数据集分成训练集和测试集，通常是$7:3$的比例。关键点是训练集和测试集均要含有各种类型的数据，通常我们要对数据进行“洗牌”，然后再分成训练集和测试集。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925120749415.png" alt="image-20230925120749415" style="zoom:50%;" />
+
+<p>当我们在训练集上得到我们的学习模型之后，就需要使用测试集合来检验该模型：</p>
+<ul>
+<li><p><strong>对于线性回归模型</strong>：利用测试数据计算代价函数$J_{test}$ 与 训练集计算代价函数$J_{train}$ 进行比较，如果$J_{train}$ 的值很低而$J_{test}$的值很高，就说明模型存在过拟合。注意这里的代价函数均不包含正则项。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925121642975.png" alt="image-20230925121642975" style="zoom:67%;" />
+</li>
+<li><p><strong>对于逻辑回归模型：</strong></p>
+<ul>
+<li><p>方式一：与线性回归一样计算$J_{test}$ 与$J_{train}$ 进行比较</p>
+</li>
+<li><p>方式二：在针对每个测试集样本计算误分类的比率，再求平均值</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925121559312.png" alt="image-20230925121559312" style="zoom: 67%;" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="7-2-模型选择和交叉验证集"><a href="#7-2-模型选择和交叉验证集" class="headerlink" title="7.2 模型选择和交叉验证集"></a>7.2 模型选择和交叉验证集</h2><p>假设我们要在10个不同次数的二项式模型之间进行选择：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925133228457.png" alt="image-20230925133228457"></p>
+<p>现在能够知道的是$J_{t e s t}(w^{&lt;5&gt;},^{&lt;5&gt;})$ 是最小值，那么就能够选择$(w^{&lt;5&gt;},^{&lt;5&gt;})$ 作为模型了吗？可能存在训练集上过拟合并且测试集上代价函数最小的情况，为了准确评估模型的泛化能力并选择合适的模型，通常会使用<strong>交叉验证（Cross-validation）</strong>的方法，即：使用60%的数据作为训练集，使用 20%的数据作为交叉验证集，使用20%的数据作为测试集：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925134656524.png" alt="image-20230925134656524"></p>
+<p>下面介绍模型选择的具体细节：</p>
+<ol>
+<li>针对每个二项式模型，使用**<font color='red'>训练集</font><strong>来训练模型的参数（例如，权重w和偏置b），这就意味着对于每个模型会</strong>得到不同的参数**。</li>
+<li>使用<font color='red'><strong>交叉验证集</strong></font>来评估每个模型的性能。代价可以根据任务的具体情况选择，例如使用均方误差（MSE）或对数损失（Log Loss）等。通过比较各个模型在交叉验证集上的代价，<strong>选择具有最低代价的模型</strong>。</li>
+<li>使用选择的最佳模型在**<font color='red'>测试集</font><strong>上进行</strong>最终评估**。将测试集的数据应用于最佳模型，并计算模型在测试集上的代价或其他评估指标。这个步骤主要用于评估模型的泛化能力，即模型在未见过的数据上的表现。</li>
+<li>如果在测试集上发现模型的泛化能力不佳，您可以尝试调整模型的超参数、增加更多的训练数据、应用特征选择也可以直接打乱数据集。然后，您可以重复之前的步骤，重新训练和评估模型，以获得更好的泛化能力。</li>
+</ol>
+<h2 id="7-3-参数对偏差和方差影响"><a href="#7-3-参数对偏差和方差影响" class="headerlink" title="7.3 参数对偏差和方差影响"></a>7.3 参数对偏差和方差影响</h2><h3 id="多项式次数"><a href="#多项式次数" class="headerlink" title="多项式次数"></a>多项式次数</h3><p>如果一个算法的运行结果不是很理想，只有两种情况：要么偏差过大，要么方差过大。换句话就是说，要么出现欠拟合，要么出现过拟合。<strong>偏差指模型的拟合能力，方差指模型的泛化能力，越高均代表该模型这项能力越弱</strong> 。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925154106829.png" alt="image-20230925154106829" style="zoom:67%;" />
+
+<p>通过训练集和交叉验证集的代价函数误差和多项式的次数绘制在同张图中：</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925154307692.png"></p>
+<ul>
+<li><strong>高偏差（high bias）</strong>：$J_{train}$值较高，且$J_{t r a i n} \approx  J_{c v}$</li>
+<li><strong>高方差（high variance）</strong>：$J_{cv}&gt;&gt;J_{train}$ 且$J_{train}$ 值可能很低</li>
+</ul>
+<h3 id="正则化参数-lambda"><a href="#正则化参数-lambda" class="headerlink" title="正则化参数$\lambda$"></a>正则化参数$\lambda$</h3><blockquote>
+<p>正则化技术主要是为了解决过拟合的问题，通过向代价函数中添加参数$w_j$ 的项来保证参数的值都能尽可能地小。</p>
+</blockquote>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925160602596.png" alt="image-20230925160602596" style="zoom:67%;" />
+
+<p>如上图所示：</p>
+<ul>
+<li>当$\lambda$ 值太大：模型图像趋近一条水平直线，此时偏差较大。</li>
+<li>当$\lambda$ 值太小：正则化无法起效，模型过拟合，方差较大。</li>
+</ul>
+<p>下图是$\lambda$ 与$J_{train}$ 和 $J_{cv}$ 值的关系图：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925161147318.png" alt="image-20230925161147318" style="zoom:67%;" />
+
+<h3 id="训练集大小（学习曲线）"><a href="#训练集大小（学习曲线）" class="headerlink" title="训练集大小（学习曲线）"></a>训练集大小（学习曲线）</h3><blockquote>
+<p>使用<strong>学习曲线</strong>来判断某一个学习算法是否处于偏差、方差问题，其是将训练集误差和交叉验证集误差作为训练集样本数量$m$的函数绘制的图表</p>
+</blockquote>
+<p>样本数量 $m$ 的变化对代价函数的影响对于模型拟合、高偏差和高方差这三种情况是不同的，下面我们来分开讨论：</p>
+<h4 id="情况1：模型拟合"><a href="#情况1：模型拟合" class="headerlink" title="情况1：模型拟合"></a>情况1：模型拟合</h4><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925172248303.png" alt="image-20230925172248303" style="zoom:67%;" />
+
+<p>对于模型拟合的情况，当训练集大小越小时，相对容易能够得到非常小的训练误差$J_{train} $，然而预测交叉验证集中的数据时，因为训练量过小导致$J_{cv}$很大；随着训练集规模的增大，二次函数更难拟合所有训练示例导致$J_{train}$ 值增大，而$J_{cv}$ 不算减小，如下图所示：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925172627307.png" alt="image-20230925172627307" style="zoom:67%;" />
+
+<h4 id="情况2：高偏差"><a href="#情况2：高偏差" class="headerlink" title="情况2：高偏差"></a>情况2：高偏差</h4><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925172705081.png" alt="image-20230925172705081" style="zoom:67%;" />
+
+<p>对于高偏差情况：使用简单的线性函数对于大量的训练集也不会产生太大的改变，也就是说$J_{train}$ 、$J_{cv}$ 最后会趋于平整。但需要注意的是：高偏差情况无论添加多少训练集，拟合能力$J_{cv}$ 永远都无法达到人类水平判别能力。如下图所示：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925173137824.png" alt="image-20230925173137824" style="zoom:67%;" />
+
+<h4 id="情况3：高方差"><a href="#情况3：高方差" class="headerlink" title="情况3：高方差"></a>情况3：高方差</h4><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925173314348.png" alt="image-20230925173314348" style="zoom:67%;" />
+
+<p>对于高方差情况：随着训练集的增多，$J_{train}$不断升高且$J_{cv}$ 不断下降，并且最终能够超越人类水平的判别能力，如下图所示：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925173638743.png" alt="image-20230925173638743" style="zoom:67%;" />
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>解决高方差：</p>
+<ol>
+<li>增大训练集样本的数量。</li>
+<li>减少特征的数量。</li>
+<li>增大正则化参数 $\lambda$ 的值</li>
+</ol>
+<p>解决高偏差：</p>
+<ol>
+<li>增多特征的数量。</li>
+<li>减小正则化参数$\lambda$ 的值。</li>
+<li>增多多项式的特性。</li>
+</ol>
+<p>事实证明，<strong>构建复杂的神经网络只要通过合适的正则化就能做的比较小的模型更好</strong>，低偏差永远是我们需要解决的首要问题：</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925180844711.png" alt="image-20230925180844711" style="zoom:67%;" />
+
+<h1 id="八、决策树"><a href="#八、决策树" class="headerlink" title="八、决策树"></a>八、决策树</h1><h2 id="8-1-决策树模型"><a href="#8-1-决策树模型" class="headerlink" title="8.1 决策树模型"></a>8.1 决策树模型</h2><h3 id="简单的决策树"><a href="#简单的决策树" class="headerlink" title="简单的决策树"></a>简单的决策树</h3><p>用猫分类问题来介绍决策树模型。这是一个二元分类问题，每个特征的值只能取两个离散值。</p>
+<img src="https://img-blog.csdnimg.cn/73c942f0f48547b6ba8d008376e7067c.png" alt="在这里插入图片描述" style="zoom: 80%;" />
+
+<p>以下是决策树模型：</p>
+<img src="https://img-blog.csdnimg.cn/b7d519de531b4806a5b29dc84264ca4b.png" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<ul>
+<li><strong>根节点</strong>：树中最顶层的节点。</li>
+<li><strong>决策节点</strong>：图中的椭圆节点。</li>
+<li><strong>叶子节点</strong>：图中的矩形节点。</li>
+</ul>
+<p>要根据决策树作出分类，首先从根节点开始，根据决策节点的值选择向左或者向右，最终做出分类。</p>
+<h3 id="构建决策树"><a href="#构建决策树" class="headerlink" title="构建决策树"></a>构建决策树</h3><p>在构建决策树的过程中，我们需要做出几个关键决定。</p>
+<ol>
+<li><p>选择在每个节点上使用哪些特征进行拆分，原则就是最大化纯度<em>（Purity）</em>，使每个节点中尽量都是cat或者not cat。</p>
+<img src="https://img-blog.csdnimg.cn/c45f2abda9954068995c3842240e5019.png" alt="在这里插入图片描述" style="zoom: 67%;" />
+</li>
+<li><p>何时停止拆分。</p>
+</li>
+</ol>
+<ul>
+<li>节点只剩一个类别。</li>
+<li>树的深度达到最大深度（预先设置的参数），确保我们的决策树不会变得太大或太笨重，一定程度上防止过拟合。</li>
+<li>纯度的提升小于一个阈值（改善太小）。</li>
+<li>样本的数量小于一个阈值</li>
+</ul>
+<h3 id="熵与纯度"><a href="#熵与纯度" class="headerlink" title="熵与纯度"></a>熵与纯度</h3><p><strong>熵</strong>（entropy）是衡量一组数据纯度（<strong>是否不纯</strong>）的指标，定义 $p_1$是样本中猫的比例，则<strong>熵和 p1 的函数</strong>图像如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/6ea50a976dbe49a38b6b025253139482.png" alt="在这里插入图片描述"></p>
+<p>当两种类别的样本越接近一半数量的组合，不纯度越高，则熵越高。</p>
+<p>熵函数的实际方程如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/0d9d677fe5d5494d86c23c8961cc3da9.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><em>计算熵时采用的是以 2 为底而不是以 e 为底的对数，是为了让曲线的峰值等于 1，便于解释曲线的意义（杂质含量)。</em></p>
+</blockquote>
+<h2 id="8-2-构建决策树"><a href="#8-2-构建决策树" class="headerlink" title="8.2 构建决策树"></a>8.2 构建决策树</h2><h3 id="拆分算法"><a href="#拆分算法" class="headerlink" title="拆分算法"></a>拆分算法</h3><h4 id="按信息增益拆分"><a href="#按信息增益拆分" class="headerlink" title="按信息增益拆分"></a>按信息增益拆分</h4><p>构建决策树时，在一个节点使用什么特征进行拆分取决于选择什么特征可以<strong>最大程度地减少熵</strong>。</p>
+<p>熵的减少成为<strong>信息增益（Information gain）</strong>，下面介绍如何计算信息增益。</p>
+<p><img src="https://img-blog.csdnimg.cn/7aabb0b03f444f4ba71dfde8b69c96d2.png" alt="在这里插入图片描述"></p>
+<p>分别计算左右分支的熵之后，会发现每种分法有两个熵值，那么如何进行比较呢？如果一个高熵的节点上有很多样本，往往比一个高熵的节点上只有少数样本更糟糕，因为前者是一个很大的含有很多杂志的数据集，为了确保进入较多样本数的分支的杂质更低，所以通常计算一个以上的<font color='red'>加权平均</font>，然后使用根节点的熵减去这个加权平均，即求出了熵的减少，即<strong>信息增益</strong>，下图是信息增益计算的公式：</p>
+<p><img src="https://img-blog.csdnimg.cn/fd69b633885b45bb8706eb3eeffcb676.png" alt="在这里插入图片描述"></p>
+<p>决定何时不进行拆分的标准之一就是如果熵减少的太小，增益太小，而拆分还会增加过拟合的风险，就停止拆分。</p>
+<p>信息增益告诉我们如何选择一个特征来划分一个结点，以下是建立决策树的流程：</p>
+<ol>
+<li><p>从根节点的所有样本开始。</p>
+</li>
+<li><p>计算所有可能的特征的信息增益，并选择信息增益最高的特征。</p>
+</li>
+<li><p>根据所选特征拆分数据集，并创建树的左右分支。</p>
+</li>
+<li><p>继续重复拆分过程，直到满足停止条件：</p>
+<ul>
+<li><p>当样本100%属于一个类别，即0熵。</p>
+</li>
+<li><p>当分割节点时，将导致树超过<strong>最大深度</strong>。</p>
+</li>
+<li><p>从附加分割中获得的<strong>信息增益小于阈值</strong>。</p>
+</li>
+<li><p>当节点中的示例数低于阈值时</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>决策树是<strong>递归划分</strong>的</p>
+<p><img src="https://img-blog.csdnimg.cn/07c49ec441a641f89b5cb92b402340a8.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>关于如何选择树的最大深度，可以使用一些开源库中的参数，也可以使用交叉验证方法选择最佳参数。最大深度越大，也就像模型的多项式次数越多、模型越复杂，这可能会导致过拟合的现象出现。</p>
+</blockquote>
+<h4 id="按基尼指数拆分"><a href="#按基尼指数拆分" class="headerlink" title="按基尼指数拆分"></a>按基尼指数拆分</h4><p><strong>基尼指数: 与熵类似，基尼系数也是衡量随机变量不纯度的一种方法。基尼系数越小，则表示变量纯度越高。</strong></p>
+<p>假设随机变量x有K个可能取值，其概率分布为$P(x&#x3D;x_k)&#x3D;P_k$ 则x的基尼指数为：<br>$$<br>G i n i(x)&#x3D;\sum_{k&#x3D;1}^{K}p_{k}(1-p_{k})&#x3D;1-\sum_{k&#x3D;1}^{K}p_{k}^{2}<br>$$<br><strong>直观来说，$Gini（x）$反映了从数据集x中随机抽取两个样本，其类别标记不一致的概率，因此$Gini（x）$越小，则数据集D的纯度越高。</strong></p>
+<p>回到训练集中，如果将数据集D看做随机变量，数据集的特征A看做随机变量可能的取值，假设特征数量为K，样本属于特征K的数量为$C_K$，那么样本数据D的基尼指数为：<br>$$<br>G i n i(D)&#x3D;\sum_{k&#x3D;1}^{K}\frac{C_{K}}{|D|}(1-\frac{C_{K}}{|D|})&#x3D;1-\sum_{k&#x3D;1}^{K}(\frac{C_{K}}{|D|})^{2}<br>$$<br>那么在选择拆分时，同样根据每一个特征基尼指数的大小进行拆分，特征A的基尼指数为：<br>$$<br>G i n i(D,;;a_{i})&#x3D;\frac{|C_{i}|}{|D|}G i n i(C_{i})+(1-\frac{|C_{i}|}{|D|})G i n i(D-C_{i});;;<br>$$</p>
+<h3 id="生成方式"><a href="#生成方式" class="headerlink" title="生成方式"></a>生成方式</h3><h4 id="独热编码One-hot"><a href="#独热编码One-hot" class="headerlink" title="独热编码One-hot"></a>独热编码One-hot</h4><p>在之前的样例中，每个特征只有两个离散的取值（例如脸型是圆脸和非圆脸），那么当取值大于两个时，我们怎么构建决策树呢？此时就 需要使用 <strong>独热编码One-hot</strong> 编码。</p>
+<p><img src="https://img-blog.csdnimg.cn/4a24f89514ee4ae2ae268b7a5064395e.png" alt="在这里插入图片描述"></p>
+<p><strong>当耳型特征有三个离散取值时，我们把它拆开，创建三个新的特征，每个特征只能取0-1两个可选值中的一个，三个特征中只有一个能取 1，因此叫做One-hot独热编码。</strong><br>构建的决策树形状如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/b3878ceeb8b546c19c917c77b34fd836.png" alt="在这里插入图片描述"></p>
+<p>进一步，如果一个分类特征可以取 k 个值，那么我们将创建 k 个二进制特征来代替它。<br>这样每个特征就只能取两个离散的值，回到了之前的情况。<br>如上，我们构建了5个特征的列表，前三个是来自脸型的独热编码，将它输入到新的神经网络或逻辑回归模型，并尝试训练猫分类器。<br>One-hot 编码不仅仅适用于决策树，它也适用于神经网络，线性回归和逻辑回归（使用 0、1 对特征进行编码，作为输入)。</p>
+<h4 id="连续值特征"><a href="#连续值特征" class="headerlink" title="连续值特征"></a>连续值特征</h4><p>当我们面临一个具有连续值的特征时，通常对其拆分的方式是设置一个<strong>阈值</strong>，根据是否小于等于阈值进行拆分。</p>
+<p>比如新增了一个特征-体重，是一组连续型的数值。<strong>选择不同的阈值并计算计算增益，选择带来的信息增益最大的那个阈值。</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/12828e0713c04baeb2eb6a38f0ea882a.png" alt="在这里插入图片描述"></p>
+<p>选择阈值时，一种常见的方法是，根据特征值大小对所有样例排序，取排序表中每两个连续点的中点值作为一种阈值选择，也就是说，当有 10 个样例时，会测试 9 个不同的阈值。</p>
+<h3 id="决策树剪枝"><a href="#决策树剪枝" class="headerlink" title="决策树剪枝"></a>决策树剪枝</h3><p>一个性能良好的决策树结构应该具有小的错误率和低的决策代价。</p>
+<p>决策树的损失函数：$C_a(T) &#x3D;\alpha|T|+\sum^{|T|}_{t&#x3D;1}N_tH_t(T)$</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20231011171920616.png" alt="image-20231011171920616" style="zoom: 67%;" />
+
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20231011171952356.png" alt="image-20231011171952356" style="zoom:67%;" />
+
+<h3 id="回归树"><a href="#回归树" class="headerlink" title="回归树"></a>回归树</h3><p>如果之前的决策树是为了预测种类，那么构建回归树是为了预测一个数字，这与之前的逻辑、线性回归类似。举例介绍回归树——预测动物体重。</p>
+<img src="https://img-blog.csdnimg.cn/7fc6c1f6e64b4a5682530bf090e72954.png" alt="在这里插入图片描述" style="zoom: 80%;" />
+
+<p>根据耳朵形状、面部形状、胡须来预测体重，因此是个回归问题。为回归问题建立好的决策树如下图：</p>
+<img src="https://img-blog.csdnimg.cn/f34f170074e047f984a3750e8f7bed37.png" alt="在这里插入图片描述" style="zoom:80%;" />
+
+<p>当预测一个新的样例时，从根节点开始根据样例特征进行决策，直至根节点，然后输出该叶节点动物的体重的平均值。</p>
+<p><img src="https://img-blog.csdnimg.cn/73895347b6f04daca3b1d79a9132feed.png" alt="在这里插入图片描述"></p>
+<p><strong>选择特征划分样例时，不同于尽量减少熵的方法，回归问题中是尽量减少方差。</strong></p>
+<p><font color='red'><strong>方差的减少 &#x3D; 根结点方差-加权平均方差</strong></font></p>
+<h2 id="8-3-树集合"><a href="#8-3-树集合" class="headerlink" title="8.3 树集合"></a>8.3 树集合</h2><h3 id="引入树集合"><a href="#引入树集合" class="headerlink" title="引入树集合"></a>引入树集合</h3><p>使用单个决策树的缺点之一是该决策对数据中的微小变化高度敏感。<br>比如我们更改训练集中的一个样本，这可能会导致算法产生完全不同的分裂，产生完全不同的树，这也是<strong>过拟合</strong>的一种表现，通过使用多个决策树，并结合它们的预测结果，可以降低过拟合的风险，提高模型的泛化能力。</p>
+<p><img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20231009180005333.png" alt="image-20231009180005333"></p>
+<p>例如上述案例：只需要改变一个样本，回归树根据信息增益得到的拆分方式从Ear Shape改变为Whiskers，继续递归得到的是一个完全不同的决策树。</p>
+<p>为了使算法不那么敏感或者更健壮的解决方案是构建很多决策树，我们称之为<strong>树集合</strong>。</p>
+<p><img src="https://img-blog.csdnimg.cn/ecd95978a1b64eb696025782472f023e.png" alt="在这里插入图片描述"></p>
+<p>当构建多个合理的决策树时，也就是<strong>树集合</strong>，对一个新的样例分别作出判断，然后<strong>投票</strong>决定最终结果。</p>
+<p>例如上图所示：树集合中公有三个决策树，三个决策树对于新测试样本的预测结果分别是：’Cat’ 、’Not Cat’、 ‘Cat’，显然预测为’Cat’ 的数量更多，因此最终投票结果为’Cat’</p>
+<h3 id="构建树集合"><a href="#构建树集合" class="headerlink" title="构建树集合"></a>构建树集合</h3><p><strong>有放回抽样是构建树集合的关键技术。</strong><br>原始训练集中有 10 个动物，我们做 10 次有放回抽样，得到一个新的训练集，这与原始的训练集不同，并且有些样本重复。</p>
+<img src="https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20231009181122442.png" alt="image-20231009181122442" style="zoom: 67%;" />
+
+<p>通过有放回抽样，就可以实现固定数量的样本生成大数量的树集合训练样本，假设固定样本数量为$n$，那树集合中树的数量最多为：$n!$。··	</p>
+<h3 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h3><p><strong>随机森林</strong>比单个决策树具有更好的效果。<br>如何生成随机森林：</p>
+<ol>
+<li>使用有放回抽样方法得到新的训练集。</li>
+<li>训练决策树。</li>
+<li>重复以上步骤，共训练B棵决策树。<br>至于重复多少次，建议选择64~128中的数值，比如100。</li>
+<li>给出新样例，让100棵树分别作出预测并投票。</li>
+</ol>
+<p>事实证明，B设置的更大，不会对算法有坏处，但若超过了某个数值，会导致收益递减，若远大于100，算法不会获得更好的效果，而是会影响效率（可以想象很多树具有相同的结构）。</p>
+<p>对该算法进行一点更改，优化每个结点的特征选择，使集合中的树与彼此变得不同，就变成了随机森林算法。<br><img src="https://img-blog.csdnimg.cn/5c249ea864054830853d769a676880b6.png" alt="在这里插入图片描述" style="zoom:50%;" /><br>在每个节点上，当选择用于拆分的特征时，如果n个特征可用，则选择一个<strong>随机子集</strong> $K$ 个特征，并允许算法仅从该特征子集中进行选择，往往用于具有较多特征的较大问题。<br>当n很大时，通常令$K&#x3D;\sqrt{n}$​。</p>
+<h3 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h3><p><strong>XGBoost(Extreme Gradient Boosting)<strong>是一种增强决策树算法，运行速度快，开源易于使用，且非常成功的赢得了很多机器学习比赛，并成功应用于很多商业应用中。<br>对生成树集合的算法进行了改进，除了第一次取样以外，与其以相等的概率从所有示例中选择实例，不如</strong>优先选择以前训练过的树错误分类的示例</strong>，也被称为**<font color='red'>刻意练习</font>**，思想是将注意力集中在容易出错的小部分。<br>但是怎么提高预测错误实例的概率是一个非常复杂的问题，XGBoost是一种普遍的方法。</p>
+<p><img src="https://img-blog.csdnimg.cn/546270bdb9bc4839ab15a0bb5c5fb025.png" alt="在这里插入图片描述"><br>XGBoost 优点如下：<br><img src="https://img-blog.csdnimg.cn/378cb6ff81a446c6ad190c9a7c36fea0.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>开源。</li>
+<li>快速高效实现</li>
+<li>具有默认分裂准则和正确选择何时停止分裂</li>
+<li>内置正则化以防止过度拟合</li>
+<li>竞赛中机器学习的高度竞争算法(如：Kaggle竞赛)</li>
+</ul>
+<p>实际上，XGBoost为不同的训练实例分配了不同的选择方法，所以不需要生成和多组训练示例，这使它比随机采样更加高效。<br><img src="https://img-blog.csdnimg.cn/6651f95c22254a5ca89ba68e4e4d1f53.png" alt="在这里插入图片描述"></p>
+<p>使用XGBoost步骤：</p>
+<ol>
+<li>导入库。</li>
+<li>将模型初始化为XGBoost分类器&#x2F;回归器。</li>
+<li>训练模型。</li>
+<li>预测。</li>
+</ol>
+<h2 id="8-4-何时使用决策树"><a href="#8-4-何时使用决策树" class="headerlink" title="8.4 何时使用决策树"></a>8.4 何时使用决策树</h2><p>选择何时使用决策树和神经网络：</p>
+<p><strong>决策树</strong>适合处理结构化数据（表格数据），并且训练速度快，小型决策树具有可解释性（人可以读懂它的原理）；<br><img src="https://img-blog.csdnimg.cn/aee268c8e9c7448aa1a84962507f95f8.png" alt="在这里插入图片描述"></p>
+<p><strong>神经网络</strong></p>
+<ul>
+<li>适合处理任何类型数据，如图像，视频，音频，文本等非结构化数据或混合数据。</li>
+<li>但其速度比较慢，大型的网络需要更长的时间来训练。</li>
+<li>通常和迁移学习一起应用。</li>
+<li>当需要多个模型联合使用时，可以构建更强大的机器学习系统，使用神经网络也更容易一些（可以将其并联在一起同时训练，而决策树一次只能训练一棵树）。<br><img src="https://img-blog.csdnimg.cn/6c02330af3a04c4cbcb93e45e1b1494f.png" alt="在这里插入图片描述"></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io">Ther</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io/2023/10/30/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/AI/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://cjx_0723.gitee.io/2023/10/30/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/AI/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://cjx_0723.gitee.io" target="_blank">Ther的小站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div><div class="post_share"><div class="social-share" data-image="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/30/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/AI/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="模式识别与机器学习"><div class="cover" style="background: https://w.wallhaven.cc/full/yj/wallhaven-yjvxeg.jpg"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">模式识别与机器学习</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/30/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/AI/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%AE%AD/" title="吴恩达机器学习实训"><div class="cover" style="background: https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925113033196.png"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">吴恩达机器学习实训</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/30/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/AI/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E8%AE%AD/" title="吴恩达机器学习实训"><div class="cover" style="background: https://typora-md-bucket.oss-cn-beijing.aliyuncs.com/image-20230925113033196.png"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-30</div><div class="title">吴恩达机器学习实训</div></div></a></div><div><a href="/2023/10/30/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E7%9F%A5%E8%AF%86%E5%B7%A5%E7%A8%8B/" title="知识工程"><div class="cover" style="background: https://w.wallhaven.cc/full/qz/wallhaven-qzom1r.jpg"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-30</div><div class="title">知识工程</div></div></a></div><div><a href="/2023/10/30/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/AI/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="模式识别与机器学习"><div class="cover" style="background: https://w.wallhaven.cc/full/yj/wallhaven-yjvxeg.jpg"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-30</div><div class="title">模式识别与机器学习</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ther</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E5%BC%95%E8%A8%80%EF%BC%88Introduction%EF%BC%89"><span class="toc-text">一、 引言（Introduction）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%EF%BC%9F"><span class="toc-text">1.1 什么是机器学习？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="toc-text">1.2 监督学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98"><span class="toc-text">回归问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="toc-text">分类问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%97%A0%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="toc-text">1.3 无监督学习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92-Linear-Regression-with-One-Variable"><span class="toc-text">二、单变量线性回归(Linear Regression with One Variable)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%A8%A1%E5%9E%8B%E8%A1%A8%E7%A4%BA"><span class="toc-text">2.1 模型表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0"><span class="toc-text">2.2 代价函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3"><span class="toc-text">2.3 代价函数的直观理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">2.4 梯度下降</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E7%9B%B4%E8%A7%82%E7%90%86%E8%A7%A3"><span class="toc-text">2.5 梯度下降的直观理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E5%AD%A6%E4%B9%A0%E7%8E%87-alpha"><span class="toc-text">2.6 学习率$\alpha$</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-text">2.7 梯度下降的线性回归</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%9A%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92-Linear-Regression-with-Multiple-Variables"><span class="toc-text">三、多变量线性回归(Linear Regression with Multiple Variables)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%A4%9A%E7%BB%B4%E7%89%B9%E5%BE%81"><span class="toc-text">3.1 多维特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%A4%9A%E5%8F%98%E9%87%8F%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">3.2 多变量梯度下降</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE"><span class="toc-text">3.3 特征缩放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%AD%A6%E4%B9%A0%E7%8E%87%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">3.4 学习率的选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E4%B8%8E%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92"><span class="toc-text">3.5 特征工程与多项式回归</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-Logistic-Regression"><span class="toc-text">四、逻辑回归(Logistic Regression)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="toc-text">4.1 分类问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="toc-text">4.2 逻辑回归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E5%86%B3%E7%AD%96%E8%BE%B9%E7%95%8C"><span class="toc-text">4.3 决策边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0"><span class="toc-text">4.4 代价函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E5%AE%9E%E7%8E%B0%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">4.5   实现梯度下降</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-%E5%AE%9E%E8%AE%AD%EF%BC%9A%E8%AE%AD%E7%BB%83%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B"><span class="toc-text">4.6 实训：训练逻辑回归模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-text">五、正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E8%BF%87%E6%8B%9F%E5%90%88"><span class="toc-text">5.1 过拟合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-text">5.2 正则化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-text">5.3 线性回归正则化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E6%AD%A3%E5%88%99%E5%8C%96"><span class="toc-text">5.4 逻辑回归正则化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E5%AE%9E%E8%AE%AD%EF%BC%9A%E8%AE%AD%E7%BB%83%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E6%AD%A3%E5%88%99%E5%8C%96%E6%A8%A1%E5%9E%8B"><span class="toc-text">5.5 实训：训练逻辑回归正则化模型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-text">六、神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E6%A6%82%E8%BF%B0"><span class="toc-text">6.1 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B"><span class="toc-text">神经网络模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-text">神经网络中的网络层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tensorflow%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%BD%91%E7%BB%9C"><span class="toc-text">Tensorflow实现简单网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E6%AD%A3%E5%90%91%E4%BC%A0%E6%92%AD%E4%B8%8E%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-text">6.2 正向传播与反向传播</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-text">正向传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="toc-text">反向传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%90%91%E3%80%81%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="toc-text">正向、反向传播举例说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">6.3 激活函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ReLU%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">ReLU激活函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">如何选择激活函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E8%BF%9E%E7%BB%AD%E5%9C%B0%E4%BD%BF%E7%94%A8%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="toc-text">不要连续地使用线性回归激活函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="toc-text">6.4 多分类问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Softmax%E5%87%BD%E6%95%B0"><span class="toc-text">Softmax函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Softmax%E5%87%BD%E6%95%B0%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0"><span class="toc-text">Softmax函数代价函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Softmax%E5%AE%9E%E7%8E%B0%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="toc-text">Softmax实现梯度下降</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Softmax%E6%94%B9%E8%BF%9B%E5%AE%9E%E7%8E%B0"><span class="toc-text">Softmax改进实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5-%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%9A%84%E4%BC%98%E5%8C%96%EF%BC%88Adam-%E7%AE%97%E6%B3%95%EF%BC%89"><span class="toc-text">6.5 梯度下降的优化（Adam 算法）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-6-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%BB%9C%E5%B1%82%E7%B1%BB%E5%9E%8B"><span class="toc-text">6.6 神经网络中常见的网络层类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82%EF%BC%88Dense-layer-type%EF%BC%89"><span class="toc-text">1 全连接层（Dense layer type）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8D%B7%E7%A7%AF%E5%B1%82%EF%BC%88Convolutional-layer-type%EF%BC%89"><span class="toc-text">2 卷积层（Convolutional layer type）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B1%A0%E5%8C%96%E5%B1%82%EF%BC%88Pooling-layer-type%EF%BC%89"><span class="toc-text">3 池化层（Pooling layer type）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%85%B3%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-text">七、关于机器学习的建议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E8%AF%84%E4%BC%B0%E5%81%87%E8%AE%BEEvaluating-a-Hypothesis"><span class="toc-text">7.1 评估假设Evaluating a Hypothesis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E5%92%8C%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%E9%9B%86"><span class="toc-text">7.2 模型选择和交叉验证集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E5%8F%82%E6%95%B0%E5%AF%B9%E5%81%8F%E5%B7%AE%E5%92%8C%E6%96%B9%E5%B7%AE%E5%BD%B1%E5%93%8D"><span class="toc-text">7.3 参数对偏差和方差影响</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%AC%A1%E6%95%B0"><span class="toc-text">多项式次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E5%8F%82%E6%95%B0-lambda"><span class="toc-text">正则化参数$\lambda$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E9%9B%86%E5%A4%A7%E5%B0%8F%EF%BC%88%E5%AD%A6%E4%B9%A0%E6%9B%B2%E7%BA%BF%EF%BC%89"><span class="toc-text">训练集大小（学习曲线）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%86%B51%EF%BC%9A%E6%A8%A1%E5%9E%8B%E6%8B%9F%E5%90%88"><span class="toc-text">情况1：模型拟合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%86%B52%EF%BC%9A%E9%AB%98%E5%81%8F%E5%B7%AE"><span class="toc-text">情况2：高偏差</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%83%85%E5%86%B53%EF%BC%9A%E9%AB%98%E6%96%B9%E5%B7%AE"><span class="toc-text">情况3：高方差</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">八、决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E5%86%B3%E7%AD%96%E6%A0%91%E6%A8%A1%E5%9E%8B"><span class="toc-text">8.1 决策树模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">简单的决策树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">构建决策树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%B5%E4%B8%8E%E7%BA%AF%E5%BA%A6"><span class="toc-text">熵与纯度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E6%9E%84%E5%BB%BA%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">8.2 构建决策树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%86%E5%88%86%E7%AE%97%E6%B3%95"><span class="toc-text">拆分算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E4%BF%A1%E6%81%AF%E5%A2%9E%E7%9B%8A%E6%8B%86%E5%88%86"><span class="toc-text">按信息增益拆分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E5%9F%BA%E5%B0%BC%E6%8C%87%E6%95%B0%E6%8B%86%E5%88%86"><span class="toc-text">按基尼指数拆分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E6%96%B9%E5%BC%8F"><span class="toc-text">生成方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8B%AC%E7%83%AD%E7%BC%96%E7%A0%81One-hot"><span class="toc-text">独热编码One-hot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%80%BC%E7%89%B9%E5%BE%81"><span class="toc-text">连续值特征</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91%E5%89%AA%E6%9E%9D"><span class="toc-text">决策树剪枝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E5%BD%92%E6%A0%91"><span class="toc-text">回归树</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E6%A0%91%E9%9B%86%E5%90%88"><span class="toc-text">8.3 树集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E6%A0%91%E9%9B%86%E5%90%88"><span class="toc-text">引入树集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%A0%91%E9%9B%86%E5%90%88"><span class="toc-text">构建树集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%A3%AE%E6%9E%97"><span class="toc-text">随机森林</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XGBoost"><span class="toc-text">XGBoost</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E5%86%B3%E7%AD%96%E6%A0%91"><span class="toc-text">8.4 何时使用决策树</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程"><div style="background: https://w.wallhaven.cc/full/qz/wallhaven-qzom1r.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程">高级软件工程</a><time datetime="2023-10-30T14:04:29.121Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试"><div style="background: https://w.wallhaven.cc/full/yj/wallhaven-yjvxeg.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试">软件分析与测试</a><time datetime="2023-10-30T14:04:29.118Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E6%95%B0%E5%AD%A6/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E7%AC%94%E8%AE%B0/" title="概率论与数理统计">概率论与数理统计</a><time datetime="2023-10-30T14:04:29.068Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/PPT/" title="无题">无题</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课"><div style="background: https://w.wallhaven.cc/full/4g/wallhaven-4gwl6q.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课">研一选课</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Ther</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div></body></html>

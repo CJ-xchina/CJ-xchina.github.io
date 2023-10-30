@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>编译原理(复试版) | Ther的小站</title><meta name="author" content="Ther"><meta name="copyright" content="Ther"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="准备复试时出现的一些题目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译原理(复试版)">
+<meta property="og:url" content="http://cjx_0723.gitee.io/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Ther的小站">
+<meta property="og:description" content="准备复试时出现的一些题目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif">
+<meta property="article:published_time" content="2023-03-18T11:49:14.000Z">
+<meta property="article:modified_time" content="2023-10-30T14:04:29.114Z">
+<meta property="article:author" content="Ther">
+<meta property="article:tag" content="编译原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://cjx_0723.gitee.io/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"YGMR4LH4DH","apiKey":"1fb48f3686d76eaf600890b7d3bb69c9","indexName":"index_hexo","hits":{"per_page":8},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '编译原理(复试版)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-30 22:04:29'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ther的小站" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Ther的小站"><span class="site-name">Ther的小站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">编译原理(复试版)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-18T11:49:14.000Z" title="发表于 2023-03-18 19:49:14">2023-03-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-30T14:04:29.114Z" title="更新于 2023-10-30 22:04:29">2023-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/">计算机基础学科</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="编译原理(复试版)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><meta name="referrer" content="no-referrer"/>
+
+
+
+
+<h1 id="编译原理概述"><a href="#编译原理概述" class="headerlink" title="编译原理概述"></a>编译原理概述</h1><h2 id="编译程序工作过程"><a href="#编译程序工作过程" class="headerlink" title="编译程序工作过程"></a>编译程序工作过程</h2><blockquote>
+<p>（1） 词法分析</p>
+<p>词法分析的任务是对由字符组成的单词进行处理，从左至右逐个字符地对源程序进行扫描，产生一个个的单词符号，把作为字符串的源程序改造成为单词符号串的中间程序。执行词法分析的程序称为词法分析程序或扫描器。</p>
+<p>源程序中的单词符号经扫描器分析，一般产生二元式：单词种别；单词自身的值。单词种别通常用整数编码，如果一个种别只含一个单词符号，那么对这个单词符号，种别编码就完全代表它自身的值了。若一个种别含有许多个单词符号，那么，对于它的每个单词符号，除了给出种别编码以外，还应给出自身的值。</p>
+<p>（2） 语法分析</p>
+<p>编译程序的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8/10598664?fromModule=lemma_inlink">语法分析器</a>以单词符号作为输入，分析单词符号串是否形成符合语法规则的语法单位，如表达式、赋值、循环等，最后看是否构成一个符合要求的程序，按该语言使用的语法规则分析检查每条语句是否有正确的逻辑结构，程序是最终的一个语法单位。编译程序的语法规则可用上下文无关文法来刻画。</p>
+<p>语法分析的方法分为两种：自上而下分析法和自下而上分析法。自上而下就是从文法的开始符号出发，向下推导，推出句子。而自下而上分析法采用的是移进归约法，基本思想是：用一个寄存符号的先进后出栈，把输入符号一个一个地移进栈里，当栈顶形成某个产生式的一个候选式时，即把栈顶的这一部分归约成该产生式的左邻符号。</p>
+<p>（3） 语义分析与中间代码生成</p>
+<p>中间代码是源程序的一种内部表示，或称中间语言。中间代码的作用是可使编译程序的结构在逻辑上更为简单明确，特别是可使目标代码的优化比较容易实现。中间代码即为中间语言程序，中间语言的复杂性介于源程序语言和机器语言之间。中间语言有多种形式，常见的有逆波兰记号、四元式、三元式和树。</p>
+<p>（4） 代码优化</p>
+<p>代码优化是指对程序进行多种等价变换，使得从变换后的程序出发，能生成更有效的目标代码。所谓等价，是指不改变程序的运行结果。所谓有效，主要指目标代码运行时间较短，以及占用的存储空间较小。这种变换称为优化。</p>
+<p>有两类优化：一类是对语法分析后的中间代码进行优化，它不依赖于具体的计算机；另一类是在生成目标代码时进行的，它在很大程度上依赖于具体的计算机。对于前一类优化，根据它所涉及的程序范围可分为局部优化、循环优化和全局优化三个不同的级别。</p>
+<p>（5） 目标代码生成</p>
+<p>目标代码生成是编译的最后一个阶段。目标<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/733038?fromModule=lemma_inlink">代码生成器</a>把语法分析后或优化后的中间代码变换成目标代码。目标代码有三种形式：</p>
+<p>① 可以立即执行的机器语言代码，所有地址都重定位；</p>
+<p>② 待装配的机器语言模块，当需要执行时，由连接装入程序把它们和某些运行程序连接起来，转换成能执行的机器语言代码；</p>
+<p>③ 汇编语言代码，须经过汇编程序汇编后，成为可执行的机器语言代码。</p>
+<p>目标代码生成阶段应考虑直接影响到目标代码速度的三个问题：一是如何生成较短的目标代码；二是如何充分利用计算机中的寄存器，减少目标代码访问存储单元的次数；三是如何充分利用计算机指令系统的特点，以提高目标代码的质量。 [3] </p>
+</blockquote>
+<h2 id="除了上述五个过程，每个阶段还涉及到什么"><a href="#除了上述五个过程，每个阶段还涉及到什么" class="headerlink" title="除了上述五个过程，每个阶段还涉及到什么"></a>除了上述五个过程，每个阶段还涉及到什么</h2><blockquote>
+<p>涉及到<strong>表格管理</strong>和<strong>错误处理</strong>两个重要内容</p>
+</blockquote>
+<h1 id="四型文法"><a href="#四型文法" class="headerlink" title="四型文法"></a>四型文法</h1><p>​    Chomsky根据对产生式要求的不同，将文法分为4类，通常称为<strong>Chomsky体系。</strong></p>
+<p>​    设文法G&#x3D;（V，T，P，S），还有一种表示方法为：G&#x3D;（<img src="https://private.codecogs.com/gif.latex?V_%7BN%7D" alt="V_{N}">，<img src="https://private.codecogs.com/gif.latex?V_%7BT%7D" alt="V_{T}">，P，S)，两者是相同的，本文采用前者。</p>
+<p>​    快速查阅：0型文法也叫短语结构文法，PSG。0型语言PSL也叫短语结构语言或递归可枚举集。</p>
+<p>​             1型文法也叫上下文有关文法，CSG。1型语言CSL也叫上下文有关语言。</p>
+<p>​             2型文法也叫上下文无关文法，CFG。2型语言CFL也叫上下文无关语言。</p>
+<p>​             3型文法也叫正则文法或正规文法，RG。3型语言RL也叫正则语言或正规语言。分左<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%BA%BF%E6%80%A7&spm=1001.2101.3001.7020">线性</a>文法和右线性文法。</p>
+<h2 id="一、0型文法：短语结构文法"><a href="#一、0型文法：短语结构文法" class="headerlink" title="一、0型文法：短语结构文法"></a>一、0型文法：短语结构文法</h2><p>​    若P中任一产生式都有一般形式<img src="https://private.codecogs.com/gif.latex?%5Calpha%20%5Crightarrow%20%5Cbeta%20,%5Calpha%20%5Cin%20V%5E%7B&plus;%7D,%5Cbeta%20%5Cin%20V%5E%7B*%7D" alt="\alpha \rightarrow \beta ,\alpha \in V^{+},\beta \in V^{*}">，且对<img src="https://private.codecogs.com/gif.latex?%5Calpha%20%5Cbeta" alt="\alpha \beta">不加任何限制，则称G为<strong>0型文法</strong>，也叫<strong>短语结构文法</strong>，记为<strong>PSG</strong>(Phrase Structure Grammar)。0型文法没有任何限制，可以描述任何语言，但是很难用计算机处理。无限制文法的产生式规则左右可以是任意符号串。</p>
+<p>​     由0型文法生成的语言L(G)称为<strong>0型语言</strong>，也叫<strong>短语结构语言(PSL</strong> Phrase Structure Language**)<strong>或</strong>递归可枚举集**(recursively enumerable set)。它可由<strong>图灵机</strong>识别。</p>
+<p>​    示例：</p>
+<p><img src="https://img-blog.csdnimg.cn/2020041310093096.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Q1MjM3MA==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<h2 id="二、1型文法：上下文相关文法"><a href="#二、1型文法：上下文相关文法" class="headerlink" title="二、1型文法：上下文相关文法"></a>二、1型文法：上下文相关文法</h2><p>产生式规则左边有一个非终结符号和一些终结符号，右边可以是任意符号串。上下文相关文法描述的语言比上下文无关文法更复杂，包括自然语言的一部分，例如汉语的语法。</p>
+<h2 id="三、2型文法：上下文无关文法"><a href="#三、2型文法：上下文无关文法" class="headerlink" title="三、2型文法：上下文无关文法"></a>三、2型文法：上下文无关文法</h2><p>上下文无关文法就是说这个文法中<strong>所有的产生式左边只有一个非终结符</strong>，比如：</p>
+<blockquote>
+<p>S -&gt; aSb</p>
+<p>S -&gt; ab</p>
+</blockquote>
+<p>这个文法有两个产生式，每个产生式左边只有一个非终结符S，这就是<strong>上下文无关文法</strong>，因为你只要找到符合产生式右边的串，就可以把它归约为对应的非终结符，比如：</p>
+<blockquote>
+<p>aSb -&gt; aaSbb</p>
+<p>S -&gt; ab</p>
+</blockquote>
+<p>这就是<strong>上下文相关文法</strong>，因为它的第一个产生式左边有不止一个符号，所以你在匹配这个产生式中的S的时候必需确保这个S有正确的“上下文”，也就是左边的a和右边的b，所以叫上下文相关文法。</p>
+<h2 id="四、3型文法：正则文法"><a href="#四、3型文法：正则文法" class="headerlink" title="四、3型文法：正则文法"></a>四、3型文法：正则文法</h2><p>产生式规则左边只有一个非终结符号，右边只能是终结符号和一个非终结符号的拼接。正则文法描述的语言具有很强的结构化特征，例如，它们可以描述具有重复、交替和嵌套结构的字符串。<br>$$<br>A\longrightarrow aB,A\longrightarrow a<br>$$</p>
+<p>当你需要匹配或搜索一个字符串时，正则表达式是一种非常强大的工具。正则表达式（也称为正则表达式模式）是一种用于描述字符串模式的形式语言。正则表达式由一系列字符和特殊字符组成，这些字符和特殊字符定义了一个模式，用于匹配和搜索字符串。</p>
+<p>正则表达式的基本元素包括：</p>
+<blockquote>
+<ol>
+<li>字符 - 用于匹配自身。例如，字符 “a” 匹配字符串中的 “a”。</li>
+<li>字符集 - 用于匹配一组字符中的任何一个字符。例如，字符集 “[abc]” 匹配字符串中的 “a”、”b” 或 “c”。</li>
+<li>范围 - 用于匹配一定范围内的字符。例如，”[a-z]” 匹配任何小写字母。</li>
+<li>量词 - 用于指定字符、字符集或子表达式的出现次数。例如，字符 “a” 后面跟着量词 “+” 表示字符 “a” 可以出现一次或多次。“a*”代表着‘a’可以出现任意次。</li>
+<li>捕获组 - 用于分组并捕获匹配的字符。捕获组可以用于替换、后向引用和分组捕获等操作。</li>
+</ol>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io">Ther</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">http://cjx_0723.gitee.io/2023/03/18/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://cjx_0723.gitee.io" target="_blank">Ther的小站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></div><div class="post_share"><div class="social-share" data-image="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/03/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E6%95%B0%E5%AD%A6/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%90%E7%B2%BE%E5%8D%8E%E7%89%88%E3%80%91/" title="离散数学期末复习笔记【保命版】"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">离散数学期末复习笔记【保命版】</div></div></a></div><div class="next-post pull-right"><a href="/2023/03/18/%E5%90%8E%E7%AB%AF/Java/ArrayList%E7%9A%84%E5%B1%9E%E6%80%A7/" title="ArrayList的属性"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ArrayList的属性</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ther</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%A6%82%E8%BF%B0"><span class="toc-text">编译原理概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-text">编译程序工作过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%A4%E4%BA%86%E4%B8%8A%E8%BF%B0%E4%BA%94%E4%B8%AA%E8%BF%87%E7%A8%8B%EF%BC%8C%E6%AF%8F%E4%B8%AA%E9%98%B6%E6%AE%B5%E8%BF%98%E6%B6%89%E5%8F%8A%E5%88%B0%E4%BB%80%E4%B9%88"><span class="toc-text">除了上述五个过程，每个阶段还涉及到什么</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E5%9E%8B%E6%96%87%E6%B3%95"><span class="toc-text">四型文法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%810%E5%9E%8B%E6%96%87%E6%B3%95%EF%BC%9A%E7%9F%AD%E8%AF%AD%E7%BB%93%E6%9E%84%E6%96%87%E6%B3%95"><span class="toc-text">一、0型文法：短语结构文法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%811%E5%9E%8B%E6%96%87%E6%B3%95%EF%BC%9A%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9B%B8%E5%85%B3%E6%96%87%E6%B3%95"><span class="toc-text">二、1型文法：上下文相关文法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%812%E5%9E%8B%E6%96%87%E6%B3%95%EF%BC%9A%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95"><span class="toc-text">三、2型文法：上下文无关文法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%813%E5%9E%8B%E6%96%87%E6%B3%95%EF%BC%9A%E6%AD%A3%E5%88%99%E6%96%87%E6%B3%95"><span class="toc-text">四、3型文法：正则文法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程"><div style="background: https://w.wallhaven.cc/full/qz/wallhaven-qzom1r.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程">高级软件工程</a><time datetime="2023-10-30T14:04:29.121Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试"><div style="background: https://w.wallhaven.cc/full/yj/wallhaven-yjvxeg.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试">软件分析与测试</a><time datetime="2023-10-30T14:04:29.118Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E6%95%B0%E5%AD%A6/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E7%AC%94%E8%AE%B0/" title="概率论与数理统计">概率论与数理统计</a><time datetime="2023-10-30T14:04:29.068Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/PPT/" title="无题">无题</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课"><div style="background: https://w.wallhaven.cc/full/4g/wallhaven-4gwl6q.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课">研一选课</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Ther</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div></body></html>

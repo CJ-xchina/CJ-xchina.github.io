@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Ther的小站 | Ther的小站</title><meta name="author" content="Ther"><meta name="copyright" content="Ther"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MapReduce模型 1 MapReduce模型介绍MapReduce 是一种编程模型和相关实现，用于处理和生成适合各种现实世界任务的大型数据集。用户可以通过定义map和reduce函数来指定计算过程，而底层的运行时系统会自动将计算并行化到大规模的机器集群上，处理机器故障，并进行网络和磁盘的高效通信。 这个编程模型简单易用，Google内部已经实现了一万多个不同的MapReduce程序，每天平均">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ther的小站">
+<meta property="og:url" content="http://cjx_0723.gitee.io/2023/10/30/%E6%96%87%E7%8C%AE/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/MapReduce%E6%A8%A1%E5%9E%8B-CK4X2BJ8/index.html">
+<meta property="og:site_name" content="Ther的小站">
+<meta property="og:description" content="MapReduce模型 1 MapReduce模型介绍MapReduce 是一种编程模型和相关实现，用于处理和生成适合各种现实世界任务的大型数据集。用户可以通过定义map和reduce函数来指定计算过程，而底层的运行时系统会自动将计算并行化到大规模的机器集群上，处理机器故障，并进行网络和磁盘的高效通信。 这个编程模型简单易用，Google内部已经实现了一万多个不同的MapReduce程序，每天平均">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif">
+<meta property="article:published_time" content="2023-10-30T14:04:29.048Z">
+<meta property="article:modified_time" content="2023-10-30T14:04:29.049Z">
+<meta property="article:author" content="Ther">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://cjx_0723.gitee.io/2023/10/30/%E6%96%87%E7%8C%AE/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/MapReduce%E6%A8%A1%E5%9E%8B-CK4X2BJ8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"YGMR4LH4DH","apiKey":"1fb48f3686d76eaf600890b7d3bb69c9","indexName":"index_hexo","hits":{"per_page":8},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Ther的小站',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-30 22:04:29'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ther的小站" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Ther的小站"><span class="site-name">Ther的小站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-30T14:04:29.048Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-30T14:04:29.049Z" title="更新于 2023-10-30 22:04:29">2023-10-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>MapReduce模型</p>
+<h1 id="1-MapReduce模型介绍"><a href="#1-MapReduce模型介绍" class="headerlink" title="1 MapReduce模型介绍"></a>1 MapReduce模型介绍</h1><p><strong>MapReduce</strong> 是一种编程模型和相关实现，用于处理和生成适合各种现实世界任务的大型数据集。<span style="color: rgb(62, 63, 66)"><span style="background-color: rgb(251, 251, 251)">用户可以通过定义map和reduce函数来指定计算过程，而底层的运行时系统会自动将计算并行化到大规模的机器集群上，处理机器故障，并进行网络和磁盘的高效通信。</span></span></p>
+<p><span style="color: rgb(62, 63, 66)"><span style="background-color: rgb(251, 251, 251)">这个编程模型简单易用，Google内部已经实现了一万多个不同的MapReduce程序，每天平均执行一百万个MapReduce作业，处理每天超过20PB的数据</span></span></p>
+<h1 id="2-MapReduce工作原理"><a href="#2-MapReduce工作原理" class="headerlink" title="2 MapReduce工作原理"></a>2 MapReduce工作原理</h1><h2 id="2-1-工作流程"><a href="#2-1-工作流程" class="headerlink" title="2.1 工作流程"></a>2.1 工作流程</h2><p><img src="/attachments/F7YYEN8A.png" alt="\&lt;img alt=&quot;&quot; data-attachment-key=&quot;F7YYEN8A&quot; data-annotation=&quot;%7B%22attachmentURI%22%3A%22http%3A%2F%2Fzotero.org%2Fusers%2F12640518%2Fitems%2FUEA45RNH%22%2C%22annotationKey%22%3A%229QDJAQFC%22%2C%22color%22%3A%22%23ffd400%22%2C%22pageLabel%22%3A%223%22%2C%22position%22%3A%7B%22pageIndex%22%3A2%2C%22rects%22%3A%5B%5B74.423%2C383.885%2C538.846%2C726%5D%5D%7D%2C%22citationItem%22%3A%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F12640518%2Fitems%2FMUH7F2C2%22%5D%2C%22locator%22%3A%223%22%7D%7D&quot; width=&quot;774&quot; height=&quot;570&quot; src=&quot;attachments/F7YYEN8A.png&quot; ztype=&quot;zimage&quot;&gt;"><br><span class="citation" data-citation="%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F12640518%2Fitems%2FMUH7F2C2%22%5D%7D%5D%2C%22properties%22%3A%7B%7D%7D" ztype="zcitation">(<span class="citation-item"><a href="zotero://select/library/items/MUH7F2C2">Dean 和 Ghemawat, 2008</a></span>)</span></p>
+<p><span style="color: rgb(51, 51, 51)">MapReduce 的工作流：</span></p>
+<ul>
+<li><p><span style="color: rgb(51, 51, 51)">将输入文件分成 </span><strong><span style="color: rgb(51, 51, 51)">M</span></strong><span style="color: rgb(51, 51, 51)"> 个小文件(split)，每个文件的大小大概 16M-64M（由用户参数控制），在集群中启动 MapReduce 实例，其中</span><code>fork</code></p>
+<p>一个 Master 和多个 Worker；[1]</p>
+</li>
+<li><p><span style="color: rgb(51, 51, 51)">由 Master 分配任务，将 </span></p>
+<p><code>Map</code>与<code>Reduce</code>任务分配给可用的 Worker[2]；</p>
+</li>
+<li><p><code>Map</code>Worker 读取文件[3]，执行用户自定义的 map 函数，输出 中间值key&#x2F;value 对，缓存在内存中；</p>
+</li>
+<li><p><span style="color: rgb(51, 51, 51)">内存中的 (key, value) 对通过 </span></p>
+<p><code>partitioning function()</code>例如<code>hash(key) mod R</code>分为<strong>R</strong>个 regions（保证相同key的键值对在一个分区），然后写入磁盘(local disk)[4]。完成之后，把这些文件的地址回传给 Master，然后 Master 把这些位置传给<code>Reduce</code>Worker；</p>
+</li>
+<li><p><code>Reduce</code>Worker 收到数据存储位置信息后，使用 RPC(Remote Procedure Call远程过程调用协议) 从<code>Map</code>Worker 所在的磁盘读取这些数据[5]，根据 key 进行排序，并将同一 key 的所有数据分组聚合在一起（<strong>由于许多不同的 key 值会映射到相同的 Reduce 任务上，因此必须进行排序。如果中间数据太大无法在内存中完成排序，那么就要在外部进行排序</strong>）；</p>
+</li>
+<li><p><code>Reduce</code>Worker 将分组后的值传给用户自定义的 reduce 函数，输出追加到所属分区的输出文件中；</p>
+</li>
+<li><p><span style="color: rgb(51, 51, 51)">当所有的 Map 任务和 Reduce 任务都完成后，Master 向用户程序返回结果；</span></p>
+</li>
+</ul>
+<p><span style="color: rgb(51, 51, 51)">MapReduce对输出文件的处理：</span></p>
+<p><span style="color: rgb(51, 51, 51)">通常情况下，用户并不需要将 R 个输出文件合并成一个文件；他们通常会将这些文件作为输入传递给另一个 MapReduce 调用，或者从另一个能够处理分割成多个文件的输入的分布式应用程序中使用这些文件。</span></p>
+<hr>
+<h2 id="2-2-Master-数据结构"><a href="#2-2-Master-数据结构" class="headerlink" title="2.2 Master 数据结构"></a>2.2 Master 数据结构</h2><ol>
+<li><span style="color: rgb(51, 51, 51)">记录每一个任务（Map与reduce）状态（idle,in-progress,or completed)</span></li>
+<li><span style="color: rgb(51, 51, 51)">记录每一个工作者身份</span></li>
+<li><span style="color: rgb(51, 51, 51)">记录存储在local disk 中间文件（intermediate file）的大小以及磁盘位置</span></li>
+</ol>
+<hr>
+<h2 id="2-3-容错能力"><a href="#2-3-容错能力" class="headerlink" title="2.3 容错能力"></a><span style="color: rgb(51, 51, 51)">2.3 容错能力</span></h2><h3 id="2-3-1、处理worker错误"><a href="#2-3-1、处理worker错误" class="headerlink" title="2.3.1、处理worker错误"></a><span style="color: rgb(51, 51, 51)">2.3.1、处理worker错误</span></h3><ul>
+<li><p><span style="color: rgb(51, 51, 51)">master通过周期地向worker发送ping指令来确保worker处于存活状态，对于没有回应ping指令的worker，master会将该worker标记为 </span></p>
+<p><strong><span style="color: rgb(51, 51, 51)">failed</span></strong></p>
+</li>
+<li><p><span style="color: rgb(51, 51, 51)">在failed worker执行中的 Map 或 Reduce 任务会被重置为idle状态，可被其他存活worker接收。</span></p>
+</li>
+<li><p><span style="color: rgb(51, 51, 51)">在failed worker上已经执行完成的Map任务会被再次执行，因为其输出结果存储在failed worker本地磁盘中，如果failed worker在local write之前就挂掉，那么该数据无法被读取，因此需要从新执行。而Reduce任务不会被再次执行，因为其输出结果存储在全局文件系统中。</span></p>
+</li>
+</ul>
+<p><span style="color: rgb(51, 51, 51)">对于failed worker任务处理总结下来就是：</span></p>
+<table>
+<thead>
+<tr>
+<th><span style="color: rgb(51, 51, 51)"><span style="background-color: var(--th-bg-color)">任务状态状态</span></span></th>
+<th><span style="color: rgb(51, 51, 51)"><span style="background-color: var(--th-bg-color)">Map任务</span></span></th>
+<th><span style="color: rgb(51, 51, 51)"><span style="background-color: var(--th-bg-color)">Reduce任务</span></span></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><span style="color: rgb(51, 51, 51)">执行中</span></td>
+<td><span style="color: rgb(51, 51, 51)">设置为idle</span></td>
+<td><span style="color: rgb(51, 51, 51)">设置为idle</span></td>
+</tr>
+<tr>
+<td><span style="color: rgb(51, 51, 51)"><span style="background-color: var(--tr-bg-color)">执行结束</span></span></td>
+<td><span style="color: rgb(51, 51, 51)"><span style="background-color: var(--tr-bg-color)">从新执行</span></span></td>
+<td><span style="color: rgb(51, 51, 51)"><span style="background-color: var(--tr-bg-color)">不用处理</span></span></td>
+</tr>
+</tbody></table>
+<p><span style="color: rgb(51, 51, 51)">对于worker A 执行的Map任务随后被worker B 执行，那么所有执行Reduce任务的worker都会接到通知：还没有从worker A读取数据的reduce worker 将会从worker B 上读取数据。</span></p>
+<h4 id="4-3-2、出现错误时的语义处理"><a href="#4-3-2、出现错误时的语义处理" class="headerlink" title="4.3.2、出现错误时的语义处理"></a><span style="color: rgb(51, 51, 51)">4.3.2、出现错误时的语义处理</span></h4><p><span style="color: rgb(51, 51, 51)">用户提供的映射（map）和归约（reduce）操作是其输入值的确定性函数时，分布式实现将生成与整个程序的非故障顺序执行所产生的相同输出。</span></p>
+<p><span style="color: rgb(51, 51, 51)">为了实现这个特性，我们依赖于映射和归约任务输出的原子提交。每个正在进行的任务将其输出写入私有临时文件。一个归约任务产生一个这样的文件，而一个映射任务产生 R 个这样的文件（每个归约任务一个）。当一个映射任务完成时，工作节点向主节点发送消息，并在消息中包含这些临时文件的名称。如果主节点接收到一个已经完成的映射任务的完成消息，它将忽略该消息。否则，它将记录 R 个文件的名称在主节点的数据结构中。当一个归约任务完成时，归约工作节点将其临时输出文件原子性地重命名为最终输出文件。如果相同的归约任务在多个机器上执行，那么对于相同的最终输出文件将执行多个重命名调用。我们依赖底层文件系统提供的原子重命名操作来保证最终文件系统状态仅包含一个归约任务执行产生的数据。我们绝大部分的映射和归约操作是确定性的，而且在这种情况下，我们的语义等效于顺序执行，这使得程序员很容易推断出程序的行为。、</span></p>
+<p><span style="color: rgb(51, 51, 51)">当映射和&#x2F;或归约操作是非确定性的时，我们提供了较弱但仍然合理的语义。在存在非确定性操作的情况下，特定归约任务 R 的输出等价于非确定性程序的顺序执行产生的 R 的输出。然而，不同归约任务 F 的输出可能对应于由非确定性程序的不同顺序执行产生的 R 的输出。</span></p>
+<h3 id="4-4-读取位置-locality"><a href="#4-4-读取位置-locality" class="headerlink" title="4.4 读取位置(locality)"></a><span style="color: rgb(51, 51, 51)">4.4 读取位置(locality)</span></h3><p><span style="color: rgb(51, 51, 51)">为了节省带宽资源，MapReduce工作集群中输入数据通常存储在机器的本地磁盘中，在Map任务开始前，Master会考虑输入文件的位置信息，将尝试在包含输入数据的机器上执行Map任务。</span></p>
+<p><span style="color: rgb(51, 51, 51)">如果上述方法行不通，Master也会考虑在存储输入文件机器附近的机器（例如，在与包含数据的机器处于同一交换机上工作的机器）执行Map任务。</span></p>
+<p><span style="color: rgb(51, 51, 51)">因此MapReduce大部分的输入数据都是在本地读取的，不占用网络带宽。</span></p>
+<h3 id="4-5-任务粒度（Task-Granularity）"><a href="#4-5-任务粒度（Task-Granularity）" class="headerlink" title="4.5 任务粒度（Task Granularity）"></a><span style="color: rgb(51, 51, 51)">4.5 任务粒度（Task Granularity）</span></h3><p><span style="color: rgb(51, 51, 51)">之前在工作流中提到，输入文件被分为 M 个切片，而通过划分函数将存储在disk中的中间文件划分为 R 个区域。为了提升动态载入平衡能力以及加快 failed worker 的恢复，M 和 R 的值应当被设置地远大于worker machines数量。</span></p>
+<p><span style="color: rgb(51, 51, 51)">但 M 和 R 的值越大越好，因为 master 会进行 O(M + R) 次的调度，同时master会在内存中存储 O(M * R) 状态值，因此 M 和 R 的值也会有一个界限（Bound）。</span></p>
+<p><span style="color: rgb(51, 51, 51)">R 的值通常由worker数量来决定，一个worker承担一个或多个region的reduce操作，产出一个单独的结果文件。用户通常决定的是 M 的值，实践中每一个独立的任务在 16MB ~ 64MB 输入数据时，能够最有效地实现局部性优化。而 R 的数量只需要是worker数量的小几倍就行了。</span></p>
+<p><span style="color: rgb(51, 51, 51)">例如：M &#x3D; 200000， R &#x3D; 5000 ，2000 worker machines 来处理。</span></p>
+<p>Referred in <a href="./MTitle：分布式系统研究-NPNE5ZQY.md" rel="noopener noreferrer nofollow" zhref="zotero://note/u/NPNE5ZQY/?ignore=1&#x26;line=2" ztype="znotelink" class="internal-link">MTitle：分布式系统研究</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io">Ther</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io/2023/10/30/%E6%96%87%E7%8C%AE/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/MapReduce%E6%A8%A1%E5%9E%8B-CK4X2BJ8/">http://cjx_0723.gitee.io/2023/10/30/%E6%96%87%E7%8C%AE/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/MapReduce%E6%A8%A1%E5%9E%8B-CK4X2BJ8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://cjx_0723.gitee.io" target="_blank">Ther的小站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/30/%E6%96%87%E7%8C%AE/%E9%98%85%E8%AF%BB%E6%96%B9%E6%B3%95/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E6%80%A7%E5%9C%B0%E9%98%85%E8%AF%BB%E6%96%87%E7%8C%AE/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/2023/10/30/%E6%96%87%E7%8C%AE/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/MTitle%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E7%A0%94%E7%A9%B6-NPNE5ZQY/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ther</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-MapReduce%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">1 MapReduce模型介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-MapReduce%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">2 MapReduce工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Master-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Master 数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E5%AE%B9%E9%94%99%E8%83%BD%E5%8A%9B"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 容错能力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1%E3%80%81%E5%A4%84%E7%90%86worker%E9%94%99%E8%AF%AF"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1、处理worker错误</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2%E3%80%81%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF%E6%97%B6%E7%9A%84%E8%AF%AD%E4%B9%89%E5%A4%84%E7%90%86"><span class="toc-number">2.3.1.1.</span> <span class="toc-text">4.3.2、出现错误时的语义处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E8%AF%BB%E5%8F%96%E4%BD%8D%E7%BD%AE-locality"><span class="toc-number">2.3.2.</span> <span class="toc-text">4.4 读取位置(locality)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E4%BB%BB%E5%8A%A1%E7%B2%92%E5%BA%A6%EF%BC%88Task-Granularity%EF%BC%89"><span class="toc-number">2.3.3.</span> <span class="toc-text">4.5 任务粒度（Task Granularity）</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程"><div style="background: https://w.wallhaven.cc/full/qz/wallhaven-qzom1r.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程">高级软件工程</a><time datetime="2023-10-30T14:04:29.121Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试"><div style="background: https://w.wallhaven.cc/full/yj/wallhaven-yjvxeg.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试">软件分析与测试</a><time datetime="2023-10-30T14:04:29.118Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E6%95%B0%E5%AD%A6/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E7%AC%94%E8%AE%B0/" title="概率论与数理统计">概率论与数理统计</a><time datetime="2023-10-30T14:04:29.068Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/PPT/" title="无题">无题</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课"><div style="background: https://w.wallhaven.cc/full/4g/wallhaven-4gwl6q.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课">研一选课</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Ther</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div></body></html>

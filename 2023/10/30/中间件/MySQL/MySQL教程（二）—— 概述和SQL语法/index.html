@@ -1,0 +1,1018 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MySQL教程（二）—— 概述和SQL语法 | Ther的小站</title><meta name="author" content="Ther"><meta name="copyright" content="Ther"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一，MySQL基础1.1 什么是数据库数据库（DataBase） 是按照数据结构来组织、存储和管理数据的仓库 数据库是一个数据的集合。 其本质是一个文件系统，以文件的方式,将数据保存在电脑上  1.2 为什么要使用数据库数据存储方式的比较 1）内存 优点：速度快 缺点：容量有限，不能够永久保存,数据是临时状态的 2）文件（Excel） 优点：数据是可以永久保存的 缺点：少量数据直接打开获取数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL教程（二）—— 概述和SQL语法">
+<meta property="og:url" content="http://cjx_0723.gitee.io/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E8%BF%B0%E5%92%8CSQL%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="Ther的小站">
+<meta property="og:description" content="一，MySQL基础1.1 什么是数据库数据库（DataBase） 是按照数据结构来组织、存储和管理数据的仓库 数据库是一个数据的集合。 其本质是一个文件系统，以文件的方式,将数据保存在电脑上  1.2 为什么要使用数据库数据存储方式的比较 1）内存 优点：速度快 缺点：容量有限，不能够永久保存,数据是临时状态的 2）文件（Excel） 优点：数据是可以永久保存的 缺点：少量数据直接打开获取数据">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif">
+<meta property="article:published_time" content="2023-10-30T14:04:29.016Z">
+<meta property="article:modified_time" content="2023-10-30T14:04:29.017Z">
+<meta property="article:author" content="Ther">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://cjx_0723.gitee.io/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E8%BF%B0%E5%92%8CSQL%E8%AF%AD%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"YGMR4LH4DH","apiKey":"1fb48f3686d76eaf600890b7d3bb69c9","indexName":"index_hexo","hits":{"per_page":8},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL教程（二）—— 概述和SQL语法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-30 22:04:29'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Ther的小站" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img1.baidu.com/it/u=950222251,316656728&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=967&amp;h=500')"><nav id="nav"><span id="blog-info"><a href="/" title="Ther的小站"><span class="site-name">Ther的小站</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL教程（二）—— 概述和SQL语法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-30T14:04:29.016Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-30T14:04:29.017Z" title="更新于 2023-10-30 22:04:29">2023-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">11k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>41分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL教程（二）—— 概述和SQL语法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><meta name="referrer" content="no-referrer"/>
+
+<h2 id="一，MySQL基础"><a href="#一，MySQL基础" class="headerlink" title="一，MySQL基础"></a><strong>一，MySQL基础</strong></h2><h3 id="1-1-什么是数据库"><a href="#1-1-什么是数据库" class="headerlink" title="1.1 什么是数据库"></a><strong>1.1 什么是数据库</strong></h3><p>数据库（DataBase） 是按照数据结构来组织、存储和管理数据的仓库</p>
+<p>数据库是一个数据的集合。</p>
+<p>其本质是一个文件系统，以文件的方式,将数据保存在电脑上</p>
+<p><img src="https://pic4.zhimg.com/80/v2-e3cc0ec0f274e0083de0e83ffe91b197_720w.webp" alt="img"></p>
+<h3 id="1-2-为什么要使用数据库"><a href="#1-2-为什么要使用数据库" class="headerlink" title="1.2 为什么要使用数据库"></a><strong>1.2 为什么要使用数据库</strong></h3><p>数据存储方式的比较</p>
+<p>1）内存</p>
+<p>优点：速度快</p>
+<p>缺点：容量有限，不能够永久保存,数据是临时状态的</p>
+<p>2）文件（Excel）</p>
+<p>优点：数据是可以永久保存的</p>
+<p>缺点：少量数据直接打开获取数据，大量数据使用程序IO流操作文件, 不方便；同一时间多人操作某一个文件也可能出现问题</p>
+<p>3）数据库</p>
+<p>优点： 海量数据存储，提供不错的查询效率 ，数据可以永久保存 ，方便存储和管理数据 ，使用统一的方式操作数据库</p>
+<p>缺点 ：占用资源(重型武器) ，有些数据库需要付费</p>
+<p><strong>我们把它和excel进行对比一下</strong></p>
+<p><img src="https://pic2.zhimg.com/80/v2-2cc8236c49fe07001ba70a91e5c129fd_720w.webp" alt="img"></p>
+<p>4）表</p>
+<p>表是包含数据库中所有数据的数据库对象，由行和列组成（二维表格模型，就类似于Sheet），用于组织和存储数据。</p>
+<p>5）字段</p>
+<p>表中<strong>每一列称为一个字段</strong>，字段有自己的属性，如字段类型、字段大小等。其中，字段类型是字段最重要的属性，它决定了字段能够存储哪种数据。</p>
+<p>和Excel不同，这里针对列（字段要求比较严格），该列存储什么类型数据，长度多少都应该提前（建表的时候）进行定义</p>
+<p>6）索引</p>
+<p>索引是一个<strong>单独的、物理的数据库结构</strong>。它是依赖于表建立，在数据库中使用索引，无须对整个表进行扫描，就可以找到需要的数据。</p>
+<p>7）视图</p>
+<p>视图是从一张或多张表中导出的表（也称虚拟表），是用户查看数据表中数据的一种方式。</p>
+<h3 id="1-3-SQL分类"><a href="#1-3-SQL分类" class="headerlink" title="1.3 SQL分类"></a><strong>1.3 SQL分类</strong></h3><p><strong>我们学的主要也就是这些</strong></p>
+<p><strong>1） 数据查询语言（<font color='red'>DQL</font>:Data Query Language）：</strong></p>
+<p>其语句，也称为“数据检索语句”，用以从表中获得数据，确定数据怎样在应用程序给出。保留字SELECT是DQL（也是所有SQL）用得最多的动词，其他DQL常用的保留字有WHERE，ORDER BY，GROUP BY和HAVING。这些DQL保留字常与其他类型的SQL语句一起使用。</p>
+<p><strong>专门用于查询数据：代表指令为select&#x2F;show</strong></p>
+<p><strong>2） 数据操作语言（<font color='red'>DML</font>：Data Manipulation Language）：</strong></p>
+<p>其语句包括动词INSERT，UPDATE和DELETE。它们分别用于添加，修改和删除表中的行。也称为动作查询语言。</p>
+<p><strong>专门用于写数据：代表指令为insert，update和delete</strong></p>
+<p><strong>3）事务处理语言（<font color='red'>TPL</font>）：</strong></p>
+<p>它的语句能确保被DML语句影响的表的所有行及时得以更新。TPL语句包括BEGIN TRANSACTION，COMMIT和ROLLBACK。（不是所有的关系型数据库都提供事务安全处理）</p>
+<p><strong>专门用于事务安全处理：transaction</strong></p>
+<p><strong>4）数据控制语言（<font color='red'>DCL</font>）：</strong></p>
+<p>它的语句通过GRANT或REVOKE获得许可，确定单个用户和用户组对数据库对象的访问。某些RDBMS可用GRANT或REVOKE控制对表单个列的访问。</p>
+<p><strong>专门用于权限管理：代表指令为grant和revoke</strong></p>
+<p><strong>5） 数据定义语言（<font color='red'>DDL</font>）：</strong></p>
+<p>其语句包括动词CREATE和DROP。在数据库中创建新表或删除表（CREAT TABLE 或 DROP TABLE）；为表加入索引等。DDL包括许多与人数据库目录中获得数据有关的保留字。它也是动作查询的一部分。</p>
+<p><strong>专门用于结构管理：代表指令create和drop（alter）</strong></p>
+<h2 id="二，-MySQL数据库"><a href="#二，-MySQL数据库" class="headerlink" title="二， MySQL数据库"></a><strong>二， MySQL数据库</strong></h2><h3 id="2-1-Mysql存储引擎"><a href="#2-1-Mysql存储引擎" class="headerlink" title="2.1 Mysql存储引擎"></a><strong>2.1 Mysql存储引擎</strong></h3><p>存储引擎是MySQL数据库的核心、心脏、发动机，它决定了数据如何存储，查询的时候如</p>
+<p>何搜索数据，索引如何创建等等</p>
+<p>MySQL 5.1版本之前默认的存储引擎是MyISAM，之后默认是InnoDB</p>
+<p><strong>什么是存储引擎?</strong></p>
+<p><strong>存储引擎其实就是对于数据库文件的一种存取机制，如何实现存储数据，如何为存储的数据建立索引以及如何更新，查询数据等技术实现的方法。</strong></p>
+<p>常用存储引擎</p>
+<p><strong>InnoDB：</strong></p>
+<p>1)事务处理、回滚、崩溃修复能力和多版本并发控制</p>
+<p>2)自增长AUTO_INCREMENT</p>
+<p>3)外键（FOREIGN KEY）</p>
+<p>InnoDB的优势在于提供了良好的事务处理、崩溃修复能力和并发控制。缺点是读写效率较差，</p>
+<p>占用的数据空间相对较大。</p>
+<p><strong>MyISAM：</strong></p>
+<p>MyISAM的优势在于占用空间小，处理速度快。缺点是不支持事务的完整性和并发性。</p>
+<p><strong>Memory：</strong></p>
+<p>1)数据全部放在内存中</p>
+<p>2)哈希索引</p>
+<p>注意，MEMORY用到的很少，因为它是把数据存到内存中，如果内存出现异常就会影响数据。</p>
+<p>如果重启或者关机，所有数据都会消失。因此，基于MEMORY的表的生命周期很短，一般是一</p>
+<p>次性的。</p>
+<h3 id="2-2-Mysql数据类型"><a href="#2-2-Mysql数据类型" class="headerlink" title="2.2 Mysql数据类型"></a>2.2 Mysql数据类型</h3><p>MySQL数据库中的每一条数据都有其数据类型，主要分为数值型，字符串型和日期时间型三个大类。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-5b031c6517db31beff442b3a16b032a7_720w.webp" alt="img"></p>
+<h4 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h4><h5 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a><strong>整数类型</strong></h5><p>1)Tinyint</p>
+<p>迷你整形，系统采用一个字节来保存的整形：一个字节 &#x3D; 8位，最大能表示的数值是0-255</p>
+<p>2)Smallint</p>
+<p>小整形，系统采用两个字节来保存的整形：能表示0-65535之间</p>
+<p>3)Mediumint</p>
+<p>中整形，采用三个字节来保存数据。</p>
+<p>4)Int</p>
+<p>整形（标准整形），采用四个字节来保存数据。</p>
+<p>5)Bigint</p>
+<p>大整形，采用八个字节来保存数据。</p>
+<p>1、 创建数据表</p>
+<p><img src="https://pic4.zhimg.com/80/v2-de8288f468a83e5b5ca239fb226cf9b7_720w.webp" alt="img"></p>
+<p>2、 插入合理数据</p>
+<p><img src="https://pic1.zhimg.com/80/v2-99aa058dfc7153fc81bdec2c0612528c_720w.webp" alt="img"></p>
+<p>3、 插入错误数据（超出对应的数据范围）</p>
+<p><img src="https://pic1.zhimg.com/80/v2-2ecdca2b0eaf4c69a0d58199a32e8988_720w.webp" alt="img"></p>
+<p>4、 错误原因：并不是说tinyint没有这么大的空间，而是因为mysql默认的为整形增加负数。</p>
+<p>实际表示的区间为-128,127</p>
+<p><strong>实际应用中，应该根据对应的数据的范围来选定对应的整形类型：通常使用的比较多的TINYINT和int。</strong></p>
+<p><strong>无符号标识设定</strong></p>
+<p>无符号：表示存储的数据在当前字段中，没有负数（只有正数，区间为0-255）</p>
+<p>基本语法：在类型之后加上一个 unsigned</p>
+<p><img src="https://pic3.zhimg.com/80/v2-b6e6fa8c9769b2b931338c4014250e96_720w.webp" alt="img"></p>
+<h5 id="小数类型"><a href="#小数类型" class="headerlink" title="小数类型"></a><strong>小数类型</strong></h5><p>专门用来存储小数的</p>
+<p>在Mysql中将小数类型又分为两类：浮点型和定点型</p>
+<p><strong>1)浮点型</strong></p>
+<p>Float</p>
+<p>Float又称之为单精度类型：系统提供4个字节用来存储数据，但是能表示的数据范围比整型大的多，大概是10^38；只能保证大概7个左右的精度（如果数据在7位数以内，那么基本是准确的，但是如果超过7位数，那么就是不准确的）</p>
+<p>基本语法</p>
+<p>Float：表示不指定小数位的浮点数</p>
+<p>Float(M,D)：表示一共存储M个有效数字，其中小数部分占D位</p>
+<p>Float(10,2)：整数部分为8位，小数部分为2位</p>
+<p>1、 创建一个数据表保存浮点数据</p>
+<p><img src="https://pic3.zhimg.com/80/v2-4356ac5e3079241bfc95b94e5cc1cf8e_720w.webp" alt="img"></p>
+<p>2、 存入数据：合法数据</p>
+<p><img src="https://pic1.zhimg.com/80/v2-be552341744ff67bda61324837e54710_720w.webp" alt="img"></p>
+<p>注意：如果数据精度丢失，那么浮点型是按照四舍五入的方式进行计算</p>
+<p>3、 插入数据，超出大小</p>
+<p><img src="https://pic1.zhimg.com/80/v2-4555414a98f2bb6f972701da3b19b300_720w.webp" alt="img"></p>
+<p>4、 数据长度刚好满足条件，但是会超出精度</p>
+<p><img src="https://pic4.zhimg.com/80/v2-15a708df11021ac37424baa380b5843b_720w.webp" alt="img"></p>
+<p>说明：用户不能插入数据直接超过指定的整数部分长度，但是如果是系统自动进位导致，系统可以承担。</p>
+<p>5、浮点数可以采用科学计数法来存储数据</p>
+<p><img src="https://pic4.zhimg.com/80/v2-00f8e40aca94ee21fe74f19e4588933f_720w.webp" alt="img"></p>
+<p>浮点数的应用：通常是用来保存一些数量特别大，大到可以不用那么精确的数据。</p>
+<p><strong>2)Double</strong></p>
+<p>Double又称之为双精度：系统用8个字节来存储数据，表示的范围更大，10^308次方，但是精度也只有15位左右。</p>
+<p><strong>定点数(比较常用的）</strong></p>
+<p>定点数：能够保证数据精确的小数（小数部分可能不精确，超出长度会四舍五入），整数部分一定精确</p>
+<p><strong>Decimal</strong></p>
+<p>Decimal定点数：系统自动根据存储的数据来分配存储空间，每大概9个数就会分配四个字节来进行存储，同时小数和整数部分是分开的。</p>
+<p>Decimal(M,D)：M表示总长度，最大值不能超过65，D代表小数部分长度，最长不能超过30。</p>
+<p><strong>定点数的应用：如果涉及到钱的时候有可能使用定点数</strong></p>
+<h4 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a><strong>字符串类型</strong></h4><h5 id="短文本：char-varchar"><a href="#短文本：char-varchar" class="headerlink" title="短文本：char varchar"></a>短文本：char varchar</h5><blockquote>
+<p><strong>CHAR(M)</strong> - 固定长度的字符串是以长度为1到255之间个字符长度(例如：CHAR(5))，存储右空格</p>
+<p>填充到指定的长度。 限定长度不是必需的，它会默认为1。 char(5)内存空间会浪费，性别：男&#x2F;女 char(1)</p>
+</blockquote>
+<blockquote>
+<p><strong>VARCHAR(M)</strong> - 可变长度的字符串是以长度为1到255之间字符数(高版本的MySQL超过255); 例</p>
+<p>如： VARCHAR(25). 创建VARCHAR类型字段时，必须定义长度。 5 10 12 节省内存空间</p>
+</blockquote>
+<h5 id="可变类型"><a href="#可变类型" class="headerlink" title="可变类型"></a>可变类型</h5><blockquote>
+<p><strong>BLOB</strong> 或 <strong>TEXT</strong> - 字段的最大长度是65535个字符。 BLOB是“二进制大对象”，并用来存储大的二</p>
+<p>进制数据，如<strong>图像或其他类型的文件</strong>。定义为TEXT文本字段还持有大量的数据; 两者之间的区别</p>
+<p>是，排序和比较上存储的数据，<strong>BLOB大小写敏感，而TEXT字段不区分大小写。不用指定BLOB</strong></p>
+<p><strong>或TEXT的长度。</strong></p>
+</blockquote>
+<h4 id="日期和时间类型"><a href="#日期和时间类型" class="headerlink" title="日期和时间类型"></a><strong>日期和时间类型</strong></h4><blockquote>
+<p><strong>DATE</strong> - 以YYYY-MM-DD格式的日期，在1000-01-01和9999-12-31之间。 例如，1973年12月30</p>
+<p>日将被存储为1973-12-30。</p>
+</blockquote>
+<blockquote>
+<p><strong>DATETIME</strong> - 日期和时间组合以YYYY-MM-DD HH:MM:SS格式，在1000-01-01 00:00:00 到</p>
+<p>9999-12-31 23:59:59之间。例如，1973年12月30日下午3:30，会被存储为1973-12-30 15:30:00。</p>
+</blockquote>
+<blockquote>
+<p><strong>TIMESTAMP</strong> - 1970年1月1日午夜之间的时间戳，到2037的某个时候。这看起来像前面的</p>
+<p>DATETIME格式，无需只是数字之间的连字符; 1973年12月30日下午3点30分将被存储为</p>
+<p>19731230153000(YYYYMMDDHHMMSS)。</p>
+</blockquote>
+<blockquote>
+<p><strong>TIME</strong> - 存储时间在HH:MM:SS格式。</p>
+</blockquote>
+<blockquote>
+<p><strong>YEAR</strong>(M) - 以2位或4位数字格式来存储年份。如果长度指定为2(例如YEAR(2))，年份就可以为</p>
+<p>1970至2069(70〜69)。如果长度指定为4，年份范围是1901-2155，默认长度为4。</p>
+</blockquote>
+<h4 id="MySQL数值类型汇总"><a href="#MySQL数值类型汇总" class="headerlink" title="MySQL数值类型汇总"></a>MySQL数值类型汇总</h4><h5 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h5><table>
+<thead>
+<tr>
+<th>类型名称</th>
+<th>取值范围</th>
+<th>大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TINYINT</td>
+<td>-128〜127</td>
+<td>1个字节</td>
+</tr>
+<tr>
+<td>SMALLINT</td>
+<td>-32768〜32767</td>
+<td>2个宇节</td>
+</tr>
+<tr>
+<td>MEDIUMINT</td>
+<td>-8388608〜8388607</td>
+<td>3个字节</td>
+</tr>
+<tr>
+<td>INT (INTEGHR)</td>
+<td>-2147483648〜2147483647</td>
+<td>4个字节</td>
+</tr>
+<tr>
+<td>BIGINT</td>
+<td>-9223372036854775808〜9223372036854775807</td>
+<td>8个字节</td>
+</tr>
+</tbody></table>
+<p>无符号在数据类型后加 unsigned 关键字。</p>
+<h5 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h5><table>
+<thead>
+<tr>
+<th>类型名称</th>
+<th>说明</th>
+<th>存储需求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FLOAT</td>
+<td>单精度浮点数</td>
+<td>4 个字节</td>
+</tr>
+<tr>
+<td>DOUBLE</td>
+<td>双精度浮点数</td>
+<td>8 个字节</td>
+</tr>
+<tr>
+<td>DECIMAL (M, D)，DEC</td>
+<td>压缩的“严格”定点数</td>
+<td>M+2 个字节</td>
+</tr>
+</tbody></table>
+<h5 id="日期和时间"><a href="#日期和时间" class="headerlink" title="日期和时间"></a>日期和时间</h5><table>
+<thead>
+<tr>
+<th>类型名称</th>
+<th>日期格式</th>
+<th>日期范围</th>
+<th>存储需求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>YEAR</td>
+<td>YYYY</td>
+<td>1901 ~ 2155</td>
+<td>1 个字节</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>HH:MM:SS</td>
+<td>-838:59:59 ~ 838:59:59</td>
+<td>3 个字节</td>
+</tr>
+<tr>
+<td>DATE</td>
+<td>YYYY-MM-DD</td>
+<td>1000-01-01 ~ 9999-12-3</td>
+<td>3 个字节</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+<td>1000-01-01 00:00:00 ~ 9999-12-31 23:59:59</td>
+<td>8 个字节</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td>YYYY-MM-DD HH:MM:SS</td>
+<td>1980-01-01 00:00:01 UTC ~ 2040-01-19 03:14:07 UTC</td>
+<td>4 个字节</td>
+</tr>
+</tbody></table>
+<h5 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h5><table>
+<thead>
+<tr>
+<th>类型名称</th>
+<th>说明</th>
+<th>存储需求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CHAR(M)</td>
+<td>固定长度非二进制字符串</td>
+<td>M 字节，1&lt;&#x3D;M&lt;&#x3D;255</td>
+</tr>
+<tr>
+<td>VARCHAR(M)</td>
+<td>变长非二进制字符串</td>
+<td>L+1字节，在此，L&lt; &#x3D; M和 1&lt;&#x3D;M&lt;&#x3D;255</td>
+</tr>
+<tr>
+<td>TINYTEXT</td>
+<td>非常小的非二进制字符串</td>
+<td>L+1字节，在此，L&lt;2^8</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>小的非二进制字符串</td>
+<td>L+2字节，在此，L&lt;2^16</td>
+</tr>
+<tr>
+<td>MEDIUMTEXT</td>
+<td>中等大小的非二进制字符串</td>
+<td>L+3字节，在此，L&lt;2^24</td>
+</tr>
+<tr>
+<td>LONGTEXT</td>
+<td>大的非二进制字符串</td>
+<td>L+4字节，在此，L&lt;2^32</td>
+</tr>
+<tr>
+<td>ENUM</td>
+<td>枚举类型，只能有一个枚举字符串值</td>
+<td>1或2个字节，取决于枚举值的数目 (最大值为65535)</td>
+</tr>
+<tr>
+<td>SET</td>
+<td>一个设置，字符串对象可以有零个或 多个SET成员</td>
+<td>1、2、3、4或8个字节，取决于集合 成员的数量（最多64个成员）</td>
+</tr>
+</tbody></table>
+<h5 id="二进制类型"><a href="#二进制类型" class="headerlink" title="二进制类型"></a>二进制类型</h5><table>
+<thead>
+<tr>
+<th>类型名称</th>
+<th>说明</th>
+<th>存储需求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BIT(M)</td>
+<td>位字段类型</td>
+<td>大约 (M+7)&#x2F;8 字节</td>
+</tr>
+<tr>
+<td>BINARY(M)</td>
+<td>固定长度二进制字符串</td>
+<td>M 字节</td>
+</tr>
+<tr>
+<td>VARBINARY (M)</td>
+<td>可变长度二进制字符串</td>
+<td>M+1 字节</td>
+</tr>
+<tr>
+<td>TINYBLOB (M)</td>
+<td>非常小的BLOB</td>
+<td>L+1 字节，在此，L&lt;2^8</td>
+</tr>
+<tr>
+<td>BLOB (M)</td>
+<td>小 BLOB</td>
+<td>L+2 字节，在此，L&lt;2^16</td>
+</tr>
+<tr>
+<td>MEDIUMBLOB (M)</td>
+<td>中等大小的BLOB</td>
+<td>L+3 字节，在此，L&lt;2^24</td>
+</tr>
+<tr>
+<td>LONGBLOB (M)</td>
+<td>非常大的BLOB</td>
+<td>L+4 字节，在此，L&lt;2^32</td>
+</tr>
+</tbody></table>
+<p><img src="https://pic2.zhimg.com/80/v2-490279edc89aefae60fea074cbb12f81_720w.webp" alt="img"></p>
+<p>注意：MySql中的 char类型与 varchar类型，区别在于：</p>
+<p>char类型是固定长度的： 根据定义的字符串长度分配足够的空间。</p>
+<p>varchar类型是可变长度的： 只使用字符串长度所需的空间</p>
+<p><img src="https://pic1.zhimg.com/80/v2-424510644468f21e201b4197f5cdf834_720w.webp" alt="img"></p>
+<h2 id="三，-SQL语句操作详解"><a href="#三，-SQL语句操作详解" class="headerlink" title="三， SQL语句操作详解"></a>三， SQL语句操作详解</h2><p>我们需要学到的语句就是上面sql分类的那几类定义的语言</p>
+<p><strong>DML语句（Data Manipulation Language 数据操纵语言）</strong></p>
+<p>针对table数据表中数据的增删改，使用DML</p>
+<p><strong>DQL语句（Data Query Language 数据查询语言）</strong></p>
+<p>针对table数据表中数据的查询操作，使用DQL</p>
+<p><strong>DCL语句（Data Control Language 数据控制语言）</strong></p>
+<p>事务的提交&#x2F;回滚等</p>
+<h3 id="3-1-SQL通用语法"><a href="#3-1-SQL通用语法" class="headerlink" title="3.1 SQL通用语法"></a>3.1 SQL通用语法</h3><p>SQL语句可以单行 或者 多行书写，以分号结尾 ; （Sqlyog中可以不用写分号）</p>
+<p>可以使用空格和缩进来增加语句的可读性。</p>
+<p>MySql中使用SQL不区分大小写，一般关键字大写，数据库名 表名列名 小写。</p>
+<h3 id="3-2-注释方式"><a href="#3-2-注释方式" class="headerlink" title="3.2. 注释方式"></a>3.2. 注释方式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">show</span> databases; 单行注释</span><br><span class="line"><span class="comment">-- show databases; 单行注释</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">多行注释</span></span><br><span class="line"><span class="comment">show databases;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-DDL操作数据库"><a href="#3-3-DDL操作数据库" class="headerlink" title="3.3 DDL操作数据库"></a>3.3 DDL操作数据库</h3><p><strong>1）创建数据库</strong></p>
+<p>create database 数据库名；说明：创建指定名称的数据库。</p>
+<p>create database 数据库名 characterset 字符集；说明：创建指定名称的数据库，并且指定字符集（一</p>
+<p>般都指定utf8）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">方式1 直接指定数据库名进行创建</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE db1;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">方式2 指定数据库名称，指定数据库的字符集</span></span><br><span class="line"><span class="comment">一般都指定为 utf8</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE db1_1 <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2） 查看&#x2F;选择数据库</strong></p>
+<p><img src="https://pic4.zhimg.com/80/v2-875a5bb44e18b85647b7ed6bf425e837_720w.webp" alt="img"></p>
+<p>代码示例</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 切换数据库 从db1 切换到 db1_1</span></span><br><span class="line">USE db1_1;</span><br><span class="line"><span class="comment">-- 查看当前正在使用的数据库</span></span><br><span class="line"><span class="keyword">SELECT</span> DATABASE();</span><br><span class="line"><span class="comment">-- 查看Mysql中有哪些数据库</span></span><br><span class="line"><span class="keyword">SHOW</span> DATABASES;</span><br><span class="line"><span class="comment">-- 查看一个数据库的定义信息</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> DATABASE db1_1;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/80/v2-4a1c4bfa0dcabc2654dd88040240c454_720w.webp" alt="img"></p>
+<p><strong>3）修改数据库</strong></p>
+<p>修改数据库字符集</p>
+<p><img src="https://pic4.zhimg.com/80/v2-7468075aa758a4b9a7b0775f87a8c55f_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 将数据库db1 的字符集 修改为 utf8</span></span><br><span class="line"><span class="keyword">ALTER</span> DATABASE db1 <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8;</span><br><span class="line"><span class="comment">-- 查看当前数据库的基本信息，发现编码已更改</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> DATABASE db1;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/80/v2-b429f186bd8b234abcb32e7d3321ee38_720w.webp" alt="img"></p>
+<p>4） 删除数据库</p>
+<p><img src="https://pic1.zhimg.com/80/v2-62c4c76c1dfda76574c11fc852b87e74_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除某个数据库</span></span><br><span class="line"><span class="keyword">DROP</span> DATABASE db1_1;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-DDL-操作数据表"><a href="#3-4-DDL-操作数据表" class="headerlink" title="3.4 DDL 操作数据表"></a><strong>3.4 DDL 操作数据表</strong></h3><p><strong>1) 创建表</strong></p>
+<p><strong>字段类型就是我们上面介绍的mysql数据类型</strong></p>
+<p><img src="https://pic1.zhimg.com/80/v2-fc04cbc5e5d8af41f60d34b6eec21170_720w.webp" alt="img"></p>
+<p>需求1： 创建商品分类表</p>
+<p><img src="https://pic3.zhimg.com/80/v2-bd8edc4399d30262bcf5e0e0313175b6_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 切换到数据库 db1</span></span><br><span class="line">USE db1;</span><br><span class="line"><span class="comment">-- 创建表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> category(</span><br><span class="line">cid <span class="type">INT</span>,</span><br><span class="line">cname <span class="type">VARCHAR</span>(<span class="number">20</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>需求2： 创建测试表</p>
+<p><img src="https://pic1.zhimg.com/80/v2-4c6f7496f435b607495897b4463e8d10_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建测试表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> test1(</span><br><span class="line">tid <span class="type">INT</span>,</span><br><span class="line">tdate <span class="type">DATE</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>需求3： 快速创建一个表结构相同的表（复制表结构）</p>
+<p><img src="https://pic2.zhimg.com/80/v2-43f59c860b01f652ab7215a68005b0d5_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建一个表结构与 test1 相同的 test2表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> test2 <span class="keyword">LIKE</span> test1;</span><br><span class="line"><span class="comment">-- 查看表结构</span></span><br><span class="line"><span class="keyword">DESC</span> test2;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/80/v2-9bc6aa1207acbdf2daabc9b2f864886c_720w.webp" alt="img"></p>
+<p>2 ）查看表</p>
+<p><img src="https://pic1.zhimg.com/80/v2-251f6581ea55421bfa7c93ec2d9dc80c_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查看当前数据库中的所有表名</span></span><br><span class="line"><span class="keyword">SHOW</span> TABLES;</span><br><span class="line"><span class="comment">-- 显示当前数据表的结构</span></span><br><span class="line"><span class="keyword">DESC</span> category;</span><br><span class="line"><span class="comment">-- 查看创建表的SQL语句</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> category;</span><br></pre></td></tr></table></figure>
+
+<p>3） 删除表</p>
+<p><img src="https://pic3.zhimg.com/80/v2-834e7b150e421a9f3a9b913fed743062_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 直接删除 test1 表</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> test1;</span><br><span class="line"><span class="comment">-- 先判断 再删除test2表</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> test2;</span><br></pre></td></tr></table></figure>
+
+<p>4） 修改表</p>
+<p>①修改表名</p>
+<p><img src="https://pic3.zhimg.com/80/v2-15a004ea2a2110266cbb261f43d90596_720w.webp" alt="img"></p>
+<p>需求： 将category表 改为 category1</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RENAME <span class="keyword">TABLE</span> category <span class="keyword">TO</span> category1;</span><br></pre></td></tr></table></figure>
+
+<p>②向表中添加列， 关键字 ADD</p>
+<p><img src="https://pic4.zhimg.com/80/v2-3e09064087f47635da674ac75fe302bb_720w.webp" alt="img"></p>
+<p>需求： 为分类表添加一个新的字段为 分类描述 cdesc varchar(20)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 为分类表添加一个新的字段为 分类描述 cdesc <span class="type">varchar</span>(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> category <span class="keyword">ADD</span> cdesc <span class="type">VARCHAR</span>(<span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+
+<p>③修改表中列的 数据类型或长度 ， 关键字 MODIFY</p>
+<p><img src="https://pic2.zhimg.com/80/v2-3afed8abb8285474f9e8a236dd54e0dd_720w.webp" alt="img"></p>
+<p>需求：对分类表的描述字段进行修改，类型varchar(50)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> category MODIFY cdesc <span class="type">VARCHAR</span>(<span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+
+<p>④.修改列名称 , 关键字 CHANGE</p>
+<p><img src="https://pic3.zhimg.com/80/v2-a4e9291d0aa9e22f4899ffdb24002b02_720w.webp" alt="img"></p>
+<p>需求: 对分类表中的 desc字段进行更换, 更换为 description varchar(30)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> category CHANGE cdesc description <span class="type">VARCHAR</span>(<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic2.zhimg.com/80/v2-1da208f6a6df9797e6dd0575002b0351_720w.webp" alt="img"></p>
+<p>⑤删除列 ，关键字 DROP</p>
+<p><img src="https://pic3.zhimg.com/80/v2-4ac2ab0de0a088ef0099902ce1ed9026_720w.webp" alt="img"></p>
+<p>需求： 删除分类表中description这列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> category <span class="keyword">DROP</span> description;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic2.zhimg.com/80/v2-84e52040ab76ab7da14a4445b6742709_720w.webp" alt="img"></p>
+<h3 id="3-5-DML-操作表中数据（重点）"><a href="#3-5-DML-操作表中数据（重点）" class="headerlink" title="3.5 DML 操作表中数据（重点）"></a>3.5 DML 操作表中数据（重点）</h3><p>SQL中的DML 用于对表中的数据进行增删改操作</p>
+<p>1）插入数据</p>
+<p><img src="https://pic4.zhimg.com/80/v2-2b70cb9bfe2f43ab184b4cc4a87ddf53_720w.webp" alt="img"></p>
+<p>①代码准备，创建一个学生表：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-1474e9139cec839812f5dc738bb13d88_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 创建学生表</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student(</span><br><span class="line">sid <span class="type">INT</span>,</span><br><span class="line">sname <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">age <span class="type">INT</span>,</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>),</span><br><span class="line">address <span class="type">VARCHAR</span>(<span class="number">40</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>②向 学生表中添加数据，3种方式</p>
+<p>方式1： 插入全部字段， 将所有字段名都写出来</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student (sid,sname,age,sex,address) <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">&#x27;孙悟</span></span><br><span class="line"><span class="string">空&#x27;</span>,<span class="number">20</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;花果山&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-e97e44a7cdfd833803d1d0cbb971e372_720w.webp" alt="img"></p>
+<p>方式2： 插入全部字段，不写字段名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student <span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="string">&#x27;孙悟饭&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;地球&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>方式3：插入指定字段的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category (cname) <span class="keyword">VALUES</span>(<span class="string">&#x27;白骨精&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/80/v2-6d593a8a0da84b5d9867c70aea693eb0_720w.webp" alt="img"></p>
+<p><img src="https://pic2.zhimg.com/80/v2-d4b7a206fc3b657e12d22d592376ce85_720w.webp" alt="img"></p>
+<p>2） 更改数据</p>
+<p>语法格式1：不带条件的修改</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> 表名 <span class="keyword">set</span> 列名 <span class="operator">=</span> 值</span><br></pre></td></tr></table></figure>
+
+<p>语法格式2：带条件的修改</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> 表名 <span class="keyword">set</span> 列名 <span class="operator">=</span> 值 [<span class="keyword">where</span> 条件表达式：字段名 <span class="operator">=</span> 值 ]</span><br></pre></td></tr></table></figure>
+
+<p>①不带条件修改，将所有的性别改为女（慎用！！）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> sex <span class="operator">=</span> <span class="string">&#x27;女&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>②带条件的修改，将sid 为3的学生，性别改为男</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> sex <span class="operator">=</span> <span class="string">&#x27;男&#x27;</span> <span class="keyword">WHERE</span> sid <span class="operator">=</span> <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>③一次修改多个列， 将sid为 2 的学员，年龄改为 20，地址改为 北京</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> age <span class="operator">=</span> <span class="number">20</span>,address <span class="operator">=</span> <span class="string">&#x27;北京&#x27;</span> <span class="keyword">WHERE</span> sid <span class="operator">=</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>3）删除数据</p>
+<p><img src="https://pic1.zhimg.com/80/v2-25bec745924df59212b86746be3bd794_720w.webp" alt="img"></p>
+<p>①删除 sid 为 1 的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> student <span class="keyword">WHERE</span> sid <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>②删除所有数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> student;</span><br></pre></td></tr></table></figure>
+
+<p>③如果要删除表中的所有数据,有两种做法</p>
+<p><img src="https://pic4.zhimg.com/80/v2-8d62489fd01f8dcefa65acf48168e637_720w.webp" alt="img"></p>
+<h3 id="3-6-DQL-查询表中数据（重点）"><a href="#3-6-DQL-查询表中数据（重点）" class="headerlink" title="3.6 DQL 查询表中数据（重点）"></a>3.6 DQL 查询表中数据（重点）</h3><p>1）准备数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#创建员工表</span><br><span class="line">表名 emp</span><br><span class="line">表中字段：</span><br><span class="line">eid 员工id，<span class="type">int</span></span><br><span class="line">ename 姓名，<span class="type">varchar</span></span><br><span class="line">sex 性别，<span class="type">char</span></span><br><span class="line">salary 薪资，<span class="keyword">double</span></span><br><span class="line">hire_date 入职时间，<span class="type">date</span></span><br><span class="line">dept_name 部门名称，<span class="type">varchar</span></span><br><span class="line">#创建员工表</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp(</span><br><span class="line">eid <span class="type">INT</span>,</span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>),</span><br><span class="line">salary <span class="keyword">DOUBLE</span>,</span><br><span class="line">hire_date <span class="type">DATE</span>,</span><br><span class="line">dept_name <span class="type">VARCHAR</span>(<span class="number">20</span>)</span><br><span class="line">);</span><br><span class="line">#添加数据</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">&#x27;孙悟空&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">7200</span>,<span class="string">&#x27;2013-02-04&#x27;</span>,<span class="string">&#x27;教学部&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="string">&#x27;猪八戒&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">3600</span>,<span class="string">&#x27;2010-12-02&#x27;</span>,<span class="string">&#x27;教学部&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">3</span>,<span class="string">&#x27;唐僧&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">9000</span>,<span class="string">&#x27;2008-08-08&#x27;</span>,<span class="string">&#x27;教学部&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">4</span>,<span class="string">&#x27;白骨精&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">5000</span>,<span class="string">&#x27;2015-10-07&#x27;</span>,<span class="string">&#x27;市场部&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">5</span>,<span class="string">&#x27;蜘蛛精&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">5000</span>,<span class="string">&#x27;2011-03-14&#x27;</span>,<span class="string">&#x27;市场部&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">6</span>,<span class="string">&#x27;玉兔精&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">200</span>,<span class="string">&#x27;2000-03-14&#x27;</span>,<span class="string">&#x27;市场部&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">7</span>,<span class="string">&#x27;林黛玉&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">10000</span>,<span class="string">&#x27;2019-10-07&#x27;</span>,<span class="string">&#x27;财务部&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">8</span>,<span class="string">&#x27;黄蓉&#x27;</span>,<span class="string">&#x27;女&#x27;</span>,<span class="number">3500</span>,<span class="string">&#x27;2011-09-14&#x27;</span>,<span class="string">&#x27;财务部&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">9</span>,<span class="string">&#x27;吴承恩&#x27;</span>,<span class="string">&#x27;男&#x27;</span>,<span class="number">20000</span>,<span class="string">&#x27;2000-03-14&#x27;</span>,<span class="keyword">NULL</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">10</span>,<span class="string">&#x27;孙悟饭&#x27;</span>,<span class="string">&#x27;男&#x27;</span>, <span class="number">10</span>,<span class="string">&#x27;2020-03-14&#x27;</span>,财务部);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp <span class="keyword">VALUES</span>(<span class="number">11</span>,<span class="string">&#x27;兔八哥&#x27;</span>,<span class="string">&#x27;女&#x27;</span>, <span class="number">300</span>,<span class="string">&#x27;2010-03-14&#x27;</span>,财务部);</span><br></pre></td></tr></table></figure>
+
+<p>2） 简单查询</p>
+<p><strong>执行顺序</strong></p>
+<p>FROM –&gt; WHERE –&gt; GROUP BY –&gt; HAVING –&gt; SELECT –&gt; ORDER BY</p>
+<p>需求1： 查询emp中的 所有数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp; <span class="comment">-- 使用 * 表示所有列</span></span><br></pre></td></tr></table></figure>
+
+<p>需求2： 查询emp表中的所有记录，仅显示id和name字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> eid,ename <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/80/v2-7708b6bb2cb2c0831643740f21cae7d0_720w.webp" alt="img"></p>
+<p>需求3： 将所有的员工信息查询出来，并将列名改为中文</p>
+<p>别名查询，使用关键字 as</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 使用 <span class="keyword">AS</span>关键字,为列起别名</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">eid <span class="keyword">AS</span> <span class="string">&#x27;编号&#x27;</span>,</span><br><span class="line">ename <span class="keyword">AS</span> <span class="string">&#x27;姓名&#x27;</span> ,</span><br><span class="line">sex <span class="keyword">AS</span> <span class="string">&#x27;性别&#x27;</span>,</span><br><span class="line">salary <span class="keyword">AS</span> <span class="string">&#x27;薪资&#x27;</span>,</span><br><span class="line">hire_date <span class="string">&#x27;入职时间&#x27;</span>, <span class="comment">-- AS 可以省略</span></span><br><span class="line">dept_name <span class="string">&#x27;部门名称&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+
+<p>需求4：查询一共有几个部门</p>
+<p>使用去重关键字 distinct</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用distinct 关键字,去掉重复部门信息</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> dept_name <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+
+<p>需求5: 将所有员工的工资 +1000 元进行显示</p>
+<p>运算查询 (查询结果参与运算)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename , salary <span class="operator">+</span> <span class="number">1000</span> <span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+
+<p>3）条件查询</p>
+<p>如果查询语句中没有设置条件,就会查询所有的行信息,在实际应用中,一定要指定查询条件,对记</p>
+<p>录进行过滤</p>
+<p><img src="https://pic4.zhimg.com/80/v2-068c2b182073477e11f6f40032165f77_720w.webp" alt="img"></p>
+<p><img src="https://pic4.zhimg.com/80/v2-48059a301a0ffa45d50f6c760fe7f3db_720w.webp" alt="img"></p>
+<p><strong>比较运算符</strong></p>
+<p><img src="https://pic1.zhimg.com/80/v2-3406fdebe4a91928fe3ded29cc138c6c_720w.webp" alt="img"></p>
+<p><strong>逻辑运算符</strong></p>
+<p><img src="https://pic2.zhimg.com/80/v2-77b7b13b1b9660d82da6d1809aef29d1_720w.webp" alt="img"></p>
+<p>需求1:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 查询员工姓名为黄蓉的员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span>  ename<span class="operator">=</span><span class="string">&#x27;黄蓉&#x27;</span></span><br><span class="line"># 查询薪水价格为<span class="number">5000</span>的员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> salary<span class="operator">=</span><span class="number">5000</span>;</span><br><span class="line"># 查询薪水价格不是<span class="number">5000</span>的所有员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> salary<span class="operator">!=</span><span class="number">5000</span>;</span><br><span class="line"># 查询薪水价格大于<span class="number">6000</span>元的所有员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> salary<span class="operator">&gt;</span><span class="number">6000</span>;</span><br><span class="line"># 查询薪水价格在<span class="number">5000</span>到<span class="number">10000</span>之间所有员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> salary <span class="keyword">between</span> <span class="number">5000</span> <span class="keyword">and</span> <span class="number">10000</span>;</span><br><span class="line"># 查询薪水价格是<span class="number">3600</span>或<span class="number">7200</span>或者<span class="number">20000</span>的所有员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> salary <span class="keyword">in</span> (<span class="number">3600</span>,<span class="number">7200</span>,<span class="number">20000</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic2.zhimg.com/80/v2-eaa2041a622e5c5272406409cfe00c4d_720w.webp" alt="img"></p>
+<p>需求2:</p>
+<p><img src="https://pic4.zhimg.com/80/v2-1664a5538c75a48aa86ff0cfc5aadc2b_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 查询含有<span class="string">&#x27;精&#x27;</span>字的所有员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> ename <span class="keyword">like</span> <span class="string">&#x27;%精%&#x27;</span>;</span><br><span class="line"># 查询以<span class="string">&#x27;孙&#x27;</span>开头的所有员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> ename <span class="keyword">like</span> <span class="string">&#x27;孙%&#x27;</span>;</span><br><span class="line"># 查询第二个字为<span class="string">&#x27;兔&#x27;</span>的所有员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> ename <span class="keyword">like</span> <span class="string">&#x27;_兔%&#x27;</span>;</span><br><span class="line"># 查询没有部门的员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> dept_name <span class="keyword">is</span> <span class="keyword">null</span>;</span><br><span class="line"># 查询有部门的员工信息</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> dept_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span> ;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四，mysql核心查询"><a href="#四，mysql核心查询" class="headerlink" title="四，mysql核心查询"></a>四，mysql核心查询</h2><p>排序 分组 聚合 多表查询 合并查询 子查询</p>
+<h3 id="4-1-单表查询"><a href="#4-1-单表查询" class="headerlink" title="4.1 单表查询"></a>4.1 单表查询</h3><p>1）排序</p>
+<p>通过 ORDER BY 子句,可以将查询出的结果进行排序(排序只是显示效果,不会影响真实数据)</p>
+<p><img src="https://pic2.zhimg.com/80/v2-65d5bfa7d8ba7be220c6d0ae483146b1_720w.webp" alt="img"></p>
+<p>①单列排序</p>
+<p>只按照某一个字段进行排序, 就是单列排序</p>
+<p>需求1:</p>
+<p>使用 salary 字段,对emp 表数据进行排序 (升序&#x2F;降序)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 默认升序排序 ASC</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> salary;</span><br><span class="line"><span class="comment">-- 降序排序</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> salary <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<p>②组合排序</p>
+<p>同时对多个字段进行排序, 如果第一个字段相同 就按照第二个字段进行排序,以此类推</p>
+<p>需求2:</p>
+<p>在薪水排序的基础上,再使用id进行排序, 如果薪水相同就以id 做降序排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 组合排序</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp <span class="keyword">ORDER</span> <span class="keyword">BY</span> salary <span class="keyword">DESC</span>, eid <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-2-聚合函数"><a href="#4-2-聚合函数" class="headerlink" title="4.2 聚合函数"></a>4.2 聚合函数</h3><p>干嘛的？求员工最高工资&#x2F;平均工资&#x2F;工资总和，都是聚合函数来做的之前我们做的查询都是横向查询，它们都是根据条件一行一行的进行判断，而使用聚合函数查询是纵向查询，它是对某一列的值进行计算，然后返回一个单一的值(另外聚合函数会忽略null空</p>
+<p>值。)；</p>
+<p><img src="https://pic3.zhimg.com/80/v2-daa673c6317d822c32ba9202a3b6c282_720w.webp" alt="img"></p>
+<p>函数：方法，它封装了一些逻辑，比如给他一堆数据，特定函数可以返回最大值max()，avg()平</p>
+<p>均值</p>
+<p><img src="https://pic3.zhimg.com/80/v2-1cd5048a681319242b5b3cc7563d8366_720w.webp" alt="img"></p>
+<p>聚合，也称为聚合统计或者聚合查询，就需要使用select关键字，有select 就得有from xxx</p>
+<p><img src="https://pic1.zhimg.com/80/v2-5004d119f6da940e5ccae9aa935f7a04_720w.webp" alt="img"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-6668eb1509b1d662e7e18bfb598f03ce_720w.webp" alt="img"></p>
+<p>需求1:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#<span class="number">1</span> 查询员工的总数</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> eid) <span class="keyword">from</span> emp;</span><br><span class="line">#<span class="number">2</span> 查看员工总薪水、最高薪水、最小薪水、薪水的平均值</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">sum</span>(salary),<span class="built_in">max</span>(salary),<span class="built_in">min</span>(salary),<span class="built_in">avg</span>(salary) <span class="keyword">from</span> emp;</span><br><span class="line">#<span class="number">3</span> 查询薪水大于<span class="number">4000</span>员工的个数</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> eid) <span class="keyword">from</span> emp <span class="keyword">where</span> salary<span class="operator">&gt;</span><span class="number">4000</span>;</span><br><span class="line">#<span class="number">4</span> 查询部门为<span class="string">&#x27;教学部&#x27;</span>的所有员工的个数</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> eid) <span class="keyword">from</span> emp <span class="keyword">where</span> dept_name <span class="operator">=</span> <span class="string">&#x27;教学部&#x27;</span>;</span><br><span class="line">#<span class="number">5</span> 查询部门为<span class="string">&#x27;市场部&#x27;</span>所有员工的平均薪水</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">avg</span>(salary) <span class="keyword">from</span> emp <span class="keyword">where</span> dept_name <span class="operator">=</span> <span class="string">&#x27;市场部&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/80/v2-764a52fab1c8409e788f4a24a24ae3ec_720w.webp" alt="img"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-f1b8151b3e4be9a6c9b6b3c3482335d6_720w.webp" alt="img"></p>
+<h3 id="4-3-分组"><a href="#4-3-分组" class="headerlink" title="4.3 分组"></a>4.3 分组</h3><p>分组往往和聚合函数一起时候，对数据进行分组，分完组之后在各个组内进行聚合统计分析</p>
+<p>比如：求各个部门的员工数~</p>
+<p><strong>分组查询指的是使用 GROUP BY 语句,对查询的信息进行分组,相同数据作为一组</strong></p>
+<p><img src="https://pic4.zhimg.com/80/v2-30e613c27691850a896e053ad6f659a3_720w.webp" alt="img"></p>
+<p>需求1: 通过性别字段 进行分组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 按照性别进行分组操作</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex; <span class="comment">-- 注意 这样写没有意义</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-abb87e51a0b009ef23f5648bd6aecb9a_720w.webp" alt="img"></p>
+<p>需求: 通过性别字段 进行分组,求各组的平均薪资</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sex, <span class="built_in">AVG</span>(salary) <span class="keyword">FROM</span> emp <span class="keyword">GROUP</span> <span class="keyword">BY</span> sex;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic4.zhimg.com/80/v2-faf71b5493abde4efa6b7c208b7a3c9f_720w.webp" alt="img"></p>
+<p>需求2:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#<span class="number">1.</span>查询每个部门的平均薪资</span><br><span class="line"><span class="keyword">select</span> dept_name,<span class="built_in">avg</span>(salary) <span class="keyword">from</span> emp <span class="keyword">group</span> <span class="keyword">by</span> dept_name;</span><br><span class="line">#<span class="number">2.</span>查询每个部门的平均薪资, 部门名称不能为<span class="keyword">null</span></span><br><span class="line"><span class="keyword">select</span> dept_name,<span class="built_in">avg</span>(salary) <span class="keyword">from</span> emp <span class="keyword">where</span> dept_name <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span> <span class="keyword">group</span> <span class="keyword">by</span> dept_name;</span><br><span class="line">#<span class="number">3.</span> 查询平均薪资大于<span class="number">6000</span>的部门.</span><br><span class="line"><span class="keyword">select</span> dept_name,<span class="built_in">avg</span>(salary) <span class="keyword">from</span> emp <span class="keyword">group</span> <span class="keyword">by</span> dept_name <span class="keyword">having</span> <span class="built_in">avg</span>(salary)<span class="operator">&gt;</span><span class="number">6000</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-74eab70900392f94751e3a922cc920c2_720w.webp" alt="img"></p>
+<p>分析:</p>
+<p>\1) 需要在分组后,对数据进行过滤,使用 关键字 having</p>
+<p>\2) 分组操作中的having子语句，是用于在分组后对数据进行过滤的，作用类似于where条</p>
+<p>件。</p>
+<p><strong>where 与 having的区别</strong></p>
+<p><img src="https://pic2.zhimg.com/80/v2-d4cd2b7e51c9415a2f3fd9238c6276a9_720w.webp" alt="img"></p>
+<h3 id="4-4-limit关键字"><a href="#4-4-limit关键字" class="headerlink" title="4.4 limit关键字"></a>4.4 limit关键字</h3><p>limit 关键字的作用</p>
+<p>limit是限制的意思,用于 限制返回的查询结果的行数 (可以通过limit指定查询多少行数据)</p>
+<p>limit 语法是 MySql的方言,用来完成分页</p>
+<p><img src="https://pic2.zhimg.com/80/v2-8f2db4bb50fe8915b7bd3f8aa1246fdd_720w.webp" alt="img"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 查询emp表中的前 <span class="number">5</span>条数据</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp limit <span class="number">5</span>;</span><br><span class="line"># 查询emp表中 从第<span class="number">4</span>条开始,查询<span class="number">6</span>条</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp limit <span class="number">3</span>,<span class="number">6</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五-mysql约束"><a href="#五-mysql约束" class="headerlink" title="五 mysql约束"></a>五 mysql约束</h2><p>SQL语句来创建数据库约束</p>
+<p>1）约束的作用:</p>
+<p>对表中的数据进行进一步的限制，从而保证数据的正确性、有效性、完整性.</p>
+<p>违反约束的不正确数据,将无法插入到表中</p>
+<p><strong>注意：约束是针对字段的</strong></p>
+<p><strong>2）常见的约束</strong></p>
+<p><img src="https://pic2.zhimg.com/80/v2-a55fc2f1e4774d0f4e0ef604292145d5_720w.webp" alt="img"></p>
+<h3 id="5-1-主键约束"><a href="#5-1-主键约束" class="headerlink" title="5.1 主键约束"></a>5.1 主键约束</h3><p><img src="https://pic4.zhimg.com/80/v2-0a4b398d361e57473788ce30fb35cbaf_720w.webp" alt="img"></p>
+<p>1）添加主键约束</p>
+<p><img src="https://pic3.zhimg.com/80/v2-027e3265594cb2dfe79f213a4f345382_720w.webp" alt="img"></p>
+<p>需求: 创建一个带主键的表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 方式<span class="number">1</span> 创建一个带主键的表</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp2(</span><br><span class="line"><span class="comment">-- 设置主键 唯一 非空</span></span><br><span class="line">eid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>)</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 删除表</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> emp2;</span><br><span class="line"><span class="comment">-- 方式2 创建一个带主键的表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp2(</span><br><span class="line">eid <span class="type">INT</span> ,</span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>),</span><br><span class="line"><span class="comment">-- 指定主键为 eid字段</span></span><br><span class="line"><span class="keyword">PRIMARY</span> KEY(eid)</span><br><span class="line">);</span><br><span class="line"><span class="comment">-- 方式3 创建一个带主键的表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp2(</span><br><span class="line">eid <span class="type">INT</span> ,</span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line"><span class="comment">-- 创建的时候不指定主键,然后通过 DDL语句进行设置</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp2 <span class="keyword">ADD</span> <span class="keyword">PRIMARY</span> KEY(eid);</span><br></pre></td></tr></table></figure>
+
+<p>DESC 查看表结构</p>
+<p><img src="https://pic1.zhimg.com/80/v2-a9efada571dcf49ba03b26c16eaeaa10_720w.webp" alt="img"></p>
+<p>测试主键的唯一性 非空性</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 正常插入一条数据</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2 <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">&#x27;宋江&#x27;</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"># 插入一条数据,主键为空</span><br><span class="line"><span class="comment">-- Column &#x27;eid&#x27; cannot be null 主键不能为空</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2 <span class="keyword">VALUES</span>(<span class="keyword">NULL</span>,<span class="string">&#x27;李逵&#x27;</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"># 插入一条数据,主键为 <span class="number">1</span></span><br><span class="line"><span class="comment">-- Duplicate entry &#x27;1&#x27; for key &#x27;PRIMARY&#x27; 主键不能重复</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2 <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">&#x27;孙二娘&#x27;</span>,<span class="string">&#x27;女&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>\2) 哪些字段可以作为主键 ?</p>
+<p>通常针对业务去设计主键,往往每张表都设计一个主键</p>
+<p>主键是给数据库和程序使用的,跟最终的客户无关,所以主键没有意义没有关系,只要能够保证</p>
+<p>不重复就好,</p>
+<p>比如 身份证号列就可以作为主键.另外，如果没有和业务关联太大的可以设计为主键的列的话，我们在进行数据库设计的时候往往人为加一列作为主键列，习惯上起名为id,rid等</p>
+<p>3）删除主键约束</p>
+<p>删除 表中的主键约束 (了解)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用DDL语句 删除表中的主键</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> emp2 <span class="keyword">DROP</span> <span class="keyword">PRIMARY</span> KEY;</span><br><span class="line"><span class="keyword">DESC</span> emp2;</span><br></pre></td></tr></table></figure>
+
+<p>4）主键的自增</p>
+<p>注: 主键如果让我们自己添加很有可能重复,我们通常希望在每次插入新记录时,数据库自动生成</p>
+<p>主键字段的值.</p>
+<p><img src="https://pic2.zhimg.com/80/v2-0ea849999bf2566bb588ab8108914ee9_720w.webp" alt="img"></p>
+<p>创建主键自增的表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建主键自增的表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp2(</span><br><span class="line"><span class="comment">-- 关键字 AUTO_INCREMENT,主键类型必须是整数类型</span></span><br><span class="line">eid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>添加数据 观察主键的自增</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2(ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;张三&#x27;</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2(ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;李四&#x27;</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2 <span class="keyword">VALUES</span>(<span class="keyword">NULL</span>,<span class="string">&#x27;翠花&#x27;</span>,<span class="string">&#x27;女&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2 <span class="keyword">VALUES</span>(<span class="keyword">NULL</span>,<span class="string">&#x27;艳秋&#x27;</span>,<span class="string">&#x27;女&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic2.zhimg.com/80/v2-2d7cce1c64aec261a169a2fae3a19249_720w.webp" alt="img"></p>
+<p>5）修改主键自增的起始值</p>
+<p>默认地 AUTO_INCREMENT 的开始值是 1，如果希望修改起始值,请使用下面的方式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建主键自增的表,自定义自增其实值</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp2(</span><br><span class="line">eid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>)</span><br><span class="line">)AUTO_INCREMENT<span class="operator">=</span><span class="number">100</span>;</span><br><span class="line"><span class="comment">-- 插入数据,观察主键的起始值</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2(ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;张百万&#x27;</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2(ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;艳秋&#x27;</span>,<span class="string">&#x27;女&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic2.zhimg.com/80/v2-ed89513916a1550cfdbff9e5392bad59_720w.webp" alt="img"></p>
+<p>6）DELETE和TRUNCATE对自增长的影响</p>
+<p>删除表中所有数据有两种方式</p>
+<p><img src="https://pic2.zhimg.com/80/v2-0b1dd1079a379c5259e8cf1369311d1d_720w.webp" alt="img"></p>
+<p>测试1: delete 删除表中所有数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 目前最后的主键值是 101</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp2;</span><br><span class="line"><span class="comment">-- delete 删除表中数据,对自增没有影响 </span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> emp2;</span><br><span class="line"><span class="comment">-- 插入数据 查看主键</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2(ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;张百万&#x27;</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2(ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;艳秋&#x27;</span>,<span class="string">&#x27;女&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic2.zhimg.com/80/v2-81158314b9b4902076b4a99dd9963d25_720w.webp" alt="img"></p>
+<p>测试2: truncate删除 表中数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 使用 truncate 删除表中所有数据,</span></span><br><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> emp2;</span><br><span class="line"><span class="comment">-- 插入数据 查看主键</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2(ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;张百万&#x27;</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp2(ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;艳秋&#x27;</span>,<span class="string">&#x27;女&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic4.zhimg.com/80/v2-2c41e6213eeb2c3268a82bbcdeff2d5b_720w.webp" alt="img"></p>
+<h3 id="5-2-非空约束"><a href="#5-2-非空约束" class="headerlink" title="5.2 非空约束"></a>5.2 非空约束</h3><p>非空约束的特点：某⼀列不允许为空</p>
+<p><img src="https://pic2.zhimg.com/80/v2-74fa49a7812cf06fcfec74aeee160f25_720w.webp" alt="img"></p>
+<p>需求1: 为 ename 字段添加非空约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 非空约束</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp2(</span><br><span class="line">eid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line"><span class="comment">-- 添加非空约束, ename字段不能为空</span></span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic2.zhimg.com/80/v2-efccad4c20de1e4668b24d23169449b5_720w.webp" alt="img"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-45587fd9739039a9f993cb30223f968e_720w.webp" alt="img"></p>
+<p>5.3 唯一约束</p>
+<p>唯一约束的特点: 表中的某一列的值不能重复( 对null不做唯一的判断 )</p>
+<p><img src="https://pic3.zhimg.com/80/v2-3a50d09802a157075f3c334c863caaf6_720w.webp" alt="img"></p>
+<p>\1) 添加唯一约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#创建emp3表 为ename 字段添加唯一约束</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp3(</span><br><span class="line">eid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>\2) 测试唯一约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 测试唯一约束 添加一条数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp3 (ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;张百万&#x27;</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="comment">-- 添加一条 ename重复的 数据</span></span><br><span class="line"><span class="comment">-- Duplicate entry &#x27;张百万&#x27; for key &#x27;ename&#x27; ename不能重复</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp3 (ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;张百万&#x27;</span>,<span class="string">&#x27;女&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/80/v2-13a625fb1bd8954dd6736561a49da9ac_720w.webp" alt="img"></p>
+<p><img src="https://pic2.zhimg.com/80/v2-5388b5f443d48c2bd651ef1cfe554919_720w.webp" alt="img"></p>
+<h3 id="5-4-外键约束"><a href="#5-4-外键约束" class="headerlink" title="5.4 外键约束"></a>5.4 外键约束</h3><p>FOREIGN KEY 表示外键约束，将在多表中学习。</p>
+<h3 id="5-5-默认值"><a href="#5-5-默认值" class="headerlink" title="5.5 默认值"></a>5.5 默认值</h3><p>默认值约束 用来指定某列的默认值</p>
+<p><img src="https://pic4.zhimg.com/80/v2-57850671a0d31db48cd853febc4da6fb_720w.webp" alt="img"></p>
+<p>\1) 创建emp4表, 性别字段默认 女</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建带有默认值的表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> emp4(</span><br><span class="line">eid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line"><span class="comment">-- 为ename 字段添加默认值</span></span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;女&#x27;</span>,</span><br><span class="line">sex <span class="type">CHAR</span>(<span class="number">1</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>\2) 测试 添加数据使用默认值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 添加数据 使用默认值</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp4(ename,sex) <span class="keyword">VALUES</span>(<span class="keyword">DEFAULT</span>,<span class="string">&#x27;男&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp4(sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;女&#x27;</span>);</span><br><span class="line"><span class="comment">-- 不使用默认值</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp4(ename,sex) <span class="keyword">VALUES</span>(<span class="string">&#x27;艳秋&#x27;</span>,<span class="string">&#x27;女&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="六，多表查询"><a href="#六，多表查询" class="headerlink" title="六，多表查询"></a>六，多表查询</h2><h3 id="6-1-外键约束"><a href="#6-1-外键约束" class="headerlink" title="6.1 外键约束"></a>6.1 外键约束</h3><p>主键：数据表A中有一列，这一列可以唯一的标识一条记录</p>
+<p>外键：数据表A中有一列，这一列指向了另外一张数据表B的主键</p>
+<p>1）什么是外键</p>
+<p>外键指的是在 从表 中 与 主表 的主键对应的那个字段,比如员工表的 dept_id,就是外键</p>
+<p>使用外键约束可以让两张表之间产生一个对应关系,从而保证主从表的引用的完整性</p>
+<p><img src="https://pic1.zhimg.com/80/v2-e8581f926d73c330ca511d73f49b97bc_720w.webp" alt="img"></p>
+<p>多表关系中的主表和从表</p>
+<p>主表: 主键id所在的表, 约束别人的表</p>
+<p>从表: 外键所在的表多, 被约束的表</p>
+<p><img src="https://pic2.zhimg.com/80/v2-47176ffbb9982c53149e626ee15a5369_720w.webp" alt="img"></p>
+<p>在上述的关系场景中，外键所在的表叫做从表，外键所指向的表叫做主表</p>
+<p>2）创建外键约束</p>
+<p>语法格式:</p>
+<p><img src="https://pic3.zhimg.com/80/v2-e3648bbfb2b2b56ce6858cadbdd2e482_720w.webp" alt="img"></p>
+<p>①重新创建employee表, 添加外键约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 先删除 employee表</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> employee;</span><br><span class="line"><span class="comment">-- 重新创建 employee表,添加外键约束</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> department(</span><br><span class="line">    id <span class="type">int</span> <span class="keyword">primary</span> key,</span><br><span class="line">    dep_name <span class="type">varchar</span>(<span class="number">10</span>),</span><br><span class="line">    dep_location <span class="type">varchar</span>(<span class="number">10</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> department <span class="keyword">values</span> (<span class="number">1</span>,<span class="string">&#x27;开发部&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> department <span class="keyword">values</span> (<span class="number">2</span>,<span class="string">&#x27;销售部&#x27;</span>,<span class="string">&#x27;上海&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> employee(</span><br><span class="line">eid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">ename <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">age <span class="type">INT</span>,</span><br><span class="line">dept_id <span class="type">INT</span>,  <span class="comment">-- 外键字段类型要和主表的主键字段类型保持一致</span></span><br><span class="line"><span class="comment">-- 添加外键约束</span></span><br><span class="line"><span class="keyword">CONSTRAINT</span> emp_dept_fk <span class="keyword">FOREIGN</span> KEY(dept_id) <span class="keyword">REFERENCES</span> department(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>①插入数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 正常添加数据 (从表外键 对应主表主键)</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;张百万&#x27;</span>, <span class="number">20</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;赵四&#x27;</span>, <span class="number">21</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;广坤&#x27;</span>, <span class="number">20</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;小斌&#x27;</span>, <span class="number">20</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;艳秋&#x27;</span>, <span class="number">22</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;大玲子&#x27;</span>, <span class="number">18</span>, <span class="number">2</span>);</span><br><span class="line"><span class="comment">-- 插入一条有问题的数据 (部门id不存在)</span></span><br><span class="line"><span class="comment">-- Cannot add or update a child row: a foreign key constraint fails</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;错误&#x27;</span>, <span class="number">18</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.zhimg.com/80/v2-874850f329d697ddfeb057754ae15360_720w.webp" alt="img"></p>
+<p>添加外键约束,就会产生强制性的外键数据检查, 从而保证了数据的完整性和一致性,</p>
+<p>3）删除外键约束</p>
+<p>添加&#x2F;删除外键针对的都是从表</p>
+<p><img src="https://pic2.zhimg.com/80/v2-6f9fa956992907cbd16bc08740a168fd_720w.webp" alt="img"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-e0a0bd40849ec656209539fbd14a6788_720w.webp" alt="img"></p>
+<p>4）外键约束的注意事项</p>
+<p>① 从表外键类型必须与主表主键类型一致 否则创建失败.</p>
+<p><img src="https://pic3.zhimg.com/80/v2-79c5f9f4ca4f4efb28901e3debcff09a_720w.webp" alt="img"></p>
+<p>②添加数据时, 应该先添加主表中的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 添加一个新的部门</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> department(dep_name,dep_location) <span class="keyword">VALUES</span>(<span class="string">&#x27;市场部&#x27;</span>,<span class="string">&#x27;北京&#x27;</span>);</span><br><span class="line"><span class="comment">-- 添加一个属于市场部的员工</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee(ename,age,dept_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;老胡&#x27;</span>,<span class="number">24</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p>③删除数据时,应该先删除从表中的数据.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除数据时 应该先删除从表中的数据</span></span><br><span class="line"><span class="comment">-- 报错 Cannot delete or update a parent row: a foreign key constraint</span></span><br><span class="line">fails</span><br><span class="line"><span class="comment">-- 报错原因 不能删除主表的这条数据,因为在从表中有对这条数据的引用</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> department <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 先删除从表的关联数据</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> employee <span class="keyword">WHERE</span> dept_id <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line"><span class="comment">-- 再删除主表的数据</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> department <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+
+<p>5）级联删除操作(了解)</p>
+<p>如果想实现删除主表数据的同时,也删除掉从表数据,可以使用级联删除操作</p>
+<p><img src="https://pic2.zhimg.com/80/v2-01e41c108eac8711f0c30b151da23eb5_720w.webp" alt="img"></p>
+<p>①删除 employee表,重新创建,添加级联删除</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> if <span class="keyword">exists</span> employee;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 重新创建添加级联操作</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> employee(</span><br><span class="line">    eid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">    ename <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">    age <span class="type">INT</span>,</span><br><span class="line">    dept_id <span class="type">INT</span>,</span><br><span class="line">    <span class="keyword">CONSTRAINT</span> emp_dept_fk <span class="keyword">FOREIGN</span> KEY(dept_id) <span class="keyword">REFERENCES</span> department(id)</span><br><span class="line">    <span class="comment">-- 添加级联删除</span></span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;张百万&#x27;</span>, <span class="number">20</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;赵四&#x27;</span>, <span class="number">21</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;广坤&#x27;</span>, <span class="number">20</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;小斌&#x27;</span>, <span class="number">20</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;艳秋&#x27;</span>, <span class="number">22</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> employee (ename, age, dept_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;大玲子&#x27;</span>, <span class="number">18</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除部门编号为2 的记录</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> department <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic2.zhimg.com/80/v2-838a6f379a70c2b7c894a2bee5484391_720w.webp" alt="img"></p>
+<h3 id="6-2-多表查询"><a href="#6-2-多表查询" class="headerlink" title="6.2 多表查询"></a>6.2 多表查询</h3><p>\1) 创建db3_2 数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建 db3_2 数据库,指定编码</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE db3_2 <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8;</span><br></pre></td></tr></table></figure>
+
+<p>\2) 创建分类表与商品表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">use db3_2;</span><br><span class="line"></span><br><span class="line">#分类表 (一方 主表)</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> category (</span><br><span class="line">cid <span class="type">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">PRIMARY</span> KEY ,</span><br><span class="line">cname <span class="type">VARCHAR</span>(<span class="number">50</span>)</span><br><span class="line">);</span><br><span class="line">#商品表 (多方 从表)</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> products(</span><br><span class="line">    pid <span class="type">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">PRIMARY</span> KEY ,</span><br><span class="line">    pname <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    price <span class="type">INT</span>,</span><br><span class="line">    flag <span class="type">VARCHAR</span>(<span class="number">2</span>),</span><br><span class="line">    category_id <span class="type">VARCHAR</span>(<span class="number">32</span>),</span><br><span class="line">    <span class="keyword">CONSTRAINT</span> db3_cate_fk <span class="keyword">FOREIGN</span> KEY (category_id) <span class="keyword">REFERENCES</span> category (cid)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>\3) 插入数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">#分类数据</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category(cid,cname) <span class="keyword">VALUES</span>(<span class="string">&#x27;c001&#x27;</span>,<span class="string">&#x27;家电&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category(cid,cname) <span class="keyword">VALUES</span>(<span class="string">&#x27;c002&#x27;</span>,<span class="string">&#x27;鞋服&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category(cid,cname) <span class="keyword">VALUES</span>(<span class="string">&#x27;c003&#x27;</span>,<span class="string">&#x27;化妆品&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> category(cid,cname) <span class="keyword">VALUES</span>(<span class="string">&#x27;c004&#x27;</span>,<span class="string">&#x27;汽车&#x27;</span>);</span><br><span class="line">#商品数据</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(pid, pname,price,flag,category_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;p001&#x27;</span>,<span class="string">&#x27;小</span></span><br><span class="line"><span class="string">米电视机&#x27;</span>,<span class="number">5000</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;c001&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(pid, pname,price,flag,category_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;p002&#x27;</span>,<span class="string">&#x27;格</span></span><br><span class="line"><span class="string">力空调&#x27;</span>,<span class="number">3000</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;c001&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products(pid, pname,price,flag,category_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;p003&#x27;</span>,<span class="string">&#x27;美</span></span><br><span class="line"><span class="string">的冰箱&#x27;</span>,<span class="number">4500</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;c001&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products (pid, pname,price,flag,category_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;p004&#x27;</span>,<span class="string">&#x27;篮</span></span><br><span class="line"><span class="string">球鞋&#x27;</span>,<span class="number">800</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;c002&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products (pid, pname,price,flag,category_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;p005&#x27;</span>,<span class="string">&#x27;运</span></span><br><span class="line"><span class="string">动裤&#x27;</span>,<span class="number">200</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;c002&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products (pid, pname,price,flag,category_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;p006&#x27;</span>,<span class="string">&#x27;T</span></span><br><span class="line"><span class="string">恤&#x27;</span>,<span class="number">300</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;c002&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products (pid, pname,price,flag,category_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;p007&#x27;</span>,<span class="string">&#x27;冲</span></span><br><span class="line"><span class="string">锋衣&#x27;</span>,<span class="number">2000</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;c002&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products (pid, pname,price,flag,category_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;p008&#x27;</span>,<span class="string">&#x27;神</span></span><br><span class="line"><span class="string">仙水&#x27;</span>,<span class="number">800</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;c003&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> products (pid, pname,price,flag,category_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;p009&#x27;</span>,<span class="string">&#x27;大</span></span><br><span class="line"><span class="string">宝&#x27;</span>,<span class="number">200</span>,<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;c003&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-笛卡尔积"><a href="#6-3-笛卡尔积" class="headerlink" title="6.3 笛卡尔积"></a>6.3 笛卡尔积</h3><p><img src="https://pic3.zhimg.com/80/v2-b34a476609e4248bbc216b7b7963d206_720w.webp" alt="img"></p>
+<p><img src="https://pic1.zhimg.com/80/v2-0202d82f137ff65c20727a6c3766bc64_720w.webp" alt="img"></p>
+<p><img src="https://pic4.zhimg.com/80/v2-4971628c5de6cec0579cbeed569b740f_720w.webp" alt="img"></p>
+<p><strong>笛卡尔积</strong></p>
+<p>假设集合A&#x3D;{a, b}，集合B&#x3D;{0, 1, 2}，则两个集合的笛卡尔积为{(a, 0), (a, 1), (a, 2), (b, 0), (b, 1),</p>
+<p>(b, 2)}。</p>
+<p>SELECT 字段名 FROM 表1, 表2;</p>
+<p>SELECT * FROM category , products;</p>
+<p><img src="https://pic4.zhimg.com/80/v2-465fa23e465326d6a46005fa7c48a77f_720w.webp" alt="img"></p>
+<p>笛卡尔积更进一步，添加where条件，过滤出有效数据</p>
+<h3 id="6-4-多表查询的分类"><a href="#6-4-多表查询的分类" class="headerlink" title="6.4 多表查询的分类"></a>6.4 多表查询的分类</h3><p>1）内连接查询</p>
+<p>内连接的特点:</p>
+<p>通过指定的条件去匹配两张表中的数据, 匹配上就显示,匹配不上就不显示</p>
+<p>比如通过: 从表的外键 &#x3D; 主表的主键 方式去匹配</p>
+<p>①隐式内链接</p>
+<p>form子句 后面直接写 多个表名 使用where指定连接条件的 这种连接方式是 隐式内连接.</p>
+<p>使用where条件过滤无用的数据</p>
+<p><strong>查询所有商品信息和对应的分类信息：</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 隐式内连接</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> products,category <span class="keyword">WHERE</span> category_id <span class="operator">=</span> cid;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic3.zhimg.com/80/v2-9949627598bf00f50a28a61198aa556e_720w.webp" alt="img"></p>
+<p><strong>查询商品表的商品名称 和 价格,以及商品的分类信息</strong></p>
+<p>可以通过给表起别名的方式, 方便我们的查询(有提示)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">p.`pname`,</span><br><span class="line">p.`price`,</span><br><span class="line">c.`cname`</span><br><span class="line"><span class="keyword">FROM</span> products p , category c <span class="keyword">WHERE</span> p.`category_id` <span class="operator">=</span> c.`cid`;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic4.zhimg.com/80/v2-25fd4535ab613633fde10381c188d44b_720w.webp" alt="img"></p>
+<p><strong>查询 格力空调是属于哪一分类下的商品</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#查询 格力空调是属于哪一分类下的商品</span><br><span class="line"><span class="keyword">SELECT</span> p.`pname`,c.`cname` <span class="keyword">FROM</span> products p , category c</span><br><span class="line"><span class="keyword">WHERE</span> p.`category_id` <span class="operator">=</span> c.`cid` <span class="keyword">AND</span> p.`pid` <span class="operator">=</span> <span class="string">&#x27;p002&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>② 显式内连接</strong></p>
+<p>使用 inner join …on 这种方式, 就是显式内连接</p>
+<p>查询所有商品信息和对应的分类信息</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 显式内连接查询</span><br><span class="line">SELECT * FROM products p INNER JOIN category c ON p.category_id = c.cid;</span><br></pre></td></tr></table></figure>
+
+<p>查询鞋服分类下,价格大于500的商品名称和价格</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 查询鞋服分类下,价格大于<span class="number">500</span>的商品名称和价格</span><br><span class="line"><span class="comment">-- 我们需要确定的几件事</span></span><br><span class="line"><span class="comment">-- 1.查询几张表 products &amp; category</span></span><br><span class="line"><span class="comment">-- 2.表的连接条件 从表.外键 = 主表的主键</span></span><br><span class="line"><span class="comment">-- 3.查询的条件 cname = &#x27;鞋服&#x27; and price &gt; 500</span></span><br><span class="line"><span class="comment">-- 4.要查询的字段 pname price</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">p.pname,</span><br><span class="line">p.price</span><br><span class="line"><span class="keyword">FROM</span> products p <span class="keyword">INNER</span> <span class="keyword">JOIN</span> category c <span class="keyword">ON</span> p.category_id <span class="operator">=</span> c.cid</span><br><span class="line"><span class="keyword">WHERE</span> p.price <span class="operator">&gt;</span> <span class="number">500</span> <span class="keyword">AND</span> cname <span class="operator">=</span> <span class="string">&#x27;鞋服&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2） 外连接查询</strong></p>
+<p>① 左外连接</p>
+<p><img src="https://pic3.zhimg.com/80/v2-ee47155c5004b4e1cd33f1843f9c6c1e_720w.webp" alt="img"></p>
+<p><img src="https://pic4.zhimg.com/80/v2-83411f58d6f3380d02f4fd7091cf209b_720w.webp" alt="img"></p>
+<p><img src="https://pic2.zhimg.com/80/v2-7e44047cb05550bde4fb23bf1e311a8d_720w.webp" alt="img"></p>
+<p>②右外连接</p>
+<p>右外连接 , 使用 RIGHT OUTER JOIN , OUTER 可以省略</p>
+<p>右外连接的特点</p>
+<p>以右表为基准，匹配左边表中的数据，如果能匹配到，展示匹配到的数据</p>
+<p>如果匹配不到，右表中的数据正常展示, 左边展示为null</p>
+<p><img src="https://pic3.zhimg.com/80/v2-edaed2dd12650bfa1bcfd8dc90417582_720w.webp" alt="img"></p>
+<p><strong>3）各种连接方式的总结</strong></p>
+<p><img src="https://pic3.zhimg.com/80/v2-a6284123c146e32662779f0fdc4cfa52_720w.webp" alt="img"></p>
+<p>内连接: inner join , 只获取两张表中 交集部分的数据.</p>
+<p>左外连接: left join , 以左表为基准 ,查询左表的所有数据, 以及与右表有交集的部分</p>
+<p>右外连接: right join , 以右表为基准,查询右表的所有的数据,以及与左表有交集的部分</p>
+<p>内连接和左外连接使用居多</p>
+<h3 id="6-5-合并查询"><a href="#6-5-合并查询" class="headerlink" title="6.5 合并查询"></a>6.5 合并查询</h3><p>1）UNION</p>
+<p>UNION 操作符用于合并两个或多个 SELECT 语句的结果集，并消除重复行。</p>
+<p>注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同</p>
+<p>时，每条 SELECT 语句中的列的顺序必须相同。</p>
+<p><strong>实列：</strong></p>
+<p><strong>如下两张表</strong></p>
+<p><img src="https://pic3.zhimg.com/80/v2-8543fc83783f7cdff21e1980ba829e92_720w.webp" alt="img"></p>
+<p><img src="https://pic2.zhimg.com/80/v2-a1c23cd4eae2f8d1155488940136f94d_720w.webp" alt="img"></p>
+<p>创建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Customers(</span><br><span class="line">Id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line">Name <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">Sex <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">Address <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">Salary <span class="type">INT</span> </span><br><span class="line">);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Orders(</span><br><span class="line">Oid <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT,</span><br><span class="line"><span class="type">Date</span> <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">Customers_Id <span class="type">VARCHAR</span>(<span class="number">20</span>),</span><br><span class="line">Amount <span class="type">INT</span> </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>插入数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Customers (Name, Sex, Address, Salary) <span class="keyword">VALUES</span> (<span class="string">&#x27;孙悟空&#x27;</span>, <span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;花果山&#x27;</span>,<span class="number">2000</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Customers (Name, Sex, Address, Salary) <span class="keyword">VALUES</span> (<span class="string">&#x27;猪八戒&#x27;</span>, <span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;高老庄&#x27;</span>,<span class="number">1500</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Customers (Name, Sex, Address, Salary) <span class="keyword">VALUES</span> (<span class="string">&#x27;唐僧&#x27;</span>, <span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;东土大唐&#x27;</span>,<span class="number">3000</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Customers (Name, Sex, Address, Salary) <span class="keyword">VALUES</span> (<span class="string">&#x27;沙僧&#x27;</span>, <span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;流沙河&#x27;</span>,<span class="number">2500</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Customers (Name, Sex, Address, Salary) <span class="keyword">VALUES</span> (<span class="string">&#x27;女儿国王&#x27;</span>,<span class="string">&#x27;女&#x27;</span>, <span class="string">&#x27;女儿国&#x27;</span>,<span class="number">10000</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Customers (Name, Sex, Address, Salary) <span class="keyword">VALUES</span> (<span class="string">&#x27;黄蓉&#x27;</span>, <span class="string">&#x27;女&#x27;</span>,<span class="string">&#x27;桃花岛&#x27;</span>,<span class="number">7500</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Customers (Name, Sex, Address, Salary) <span class="keyword">VALUES</span> (<span class="string">&#x27;郭静&#x27;</span>, <span class="string">&#x27;男&#x27;</span>,<span class="string">&#x27;牛家村&#x27;</span>,<span class="number">6000</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Orders (Oid, <span class="type">Date</span>, Customers_Id, Amount) <span class="keyword">VALUES</span> (<span class="number">102</span>, <span class="string">&#x27;2019-12-08 00:00:00&#x27;</span>, <span class="number">3</span>, <span class="number">2000</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Orders (Oid, <span class="type">Date</span>, Customers_Id, Amount) <span class="keyword">VALUES</span> (<span class="number">100</span>, <span class="string">&#x27;2019-10-06 00:00:00&#x27;</span>, <span class="number">3</span>, <span class="number">1500</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Orders (Oid, <span class="type">Date</span>, Customers_Id, Amount) <span class="keyword">VALUES</span> (<span class="number">101</span>, <span class="string">&#x27;2019-09-20 00:00:00&#x27;</span>, <span class="number">6</span>, <span class="number">3000</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Orders (Oid, <span class="type">Date</span>, Customers_Id, Amount) <span class="keyword">VALUES</span> (<span class="number">103</span>, <span class="string">&#x27;2020-05-20 00:00:00&#x27;</span>, <span class="number">5</span>, <span class="number">5000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>用 SELECT 语句将这两张表连接起来：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Id,NAME,Amount,<span class="type">Date</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> orders</span><br><span class="line"><span class="keyword">on</span> customers.Id <span class="operator">=</span> orders.Customers_Id</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> Id,NAME,Amount,<span class="type">Date</span></span><br><span class="line"><span class="keyword">from</span> customers</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> orders</span><br><span class="line"><span class="keyword">on</span> customers.Id <span class="operator">=</span> orders.Customers_Id;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic2.zhimg.com/80/v2-00741ffe9094bc9805eddad760ec3505_720w.webp" alt="img"></p>
+<p>小结：</p>
+<p>\1. 选择的列数必须相同；</p>
+<p>\2. 所选列的数据类型必须在相同的数据类型组中（如数字或字符）</p>
+<p>\3. 列的名称不必相同</p>
+<p>\4. 在重复检查期间，NULL值不会被忽略</p>
+<p><strong>2）UNION ALL</strong></p>
+<p>UNION ALL 运算符用于将两个 SELECT 语句的结果组合在一起，重复行也包含在内。</p>
+<p>UNION ALL 运算符所遵从的规则与 UNION 一致。</p>
+<p><strong>总结：</strong></p>
+<p>UNION和UNION ALL关键字都是将两个结果集合并为一个，也有区别。</p>
+<p>1、重复值：UNION在进行表连接后会筛选掉重复的记录，而Union All不会去除重复记录。</p>
+<p>2、UNION ALL只是简单的将两个结果合并后就返回。</p>
+<p>3、在执行效率上，UNION ALL 要比UNION快很多，因此，若可以确认合并的两个结果集中不</p>
+<p>包含重复数据，那么就使用UNION ALL。</p>
+<h3 id="6-6-子查询"><a href="#6-6-子查询" class="headerlink" title="6.6 子查询"></a>6.6 子查询</h3><p>1）什么是子查询</p>
+<p><img src="https://pic3.zhimg.com/80/v2-d69f6f5087bcb67860fe802c1a07f966_720w.webp" alt="img"></p>
+<p>2）查询的结果作为查询条件</p>
+<p>通过子查询的方式, 查询价格最高的商品信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 通过子查询的方式, 查询价格最高的商品信息</span><br><span class="line"><span class="comment">-- 1.先查询出最高价格</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">MAX</span>(price) <span class="keyword">FROM</span> products;</span><br><span class="line"><span class="comment">-- 2.将最高价格作为条件,获取商品信息</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> products <span class="keyword">WHERE</span> price <span class="operator">=</span> (<span class="keyword">SELECT</span> <span class="built_in">MAX</span>(price) <span class="keyword">FROM</span> products);</span><br></pre></td></tr></table></figure>
+
+<p>查询化妆品分类下的 商品名称 商品价格</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#查询化妆品分类下的 商品名称 商品价格</span><br><span class="line"><span class="comment">-- 先查出化妆品分类的 id</span></span><br><span class="line"><span class="keyword">SELECT</span> cid <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;化妆品&#x27;</span>;</span><br><span class="line"><span class="comment">-- 根据分类id ,去商品表中查询对应的商品信息</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">p.`pname`,</span><br><span class="line">p.`price`</span><br><span class="line"><span class="keyword">FROM</span> products p</span><br><span class="line"><span class="keyword">WHERE</span> p.`category_id` <span class="operator">=</span> (<span class="keyword">SELECT</span> cid <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="operator">=</span> <span class="string">&#x27;化妆品&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>查询小于平均价格的商品信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1.查询平均价格</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">AVG</span>(price) <span class="keyword">FROM</span> products; <span class="comment">-- 1866</span></span><br><span class="line"><span class="comment">-- 2.查询小于平均价格的商品</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> price <span class="operator">&lt;</span> (<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(price) <span class="keyword">FROM</span> products);</span><br></pre></td></tr></table></figure>
+
+<p>3）子查询的结果作为一张表</p>
+<p>查询商品中,价格大于500的商品信息,包括 商品名称 商品价格 商品所属分类名称</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 1. 先查询分类表的数据</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> category;</span><br><span class="line"><span class="comment">-- 2.将上面的查询语句 作为一张表使用</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">p.`pname`,</span><br><span class="line">p.`price`,</span><br><span class="line">c.cname</span><br><span class="line"><span class="keyword">FROM</span> products p</span><br><span class="line"><span class="comment">-- 子查询作为一张表使用时 要起别名 才能访问表中字段</span></span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> category) c</span><br><span class="line"><span class="keyword">ON</span> p.`category_id` <span class="operator">=</span> c.cid <span class="keyword">WHERE</span> p.`price` <span class="operator">&gt;</span> <span class="number">500</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意： 当子查询作为一张表的时候，需要起别名，否则无法访问表中的字段。</strong></p>
+<p><strong>4）子查询结果是单列多行</strong></p>
+<p>子查询的结果类似一个数组, 父层查询使用 IN 函数 ,包含子查询的结果</p>
+<p>语法格式</p>
+<p>查询价格小于两千的商品,来自于哪些分类(名称)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 查询价格小于两千的商品,来自于哪些分类(名称)</span><br><span class="line"><span class="comment">-- 先查询价格小于2000 的商品的,分类ID</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> category_id <span class="keyword">FROM</span> products <span class="keyword">WHERE</span> price <span class="operator">&lt;</span> <span class="number">2000</span>;</span><br><span class="line"><span class="comment">-- 在根据分类的id信息,查询分类名称</span></span><br><span class="line"><span class="comment">-- 报错: Subquery returns more than 1 row</span></span><br><span class="line"><span class="comment">-- 子查询的结果 大于一行</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> category</span><br><span class="line"><span class="keyword">WHERE</span> cid <span class="operator">=</span> (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> category_id <span class="keyword">FROM</span> products <span class="keyword">WHERE</span> price <span class="operator">&lt;</span></span><br><span class="line"><span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>使用in函数, in( c002, c003 )</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 子查询获取的是单列多行数据</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> category</span><br><span class="line"><span class="keyword">WHERE</span> cid <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> category_id <span class="keyword">FROM</span> products <span class="keyword">WHERE</span> price <span class="operator">&lt;</span></span><br><span class="line"><span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>查询家电类 与 鞋服类下面的全部商品信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 查询家电类 与 鞋服类下面的全部商品信息</span><br><span class="line"><span class="comment">-- 先查询出家电与鞋服类的 分类ID</span></span><br><span class="line"><span class="keyword">SELECT</span> cid <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="keyword">IN</span> (<span class="string">&#x27;家电&#x27;</span>,<span class="string">&#x27;鞋服&#x27;</span>);</span><br><span class="line"><span class="comment">-- 根据cid 查询分类下的商品信息</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> products</span><br><span class="line"><span class="keyword">WHERE</span> category_id <span class="keyword">IN</span> (<span class="keyword">SELECT</span> cid <span class="keyword">FROM</span> category <span class="keyword">WHERE</span> cname <span class="keyword">IN</span> (<span class="string">&#x27;家电&#x27;</span>,<span class="string">&#x27;鞋</span></span><br><span class="line"><span class="string">服&#x27;</span>));</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io">Ther</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://cjx_0723.gitee.io/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E8%BF%B0%E5%92%8CSQL%E8%AF%AD%E6%B3%95/">http://cjx_0723.gitee.io/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E6%95%99%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E2%80%94%20%E6%A6%82%E8%BF%B0%E5%92%8CSQL%E8%AF%AD%E6%B3%95/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://cjx_0723.gitee.io" target="_blank">Ther的小站</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20MySQL%E9%AB%98%E7%BA%A7/" title="MySQL教程（三）—— MySQL高级"><div class="cover" style="background: https://img1.baidu.com/it/u=950222251,316656728&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=967&amp;h=500"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL教程（三）—— MySQL高级</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E5%AE%89%E8%A3%85/" title="MySQL基础教程（一）—— 安装"><div class="cover" style="background: https://img1.baidu.com/it/u=950222251,316656728&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=967&amp;h=500"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL基础教程（一）—— 安装</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%20%E5%AE%89%E8%A3%85/" title="MySQL基础教程（一）—— 安装"><div class="cover" style="background: https://img1.baidu.com/it/u=950222251,316656728&fm=253&fmt=auto&app=138&f=JPG?w=967&h=500"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-30</div><div class="title">MySQL基础教程（一）—— 安装</div></div></a></div><div><a href="/2023/10/30/%E4%B8%AD%E9%97%B4%E4%BB%B6/MySQL/MySQL%E6%95%99%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E2%80%94%20MySQL%E9%AB%98%E7%BA%A7/" title="MySQL教程（三）—— MySQL高级"><div class="cover" style="background: https://img1.baidu.com/it/u=950222251,316656728&fm=253&fmt=auto&app=138&f=JPG?w=967&h=500"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-30</div><div class="title">MySQL教程（三）—— MySQL高级</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i1.hdslb.com/bfs/face/b6bef67834c33bc7d386fb03a6dbc6db7966102e.jpg@240w_240h_1c_1s_!web-avatar-nav.avif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ther</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%EF%BC%8CMySQL%E5%9F%BA%E7%A1%80"><span class="toc-text">一，MySQL基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.1 什么是数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">1.2 为什么要使用数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-SQL%E5%88%86%E7%B1%BB"><span class="toc-text">1.3 SQL分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%EF%BC%8C-MySQL%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">二， MySQL数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Mysql%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="toc-text">2.1 Mysql存储引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">2.2 Mysql数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-text">数值类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-text">整数类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%8F%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-text">小数类型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-text">字符串类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9F%AD%E6%96%87%E6%9C%AC%EF%BC%9Achar-varchar"><span class="toc-text">短文本：char varchar</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E7%B1%BB%E5%9E%8B"><span class="toc-text">可变类型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B"><span class="toc-text">日期和时间类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MySQL%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B%E6%B1%87%E6%80%BB"><span class="toc-text">MySQL数值类型汇总</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B4%E5%9E%8B"><span class="toc-text">整型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B"><span class="toc-text">浮点型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4"><span class="toc-text">日期和时间</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E7%B1%BB%E5%9E%8B"><span class="toc-text">二进制类型</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%EF%BC%8C-SQL%E8%AF%AD%E5%8F%A5%E6%93%8D%E4%BD%9C%E8%AF%A6%E8%A7%A3"><span class="toc-text">三， SQL语句操作详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-SQL%E9%80%9A%E7%94%A8%E8%AF%AD%E6%B3%95"><span class="toc-text">3.1 SQL通用语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%B3%A8%E9%87%8A%E6%96%B9%E5%BC%8F"><span class="toc-text">3.2. 注释方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-DDL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">3.3 DDL操作数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-DDL-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-text">3.4 DDL 操作数据表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-DML-%E6%93%8D%E4%BD%9C%E8%A1%A8%E4%B8%AD%E6%95%B0%E6%8D%AE%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-text">3.5 DML 操作表中数据（重点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-DQL-%E6%9F%A5%E8%AF%A2%E8%A1%A8%E4%B8%AD%E6%95%B0%E6%8D%AE%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-text">3.6 DQL 查询表中数据（重点）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%EF%BC%8Cmysql%E6%A0%B8%E5%BF%83%E6%9F%A5%E8%AF%A2"><span class="toc-text">四，mysql核心查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%8D%95%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-text">4.1 单表查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-text">4.2 聚合函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%88%86%E7%BB%84"><span class="toc-text">4.3 分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-limit%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">4.4 limit关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-mysql%E7%BA%A6%E6%9D%9F"><span class="toc-text">五 mysql约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E4%B8%BB%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="toc-text">5.1 主键约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E9%9D%9E%E7%A9%BA%E7%BA%A6%E6%9D%9F"><span class="toc-text">5.2 非空约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="toc-text">5.4 外键约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-text">5.5 默认值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%EF%BC%8C%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-text">六，多表查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F"><span class="toc-text">6.1 外键约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="toc-text">6.2 多表查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF"><span class="toc-text">6.3 笛卡尔积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-text">6.4 多表查询的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-%E5%90%88%E5%B9%B6%E6%9F%A5%E8%AF%A2"><span class="toc-text">6.5 合并查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-6-%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-text">6.6 子查询</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程"><div style="background: https://w.wallhaven.cc/full/qz/wallhaven-qzom1r.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E9%AB%98%E7%BA%A7%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" title="高级软件工程">高级软件工程</a><time datetime="2023-10-30T14:04:29.121Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试"><div style="background: https://w.wallhaven.cc/full/yj/wallhaven-yjvxeg.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%88%86%E6%9E%90%E4%B8%8E%E6%B5%8B%E8%AF%95/" title="软件分析与测试">软件分析与测试</a><time datetime="2023-10-30T14:04:29.118Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E5%AD%A6%E7%A7%91/%E6%95%B0%E5%AD%A6/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E7%AC%94%E8%AE%B0/" title="概率论与数理统计">概率论与数理统计</a><time datetime="2023-10-30T14:04:29.068Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/PPT/" title="无题">无题</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课"><div style="background: https://w.wallhaven.cc/full/4g/wallhaven-4gwl6q.jpg"></div></a><div class="content"><a class="title" href="/2023/10/30/%E7%94%9F%E6%B4%BB/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%94%9F%E6%B4%BB/%E7%A0%94%E4%B8%80%E9%80%89%E8%AF%BE/" title="研一选课">研一选课</a><time datetime="2023-10-30T14:04:29.061Z" title="发表于 2023-10-30 22:04:29">2023-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Ther</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script></div></div></body></html>
